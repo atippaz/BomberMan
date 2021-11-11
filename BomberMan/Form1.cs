@@ -16,5 +16,11 @@ namespace BomberMan
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            BomberMan.Class.Characters.Player player = new Class.Characters.Player("player",3);
+            MessageBox.Show($"{player.HP} : {player.Name}");
+        }
     }
 }
