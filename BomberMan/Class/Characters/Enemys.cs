@@ -3,9 +3,9 @@
     class Enemys : Characters
     {
         #region Methods
-        public void Attack(Player player)
+        public void AttackEnemy(Player player)
         {
-
+            System.Console.WriteLine(player.HP);
         }
         public override void Move()
         {

@@ -40,7 +40,7 @@
             this.button1.TabIndex = 0;
             this.button1.Text = "testPlayer";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button1.Click += new System.EventHandler(this.TestBtn);
             // 
             // button2
             // 
@@ -50,7 +50,7 @@
             this.button2.TabIndex = 0;
             this.button2.Text = "closeform";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.button2.Click += new System.EventHandler(this.OpenMainForm);
             // 
             // Game
             // 
@@ -63,6 +63,7 @@
             this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Game";
+            this.Load += new System.EventHandler(this.Init);
             this.ResumeLayout(false);
 
         }

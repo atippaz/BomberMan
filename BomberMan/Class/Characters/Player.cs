@@ -2,11 +2,11 @@
 {
     class Player : Characters
     {
-        public Player(string name, int Hp) : base(name, Hp) { }
+        public Player(string sName, int nHp,int x, int y,int nWidth,int nHeight) : base(sName, nHp,x, y,nWidth,nHeight) { }
         #region Methods
-        public void Attack(Enemys player)
+        public void AttackEnemy(Enemys player)
         {
-
+            System.Console.WriteLine(player.HP);
         }
         public override void Move()
         {
