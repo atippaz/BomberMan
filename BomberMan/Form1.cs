@@ -19,8 +19,14 @@ namespace BomberMan
 
         private void button1_Click(object sender, EventArgs e)
         {
-            BomberMan.Class.Characters.Player player = new Class.Characters.Player("player",3);
-            MessageBox.Show($"{player.HP} : {player.Name}");
+            
+        }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            Game GameForm = new Game();
+            GameForm.Show();
+            this.Hide();
         }
     }
 }
