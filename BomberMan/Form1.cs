@@ -16,5 +16,11 @@ namespace BomberMan
         {
             InitializeComponent();
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            MessageBox.Show("Hello My Project");
+            MessageBox.Show("i am prem");
+        }
     }
 }
