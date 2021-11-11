@@ -19,6 +19,8 @@ namespace BomberMan
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            MessageBox.Show("Hello My Project");
+            MessageBox.Show("i am prem");
             MessageBox.Show("Hello My Project1");
         }
     }
