@@ -41,7 +41,7 @@ namespace BomberMan
 
         private void OpenMainForm(object sender, EventArgs e)
         {
-            Form1 form = new Form1();
+            MainForm form = new MainForm();
             form.Show();
             this.Close();
         }
