@@ -15,9 +15,9 @@ namespace BomberMan {
     public partial class MainForm : Form {
 
         Thread worker;
+         
         public MainForm() {
             InitializeComponent();
-
             // initial value for control
             this.BackColor = Color.FromArgb(255, 255, 255);
             label1.BackColor = Color.FromArgb(255, 255, 255);
@@ -30,8 +30,8 @@ namespace BomberMan {
         }
 
         private void OpenGameForm(object sender, EventArgs e) {
-            Game GameForm = new Game();
-            GameForm.Show();
+            RegisterForm registerForm = new RegisterForm();
+            registerForm.Show();
             this.Hide();
         }
 
@@ -40,8 +40,8 @@ namespace BomberMan {
         }
 
         private void Setup(object sender, EventArgs e) {
-            worker = new Thread(BomberMan.Class.SoundEffect.Effects);
-            BomberMan.Class.SoundEffect.BGM_Play();
+          worker = new Thread(BomberMan.Class.SoundEffect.Effects);
+          BomberMan.Class.SoundEffect.BGM_Play();
         }
 
         private void Play_Effect(object sender, EventArgs e) {

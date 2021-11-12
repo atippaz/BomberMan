@@ -160,9 +160,10 @@
             this.Controls.Add(this.btn_Start);
             this.Controls.Add(this.lineSlide1);
             this.Controls.Add(this.lineSlide2);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "THE STUDENT BOMBER";
             this.Load += new System.EventHandler(this.Setup);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Logo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
