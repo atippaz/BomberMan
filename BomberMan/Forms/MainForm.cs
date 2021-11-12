@@ -9,47 +9,54 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using System.IO;
 
-namespace BomberMan
-{
-    public partial class MainForm : Form
-    {
+namespace BomberMan {
+    public partial class MainForm : Form {
 
         Thread worker;
-        public MainForm()
-        {
+        public MainForm() {
             InitializeComponent();
+
+            // initial value for control
+            this.BackColor = Color.FromArgb(255, 255, 255);
+            label1.BackColor = Color.FromArgb(255, 255, 255);
+
+            pictureBox_Logo.Image = Image.FromFile(Path.GetFullPath("..\\..\\resource\\Logo\\logo.gif"));
+            pictureBox1.Image = Image.FromFile(Path.GetFullPath("..\\..\\resource\\Character\\Player\\student_run_left.gif"));
+            pictureBox2.Image = Image.FromFile(Path.GetFullPath("..\\..\\resource\\Character\\Player\\student_run_up.gif"));
+            pictureBox1.Visible = false;
+            pictureBox2.Visible = false;
         }
 
-        private void OpenGameForm(object sender, EventArgs e)
-        {
+        private void OpenGameForm(object sender, EventArgs e) {
             Game GameForm = new Game();
             GameForm.Show();
             this.Hide();
         }
 
-        private void CloseForm(object sender, EventArgs e)
-        {
+        private void CloseForm(object sender, EventArgs e) {
             Application.Exit();
         }
 
-        private void Setup(object sender, EventArgs e)
-        {
-           // worker = new Thread(BomberMan.Class.SoundEffect.Effects);
-           // BomberMan.Class.SoundEffect.BGM_Play();
+        private void Setup(object sender, EventArgs e) {
+            worker = new Thread(BomberMan.Class.SoundEffect.Effects);
+            BomberMan.Class.SoundEffect.BGM_Play();
         }
 
-        private void Play_Effect(object sender, EventArgs e)
-        {
+        private void Play_Effect(object sender, EventArgs e) {
             worker = new Thread(BomberMan.Class.SoundEffect.Effects);
             worker.Start();
         }
+
+
 
         // ----------------------
         // PROPERTIES FOR BUTTON
         // ----------------------
 
         private int lineSpeed = 9;
+
         //--------------
         // START BUTTON 
         //--------------
@@ -57,6 +64,7 @@ namespace BomberMan
         // default:  255, 181, 107
         // hover: 255, 192, 128
         // click: 255, 159, 64
+
         #region Attribute of START BUTTON
         private bool leave_btnStart = false;
         private bool hover_btnStart = false;
@@ -116,24 +124,28 @@ namespace BomberMan
                 if (lineSlide1.Location.X >= 52) {
                     lineSlide1.Left -= lineSpeed;
                 }
+                pictureBox1.Visible = false;
             }
 
-            if (hover_btnStart) {              
+            if (hover_btnStart) {
                 if (lineSlide1.Location.X < 286) {
                     lineSlide1.Left += lineSpeed;
-                }                 
+                }
+                pictureBox1.Visible = true;
             }
 
             if (hover_btnEXIT) {
                 if (lineSlide2.Location.X < 286) {
                     lineSlide2.Left += lineSpeed;
                 }
+                pictureBox2.Visible = true;
             }
 
             if (leave_btnEXIT) {
                 if (lineSlide2.Location.X >= 52) {
                     lineSlide2.Left -= lineSpeed;
                 }
+                pictureBox2.Visible = false;
             }
         }
 

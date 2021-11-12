@@ -17,7 +17,7 @@ namespace BomberMan.Class
 
         public static void BGM_Play()
         {
-            BG = new SoundPlayer(Properties.Resources.Bgm);
+            BG = new SoundPlayer(Properties.Resources.Bgm_update);
             BG.PlayLooping();
         }
         public static void BGM_Play1()

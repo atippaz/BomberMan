@@ -72,6 +72,15 @@ namespace BomberMan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream Bgm_update {
+            get {
+                return ResourceManager.GetStream("Bgm_update", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream Bgm2 {
             get {
                 return ResourceManager.GetStream("Bgm2", resourceCulture);

@@ -80,19 +80,19 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -131,6 +131,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="resource\MusicEffect\Success.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="resource\Logo\logo.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Bgm_update.wav" />
+    <None Include="resource\MusicEffect\Bgm_update.wav" />
+    <Content Include="resource\Character\Player\student_idle.gif" />
+    <Content Include="resource\Character\Player\student_run_down.gif" />
+    <Content Include="resource\Character\Player\student_run_left.gif" />
+    <Content Include="resource\Character\Player\student_run_right.gif" />
+    <Content Include="resource\Character\Player\student_run_up.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
