@@ -121,8 +121,8 @@
   <data name="Bgm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resource\MusicEffect\Bgm.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Bgm2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\resource\MusicEffect\Bgm2.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="BG_update" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BG_update.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="btnClick" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\resource\MusicEffect\btnClick.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>

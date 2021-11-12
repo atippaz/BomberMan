@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Media;
 using System.IO;
 using WMPLib;
-
 namespace BomberMan.Class
 {
     public static class SoundEffect
@@ -17,7 +16,7 @@ namespace BomberMan.Class
 
         public static void BGM_Play()
         {
-            BG = new SoundPlayer(Properties.Resources.Bgm);
+            BG = new SoundPlayer(Properties.Resources.BG_update);
             BG.PlayLooping();
         }
         public static void BGM_Play1()
