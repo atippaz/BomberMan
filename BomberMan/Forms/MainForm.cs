@@ -40,12 +40,12 @@ namespace BomberMan {
         }
 
         private void Setup(object sender, EventArgs e) {
-          worker = new Thread(BomberMan.Class.SoundEffect.Effects);
-          BomberMan.Class.SoundEffect.BGM_Play();
+          worker = new Thread(SoundEffect.Effects);
+          SoundEffect.BGM_Play();
         }
 
         private void Play_Effect(object sender, EventArgs e) {
-            worker = new Thread(BomberMan.Class.SoundEffect.Effects);
+            worker = new Thread(SoundEffect.Effects);
             worker.Start();
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Media;
 using System.IO;
 using WMPLib;
-namespace BomberMan.Class
+namespace BomberMan
 {
     public static class SoundEffect
     {

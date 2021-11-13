@@ -1,8 +1,8 @@
-﻿namespace BomberMan.Class.Characters
+﻿namespace BomberMan
 {
     class Player : Characters
     {
-        public Player(string sName, int nHp,int x, int y,int nWidth,int nHeight) : base(sName, nHp,x, y,nWidth,nHeight) { }
+        public Player(string sName, int nHp, int x, int y, int nWidth, int nHeight, string image) : base(sName, nHp, x, y, nWidth, nHeight, image) {}
         #region Methods
         public void AttackEnemy(Enemys player)
         {

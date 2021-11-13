@@ -1,20 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.IO;
+using System.Windows.Forms;
 
-namespace BomberMan {
-    public partial class RegisterForm : Form {
+namespace BomberMan
+{
+    public partial class RegisterForm : Form
+    {
         private int lineSpeed = 10;
         private bool focus;
-        public RegisterForm() {
+        private bool leave_btnEXIT;
+        public RegisterForm()
+        {
             InitializeComponent();
+            lineSlide.Width = 0;
             this.BackColor = Color.FromArgb(255, 255, 255);
             btn_Play.BackColor = Color.FromArgb(255, 181, 107);
             Name_RealTime.ForeColor = Color.White;
@@ -33,45 +32,48 @@ namespace BomberMan {
         // ----------------
         // ANIMATION BUTTON
         // ----------------
-        private void timer_animation_Tick(object sender, EventArgs e) {
-            if (focus) {
-                if (lineSlide.Location.X <= 400) {
-                    lineSlide.Left += lineSpeed;
-                }
+        private void timer_animation_Tick(object sender, EventArgs e)
+        {
+            if (lineSlide.Width <= txtPlayerName.Width && focus)
+            {
+                lineSlide.Width += lineSpeed;
             }
+            btn_Play.Enabled = (txtPlayerName.Text.Length < 8) ? false : true;
         }
 
-        private void txtPlayerName_MouseClick(object sender, MouseEventArgs e) {
+        private void txtPlayerName_MouseClick(object sender, MouseEventArgs e)
+        {
             focus = true;
+            leave_btnEXIT = false;
         }
 
-        private void txtPlayerName_TextChanged(object sender, EventArgs e) {
+        private void txtPlayerName_TextChanged(object sender, EventArgs e)
+        {
             Name_RealTime.Text = txtPlayerName.Text;
-
-            line_type.Width = 13* txtPlayerName.Text.Length;
-
-            if (txtPlayerName.Text.Length == 8) {
-                pictureBox_Character.Image = Image.FromFile(Path.GetFullPath("..\\..\\resource\\Character\\Player\\student_run_down.gif"));
-            }
-            else {
-                pictureBox_Character.Image = Image.FromFile(Path.GetFullPath("..\\..\\resource\\Character\\Player\\student_idle.gif"));
-            }
+            line_type.Width = 13 * txtPlayerName.Text.Length;
+            pictureBox_Character.Image = Image.FromFile(Path.GetFullPath((txtPlayerName.Text.Length == 8) ? PlayerImage.Run : PlayerImage.Idle));
         }
         // 255, 192, 128
-        private void btn_Play_MouseHover(object sender, EventArgs e) {
+        private void btn_Play_MouseHover(object sender, EventArgs e)
+        {
             btn_Play.BackColor = Color.FromArgb(255, 192, 128);
         }
 
-        private void btn_Play_MouseLeave(object sender, EventArgs e) {
+        private void btn_Play_MouseLeave(object sender, EventArgs e)
+        {
             btn_Play.BackColor = Color.FromArgb(255, 181, 107);
-
         }
 
-        private void btn_Play_MouseClick(object sender, MouseEventArgs e) {
+        private void btn_Play_MouseClick(object sender, MouseEventArgs e)
+        {
             btn_Play.BackColor = Color.FromArgb(255, 159, 64);
+            this.Close();
+            Game GameForm = new Game($"{Name_RealTime.Text}");
+            GameForm.Show();
         }
 
-        private void btn_Play_MouseDown(object sender, MouseEventArgs e) {
+        private void btn_Play_MouseDown(object sender, MouseEventArgs e)
+        {
             btn_Play.BackColor = Color.FromArgb(255, 159, 64);
         }
     }
