@@ -59,6 +59,8 @@
     <Compile Include="Class\Items\Items.cs" />
     <Compile Include="Class\Images\PlayerImage.cs" />
     <Compile Include="Class\Sounds\SoundEffect.cs" />
+    <Compile Include="Class\Images\DecorateImage.cs" />
+    <Compile Include="Class\Attribute\Colors.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -143,11 +145,11 @@
     <None Include="resource\MusicEffect\Success.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resource\Logo\logo.gif" />
+    <None Include="resource\DecorateImage\logo.gif" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\BG_update.wav" />
-    <Content Include="resource\Logo\Blackboard.jpg" />
+    <Content Include="resource\DecorateImage\Blackboard.jpg" />
     <None Include="resource\MusicEffect\Bgm_update.wav" />
     <Content Include="resource\Character\Player\student_idle.gif" />
     <Content Include="resource\Character\Player\student_run_down.gif" />
