@@ -1,4 +1,4 @@
-﻿namespace BomberMan.Class.Characters
+﻿namespace BomberMan
 {
     class Enemys : Characters
     {

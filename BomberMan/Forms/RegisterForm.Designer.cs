@@ -34,7 +34,6 @@ namespace BomberMan {
             this.pictureBox_Character = new System.Windows.Forms.PictureBox();
             this.Name_RealTime = new System.Windows.Forms.Label();
             this.line_type = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Character)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -95,9 +94,9 @@ namespace BomberMan {
             // lineSlide
             // 
             this.lineSlide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lineSlide.Location = new System.Drawing.Point(129, 182);
+            this.lineSlide.Location = new System.Drawing.Point(409, 184);
             this.lineSlide.Name = "lineSlide";
-            this.lineSlide.Size = new System.Drawing.Size(277, 2);
+            this.lineSlide.Size = new System.Drawing.Size(0, 2);
             this.lineSlide.TabIndex = 4;
             // 
             // pictureBox_Character
@@ -128,17 +127,6 @@ namespace BomberMan {
             this.line_type.Size = new System.Drawing.Size(0, 2);
             this.line_type.TabIndex = 7;
             // 
-            // label4
-            // 
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.CadetBlue;
-            this.label4.Location = new System.Drawing.Point(117, 150);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(292, 41);
-            this.label4.TabIndex = 9;
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
@@ -160,7 +148,6 @@ namespace BomberMan {
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPlayerName);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.lineSlide);
             this.Controls.Add(this.label2);
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -185,7 +172,6 @@ namespace BomberMan {
         private System.Windows.Forms.PictureBox pictureBox_Character;
         private System.Windows.Forms.Label Name_RealTime;
         private System.Windows.Forms.Label line_type;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

@@ -1,4 +1,5 @@
-﻿namespace BomberMan.Class.Characters
+﻿using System.Windows.Forms;
+namespace BomberMan
 {
     abstract class Characters
     {
@@ -10,6 +11,7 @@
         private int _nPositionY;
         readonly private int _nAttack;
         readonly private string _sName;
+        private string _sSourceImage;
         #endregion
         #region Properties
         public int HP { get => _nHP; }
@@ -19,6 +21,7 @@
         public int Height { get => _nHeight; set => _nHeight = (value > 0) ? value : 0; }
         public int PositionY { get => _nPositionY; set => _nPositionY = (value > 0) ? value :0; }
         public int PositionX { get => _nPositionX; set => _nPositionX = (value > 0) ? value : 0; }
+        public string SourceImage { get => _sSourceImage; set => _sSourceImage = value; }
         #endregion
         #region Constructors
         public Characters()
@@ -27,7 +30,7 @@
             this._nHP = 3;
             this.PositionY = this.PositionX = this.Height = this.Width = 0;
         }
-        public Characters(string sName, int nHp, int nPositionX, int nPositionY, int nWidth, int nHeight)
+        public Characters(string sName, int nHp, int nPositionX, int nPositionY, int nWidth, int nHeight,string image)
         {
             this._sName = sName;
             this._nHP = (nHp > 0) ? nHp : 3;
@@ -35,6 +38,7 @@
             this.PositionX = nPositionY;
             this.Height = nWidth;
             this.Width = nHeight;
+            this.SourceImage = image;
         }
         #endregion
         #region Methods
