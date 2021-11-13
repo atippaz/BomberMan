@@ -1,13 +1,13 @@
 ﻿namespace BomberMan
 {
-    class Enemys : Characters
+    class Enemy : Characters
     {
         #region Methods
         public void AttackEnemy(Player player)
         {
             System.Console.WriteLine(player.HP);
         }
-        public override void Move()
+        public override void Move(string directions)
         {
 
         }
