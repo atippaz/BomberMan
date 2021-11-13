@@ -58,6 +58,7 @@
     <Compile Include="Class\Characters\Player.cs" />
     <Compile Include="Class\Items\Items.cs" />
     <Compile Include="Class\Images\PlayerImage.cs" />
+    <Compile Include="Class\Maps\Map.cs" />
     <Compile Include="Class\Sounds\SoundEffect.cs" />
     <Compile Include="Class\Images\DecorateImage.cs" />
     <Compile Include="Class\Attribute\Colors.cs" />
@@ -114,9 +115,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Class\Maps\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="resource\MusicEffect\Bgm.wav" />
   </ItemGroup>
