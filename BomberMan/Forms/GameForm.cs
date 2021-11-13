@@ -23,22 +23,11 @@ namespace BomberMan
         public Game(string Playername)
         {
             InitializeComponent();
-            playerProperties = new Player($"{Playername}", 3, 0, 0, 0, 0, PlayerImage.Idle);
-            Player = new PictureBox()
-            {
-                Name = $"{Playername}",
-                Size = new Size(60, 50),
-                Location = new Point(100, 100),
-                SizeMode = PictureBoxSizeMode.Zoom,
-                Image = Image.FromFile(Path.GetFullPath(playerProperties.SourceImage)),
-            };
-            this.Controls.Add(Player);
-            Console.WriteLine($"{playerProperties.SourceImage}");
         }
 
         private void TestBtn(object sender, EventArgs e)
         {
-            MessageBox.Show($"{playerProperties.HP} : {playerProperties.Name}");
+           
         }
         void Init(object sender, EventArgs e)
         {
