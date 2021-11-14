@@ -33,9 +33,10 @@ namespace BomberMan
         {
             form.Controls.Add(_pbMap);
         }
-        public void AddPicture(PictureBox elements)
+        public void AddTiles(PictureBox elements)
         {
             this._pbMap.Controls.Add(elements);
+            elements.BackColor = Color.Transparent;
         }
     }
 }

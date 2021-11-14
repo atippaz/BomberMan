@@ -11,20 +11,21 @@ namespace BomberMan
         List<Control> Wall;
         Map map; 
         Player player; Enemy Enemy;
-        int position, Size;
+        string Directions;
+        int position, size;
         public Game(string Playername)
         {
             InitializeComponent();
-            Enemy = new Enemy();
-            player = new Player(Playername);
             Init();
+            Enemy = new Enemy();
+            player = new Player(Playername,map.MapProperties);
         }
 
         void Init()
         {
             this.Focus();
             position = 100;
-                Size = 800;
+                size = 500;
             CreateMap();
             Box = new List<Control>();
             Wall = new List<Control>();
@@ -71,20 +72,57 @@ namespace BomberMan
             Console.WriteLine($"{ BrforeFormResize.Width - AfterFormResize.MapProperties.Width}");
             Console.WriteLine($"{BrforeFormResize.Width} :{ AfterFormResize.MapProperties.Width}");
             Console.WriteLine($"{BrforeFormResize.Height} :{ AfterFormResize.MapProperties.Height}");
-
         }
         void CreateMap() 
         {
-            
-            map = new Map(DecorateImage.Blackboard, new Size(Size, Size),new Point(position,position));
+            map = new Map(DecorateImage.Blackboard, new Size(size, size),new Point(position,position));
             map.Add(this);
-            map.AddPicture(player.Character);
-            player.Character.BackColor = Color.Transparent;
             ResizeForm(this, map);
         }
+        private void KeyIsUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right) 
+            {
+                Directions = "";
+            }
+            if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left) 
+            {
+                Directions = "";
+            }
+            if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up) 
+            {
+                Directions = "";
+            }
+            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down) 
+            {
+                Directions = "";
+            }
+        }
+
+        private void KeyIsDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
+            {
+                Directions = "Right";
+            }
+            if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
+            {
+                Directions = "Left";
+            }
+            if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
+            {
+                Directions = "Up";
+            }
+            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
+            {
+                Directions = "Down";
+            }
+        }
+
         void Update(object sender, EventArgs a)
         {
-                
+            player.Move(Directions);
+            player.AnimationDirector = Directions;
         }
 
     }
