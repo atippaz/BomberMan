@@ -61,7 +61,7 @@
     <Compile Include="Class\Images\PlayerImage.cs" />
     <Compile Include="Class\Maps\Map.cs" />
     <Compile Include="Class\Sounds\EffectSound.cs" />
-    <Compile Include="Class\Images\AccessoryImage.cs" />
+    <Compile Include="Class\Images\Images.cs" />
     <Compile Include="Class\Attribute\Colors.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -122,21 +122,23 @@
     <None Include="resource\Sounds\Fx\Click.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resource\Images\Accessory\LogoGame.gif" />
+    <None Include="resource\Images\LogoGame.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="resource\Images\Accessory\Fire.gif" />
-    <Content Include="resource\Images\Accessory\Fire2.gif" />
-    <Content Include="resource\Images\Accessory\IconGame.ico" />
-    <Content Include="resource\Images\Accessory\Library.gif" />
-    <Content Include="resource\Images\Accessory\Library2.gif" />
+    <Content Include="resource\Character\Player\Player_run_right.gif" />
+    <Content Include="resource\Character\Player\Player_run_down.gif" />
+    <Content Include="resource\Character\Player\Player_run_up.gif" />
+    <Content Include="resource\Images\Fire.gif" />
+    <Content Include="resource\Images\Fire2.gif" />
+    <Content Include="resource\Images\IconGame.ico" />
+    <Content Include="resource\Images\Library.gif" />
+    <Content Include="resource\Images\Library2.gif" />
+    <Content Include="resource\Character\Player\Player_run_left.gif" />
     <Content Include="resource\Sounds\Bgm\MainTheme.wav" />
-    <Content Include="resource\Images\Accessory\Blackboard.jpg" />
-    <Content Include="resource\Images\Character\Player\Player_idle.gif" />
-    <Content Include="resource\Images\Character\Player\Player_run_down.gif" />
-    <Content Include="resource\Images\Character\Player\Player_run_left.gif" />
-    <Content Include="resource\Images\Character\Player\Player_run_right.gif" />
-    <Content Include="resource\Images\Character\Player\Player_run_up.gif" />
+    <Content Include="resource\Images\Blackboard.jpg" />
+    <Content Include="resource\Character\Player\Player_idle.gif" />
+    <Content Include="resource\Images\StartRun.gif" />
+    <Content Include="resource\Images\ExitRun.gif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

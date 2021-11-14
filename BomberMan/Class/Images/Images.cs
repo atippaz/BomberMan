@@ -2,9 +2,11 @@
 using System.IO;
 
 namespace BomberMan {
-    static class AccessoryImags {
-        static private string Paths = "..\\..\\resource\\Images\\Accessory\\";   
-        
+    static class Images {
+        static private string Paths = "..\\..\\resource\\Images\\";
+
+        static public Image StartRun = Image.FromFile(Path.GetFullPath(Paths + "StartRun.gif"));
+        static public Image ExitRun = Image.FromFile(Path.GetFullPath(Paths + "ExitRun.gif"));
         static public Image Blackboard = Image.FromFile(Path.GetFullPath(Paths + "Blackboard.jpg"));
         static public Image LogoGame = Image.FromFile(Path.GetFullPath(Paths + "LogoGame.gif"));
         static public Image Library = Image.FromFile(Path.GetFullPath(Paths + "Library.gif"));

@@ -5,7 +5,7 @@ namespace BomberMan
 {
     static class PlayerImage
     {
-        static private string Paths = "..\\..\\resource\\Images\\Character\\Player\\";
+        static private string Paths = "..\\..\\resource\\Character\\Player\\";
 
         static public Image Idle = Image.FromFile(Path.GetFullPath(Paths + "Player_idle.gif"));
         static public Image RunLeft = Image.FromFile(Path.GetFullPath(Paths + "Player_run_left.gif"));

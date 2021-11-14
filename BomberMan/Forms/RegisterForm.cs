@@ -14,19 +14,19 @@ namespace BomberMan {
             lineSlide.Width = 0;
 
             this.BackColor = Colors.White;
-            this.Icon = new Icon(AccessoryImags.IconGame);
+            this.Icon = new Icon(Images.IconGame);
 
             btn_Play.BackColor = Colors.OrangeLeave;
             lineSlide.BackColor = Colors.OrangeLine;
             Name_RealTime.ForeColor = Color.White;
 
             pictureBox_Character.Image = PlayerImage.Idle;
-            pictureBox1.Image = AccessoryImags.Blackboard;
+            pictureBox1.Image = Images.Blackboard;
 
             // Tranparent picture
             // Player
             pictureBox1.Controls.Add(pictureBox_Character);
-            pictureBox_Character.Location = new Point(100, 70);
+            pictureBox_Character.Location = new Point(95, 70);
             pictureBox_Character.BringToFront();
 
             // Label name
@@ -53,6 +53,17 @@ namespace BomberMan {
             Name_RealTime.Text = txtPlayerName.Text;
             line_type.Width = 13 * txtPlayerName.Text.Length;
             pictureBox_Character.Image = (txtPlayerName.Text.Length == 8) ? PlayerImage.RunDown : PlayerImage.Idle;
+            
+            lblWarning.Visible = (txtPlayerName.Text.Length < 8 && txtPlayerName.Text.Length > 0) ? true : false;
+            if (!(lblWarning.Visible) && txtPlayerName.Text.Length == 8) {
+                lblWarning.Visible = true; 
+                lblWarning.Text = "This name can be used";
+                lblWarning.ForeColor = Colors.Success;
+            }
+            else {
+                lblWarning.Text = "Please type 8 charaters";
+                lblWarning.ForeColor = Colors.Warning;
+            }
         }
 
         private void btn_Play_MouseHover(object sender, EventArgs e) {
@@ -70,7 +81,7 @@ namespace BomberMan {
             /// ** Music.MainTheme use for test
             /// actually we will use Music.GameTheme
             //BackGroundMusic.Set(Music.GameTheme);
-           // BackGroundMusic.Set(Music.MainTheme);
+            // BackGroundMusic.Set(Music.MainTheme);
             //BackGroundMusic.Play();
 
             Game GameForm = new Game($"{Name_RealTime.Text}");
