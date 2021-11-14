@@ -22,7 +22,7 @@ namespace BomberMan
             Name_RealTime.ForeColor = Color.White;
 
             pictureBox_Character.Image = PlayerImage.Idle;
-            pictureBox1.Image = Image.FromFile(Path.GetFullPath(DecorateImage.Blackboard));
+            pictureBox1.Image = DecorateImage.Blackboard;
             
             // Tranparent picture
             // Player
