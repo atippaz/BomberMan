@@ -69,7 +69,6 @@ namespace BomberMan
             Console.WriteLine($"{AfterFormResize.MapProperties.Location.Y - BrforeFormResize.Location.Y }");
             Console.WriteLine($"{ BrforeFormResize.Height-AfterFormResize.MapProperties.Height}");
             Console.WriteLine($"{ BrforeFormResize.Width - AfterFormResize.MapProperties.Width}");
-
             Console.WriteLine($"{BrforeFormResize.Width} :{ AfterFormResize.MapProperties.Width}");
             Console.WriteLine($"{BrforeFormResize.Height} :{ AfterFormResize.MapProperties.Height}");
 
