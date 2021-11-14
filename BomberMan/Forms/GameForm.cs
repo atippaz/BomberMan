@@ -76,7 +76,7 @@ namespace BomberMan
         void CreateMap() 
         {
             
-            map = new Map(DecorateImage.Blackboard, new Size(Size, Size),new Point(position,position));
+            map = new Map(AccessoryImags.Blackboard, new Size(Size, Size),new Point(position,position));
             map.Add(this);
             map.AddPicture(player.Character);
             player.Character.BackColor = Color.Transparent;
