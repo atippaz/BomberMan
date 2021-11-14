@@ -15,6 +15,8 @@ namespace BomberMan
         {
             InitializeComponent();
             // initial value for control
+            
+
             pictureBox_Logo.Image = Image.FromFile(Path.GetFullPath(DecorateImage.LogoGame));
             playerLogo = new PictureBox()
             {

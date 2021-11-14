@@ -94,7 +94,7 @@ namespace BomberMan {
             // lineSlide
             // 
             this.lineSlide.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
-            this.lineSlide.Location = new System.Drawing.Point(409, 184);
+            this.lineSlide.Location = new System.Drawing.Point(409, 182);
             this.lineSlide.Name = "lineSlide";
             this.lineSlide.Size = new System.Drawing.Size(0, 2);
             this.lineSlide.TabIndex = 4;
@@ -140,6 +140,7 @@ namespace BomberMan {
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.Name_RealTime);
             this.Controls.Add(this.pictureBox_Character);
@@ -153,7 +154,7 @@ namespace BomberMan {
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "RegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "RegisterForm";
+            this.TopMost = true;
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Character)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);

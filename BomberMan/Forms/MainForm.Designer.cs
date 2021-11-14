@@ -61,7 +61,7 @@
             this.lineSlide1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lineSlide1.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lineSlide1.Font = new System.Drawing.Font("Consolas", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lineSlide1.Location = new System.Drawing.Point(280, 308);
+            this.lineSlide1.Location = new System.Drawing.Point(280, 304);
             this.lineSlide1.Name = "lineSlide1";
             this.lineSlide1.Size = new System.Drawing.Size(0, 2);
             this.lineSlide1.TabIndex = 4;
@@ -96,7 +96,7 @@
             this.lineSlide2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.lineSlide2.Cursor = System.Windows.Forms.Cursors.Hand;
             this.lineSlide2.Font = new System.Drawing.Font("Consolas", 17F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lineSlide2.Location = new System.Drawing.Point(280, 410);
+            this.lineSlide2.Location = new System.Drawing.Point(280, 405);
             this.lineSlide2.Name = "lineSlide2";
             this.lineSlide2.Size = new System.Drawing.Size(0, 2);
             this.lineSlide2.TabIndex = 8;
@@ -104,7 +104,7 @@
             // 
             // pictureBox_Logo
             // 
-            this.pictureBox_Logo.Location = new System.Drawing.Point(147, 43);
+            this.pictureBox_Logo.Location = new System.Drawing.Point(135, 43);
             this.pictureBox_Logo.Name = "pictureBox_Logo";
             this.pictureBox_Logo.Size = new System.Drawing.Size(500, 157);
             this.pictureBox_Logo.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -115,13 +115,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
+            this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lineSlide2);
+            this.Controls.Add(this.lineSlide1);
             this.Controls.Add(this.pictureBox_Logo);
             this.Controls.Add(this.btn_EXIT);
             this.Controls.Add(this.btn_Start);
-            this.Controls.Add(this.lineSlide1);
-            this.Controls.Add(this.lineSlide2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
