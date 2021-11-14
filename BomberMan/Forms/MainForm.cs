@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -11,13 +10,11 @@ namespace BomberMan
 
         Thread worker;
         PictureBox playerLogo, playerLogo1;
+        
         public MainForm()
         {
             InitializeComponent();
             // initial value for control
-            
-
-            pictureBox_Logo.Image = Image.FromFile(Path.GetFullPath(DecorateImage.LogoGame));
             playerLogo = new PictureBox()
             {
                 Name = "player",
@@ -37,6 +34,7 @@ namespace BomberMan
             this.Controls.Add(playerLogo1);
             this.Controls.Add(playerLogo);
             playerLogo.Visible = playerLogo1.Visible = false;
+            pictureBox_Logo.Image = DecorateImage.LogoGame;
         }
 
         private void OpenGameForm(object sender, EventArgs e)
