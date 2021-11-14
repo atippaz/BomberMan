@@ -24,7 +24,8 @@ namespace BomberMan
                 Size = size,
                 Location = position,
                 Image = mapImage,
-                SizeMode = PictureBoxSizeMode.Zoom,
+                SizeMode = PictureBoxSizeMode.Normal,
+                BackgroundImageLayout = ImageLayout.Stretch,
                 BorderStyle = BorderStyle.Fixed3D,
             };
 

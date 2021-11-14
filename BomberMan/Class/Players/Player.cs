@@ -30,11 +30,20 @@ namespace BomberMan
             Animation.BackColor = Color.Transparent;
         }
         #region Methods
-        public override void Move(string directions)
+        public override void Move(string directions,int step)
         {
             if (directions == "Left")
             {
-                this.Animation.Left -= 20;
+                System.Console.WriteLine(step);
+                while(step != 0)
+                {
+                    System.Console.WriteLine(step);
+                    System.Console.WriteLine(this.Speed);
+
+                    this.Animation.Left -= this.Speed;
+                    step -= this.Speed;
+                }
+                
             }
             else if (directions == "Right")
             {
