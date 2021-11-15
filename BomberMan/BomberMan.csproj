@@ -129,7 +129,7 @@
     <None Include="resource\Images\LogoGame.gif" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD
+//<<<<<<< HEAD
     <None Include="resource\MusicEffect\btnClick.wav" />
   </ItemGroup>
   <ItemGroup>
@@ -167,7 +167,7 @@
     <Content Include="resource\Character\Player\student_run_left.gif" />
     <Content Include="resource\Character\Player\student_run_right.gif" />
     <Content Include="resource\Character\Player\student_run_up.gif" />
-=======
+//=======
     <Content Include="resource\Character\Player\Player_run_right.gif" />
     <Content Include="resource\Character\Player\Player_run_down.gif" />
     <Content Include="resource\Character\Player\Player_run_up.gif" />
@@ -182,7 +182,7 @@
     <Content Include="resource\Character\Player\Player_idle.gif" />
     <Content Include="resource\Images\StartRun.gif" />
     <Content Include="resource\Images\ExitRun.gif" />
->>>>>>> Dev_FormEffect
+//>>>>>>> Dev_FormEffect
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
