@@ -17,6 +17,7 @@ namespace BomberMan
         bool walkAble;
         int position, size;
         int TileSize;
+        int steps;
         public Game(string Playername)
         {
             InitializeComponent();
@@ -100,47 +101,39 @@ namespace BomberMan
             map.Add(this);
             ResizeForm(this, map);
         }
-        private void KeyIsUp(object sender, KeyEventArgs e)
-        {
-            if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
-            {
-                Directions = "";
-            }
-            if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
-            {
-                Directions = "";
-            }
-            if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
-            {
-                Directions = "";
-            }
-            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
-            {
-                Directions = "";
-            }
-        }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.D || e.KeyCode == Keys.Right)
+            if (player.WalkFinish)
             {
-                Directions = "Right";
-                walkAble = true;
-            }
-            if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
-            {
-                Directions = "Left";
-                walkAble = true;
-            }
-            if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
-            {
-                Directions = "Up";
-                walkAble = true;
-            }
-            if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
-            {
-                Directions = "Down";
-                walkAble = true;
+                if ((e.KeyCode == Keys.D || e.KeyCode == Keys.Right))
+                {
+                    Directions = "Right";
+                    walkAble = true;
+                    player.WalkFinish = false;
+                    steps = TileSize;
+                }
+                if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
+                {
+                    Directions = "Left";
+                    walkAble = true;
+                    player.WalkFinish = false;
+                    steps = TileSize;
+                }
+                if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
+                {
+                    Directions = "Up";
+                    walkAble = true;
+                    player.WalkFinish = false;
+                    steps = TileSize;
+                }
+                if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
+                {
+                    Directions = "Down";
+                    walkAble = true;
+                    player.WalkFinish = false;
+                    steps = TileSize;
+                }
             }
         }
 
@@ -194,10 +187,21 @@ namespace BomberMan
                 }
             }
             */
+
             #endregion
             if (walkAble)
             {
-                player.Move(Directions, TileSize);
+                if (steps > 0)
+                {
+                    player.Move(Directions);
+                    steps -= player.Speed;
+                }
+                else
+                {
+                    player.WalkFinish = true;
+                    Directions = "";
+                    walkAble = false;
+                }
             }
             player.AnimationDirector = Directions;
         }

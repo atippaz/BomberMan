@@ -40,12 +40,12 @@
         public int Mana
         {
             get => _Mana;
-            set => _MaxMana = (value >= 0 && value <= MaxMana) ? value : 1;
+            set => _Mana = (value >= 0 && value <= MaxMana) ? value : 1;
         }
         public int Speed
         {
             get => _Speed;
-            set => _MaxSpeed = (value >= 0 && value <= MaxSpeed) ? value : 10;
+            set => _Speed = (value >= 0 && value <= MaxSpeed) ? value : 10;
         }
         #endregion
     }

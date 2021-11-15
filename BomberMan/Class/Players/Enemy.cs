@@ -7,7 +7,7 @@
         {
             System.Console.WriteLine(player.HP);
         }
-        public override void Move(string directions,int step)
+        public override void Move(string directions)
         {
 
         }
