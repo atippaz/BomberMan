@@ -151,9 +151,11 @@
     <None Include="resource\DecorateImage\logo.gif" />
   </ItemGroup>
   <ItemGroup>
+
     <Content Include="resource\Maps\Bomb.png" />
     <Content Include="resource\Maps\Wall.png" />
     <Content Include="resource\Maps\Box.png" />
+    <Content Include="resource\DecorateImage\BombICON.ico" />
     <None Include="Resources\BG_update.wav" />
     <Content Include="resource\DecorateImage\Blackboard.jpg" />
     <None Include="resource\MusicEffect\Bgm_update.wav" />
