@@ -12,6 +12,7 @@ namespace BomberMan
         List<Control> Tile;
         Map map;
         PictureBox tiles;
+        PictureBox hitbox ;
         Player player; Enemy Enemy;
         string Directions;
         bool walkAble;
@@ -29,15 +30,24 @@ namespace BomberMan
 
         void Init()
         {
+
             TileSize = 50;
             this.Focus();
             position = 100;
             size = 500;
+            hitbox = new PictureBox()
+            {
+                Size = new Size(TileSize, TileSize),
+                BorderStyle = BorderStyle.Fixed3D
+            };
+            this.Controls.Add(hitbox);
             CreateMap();
+            map.AddTiles(hitbox);
+           
             Box = new List<Control>();
             Wall = new List<Control>();
             Tile = new List<Control>();
-            foreach (Control items in this.Controls)
+            foreach (Control items in map.MapProperties.Controls)
             {
                 if (items is PictureBox && (string)items.Tag == "Wall")
                 {
@@ -49,6 +59,13 @@ namespace BomberMan
                     Box.Add(items);
                     Tile.Add(items);
                 }
+                #region delete here !!
+                //ลบด้วยใช้ตอนเทสเท่านั้น 
+                else if(items is PictureBox && (string)items.Tag == "Bomb")
+                {
+                    Tile.Add(items);
+                }
+                #endregion
             }
             // The duration of creating a loop, where 1000 is 1 second. and every Interval will do update
             time.Interval = 35;
@@ -93,13 +110,37 @@ namespace BomberMan
                     Size = new Size(50, 50),
                     Location = new Point(i * 100, i * 100),
                     Tag = "Wall",
-                    Image = MapImage.box,
+                    Image = MapImage.Wall,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                };
+                map.AddTiles(tiles);
+            }
+            for(int j = 5; j > 0; j--)
+            {
+                tiles = new PictureBox()
+                {
+                    Size = new Size(50, 50),
+                    Location = new Point(j * 150, j * 50),
+                    Tag = "Box",
+                    Image = MapImage.Box,
+                    SizeMode = PictureBoxSizeMode.Zoom,
+                };
+                map.AddTiles(tiles);
+            }
+            for (int j = 5; j > 0; j--)
+            {
+                tiles = new PictureBox()
+                {
+                    Size = new Size(50, 50),
+                    Location = new Point(j * 100, j * 50),
+                    Tag = "Bomb",
+                    Image = MapImage.Bomb,
                     SizeMode = PictureBoxSizeMode.Zoom,
                 };
                 map.AddTiles(tiles);
             }
             map.Add(this);
-            ResizeForm(this, map);
+            //ResizeForm(this, map);
         }
 
         private void KeyIsDown(object sender, KeyEventArgs e)
@@ -137,57 +178,71 @@ namespace BomberMan
             }
         }
 
+        private void KeyIsUp(object sender, KeyEventArgs e)
+        {
+            /*if ((e.KeyCode == Keys.D || e.KeyCode == Keys.Right) || (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)|| (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)|| (e.KeyCode == Keys.W || e.KeyCode == Keys.Up))
+            {
+                Directions = "";
+            }*/
+        }
+
         void Update(object sender, EventArgs a)
         {
-            //Point location;
+            Point location;
+            hitbox.BackColor = Color.Red;
             #region check
-            /*
             if (Directions == "Right")
             {
                 location = new Point(player.Location.X + TileSize, player.Location.Y);
+                hitbox.Location = location;
                 foreach (var items in Tile)
                 {
                     if (location == items.Location)
                     {
                         walkAble = false;
+                        player.WalkFinish = true;
                     }
                 }
             }
             else if (Directions == "Left")
             {
                 location = new Point(player.Location.X - TileSize, player.Location.Y);
+                hitbox.Location = location;
                 foreach (var items in Tile)
                 {
                     if (location == items.Location)
                     {
                         walkAble = false;
+                        player.WalkFinish = true;
                     }
                 }
             }
             else if (Directions == "Up")
             {
-                location = new Point(player.Location.X, player.Location.Y + TileSize);
+                location = new Point(player.Location.X, player.Location.Y - TileSize);
+                hitbox.Location = location;
                 foreach (var items in Tile)
                 {
                     if (location == items.Location)
                     {
                         walkAble = false;
+                        player.WalkFinish = true;
                     }
                 }
             }
             else if (Directions == "Down")
             {
-                location = new Point(player.Location.X, player.Location.Y - TileSize);
+                location = new Point(player.Location.X, player.Location.Y + TileSize);
+                hitbox.Location = location;
                 foreach (var items in Tile)
                 {
                     if (location == items.Location)
                     {
                         walkAble = false;
+                        player.WalkFinish = true;
                     }
                 }
             }
-            */
-
             #endregion
             if (walkAble)
             {

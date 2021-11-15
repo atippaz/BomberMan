@@ -10,6 +10,10 @@ namespace BomberMan
 {
     static class MapImage
     {
-        static public Image box = Image.FromFile(Path.GetFullPath(Paths.PathMap+"box.png"));
+        static public Image Box = Image.FromFile(Path.GetFullPath(Paths.PathMap+"Box.png"));
+        static public Image Wall = Image.FromFile(Path.GetFullPath(Paths.PathMap + "Wall.png"));
+        static public Image Bomb = Image.FromFile(Path.GetFullPath(Paths.PathMap + "Bomb.png"));
+
+
     }
 }
