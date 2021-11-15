@@ -7,38 +7,61 @@ namespace BomberMan
 {
     public partial class MainForm : Form
     {
-
-        Thread worker;
+        private Thread _Fx;
         PictureBox playerLogo, playerLogo1;
         
         public MainForm()
         {
             InitializeComponent();
             // initial value for control
+            #region Player in-front button
             playerLogo = new PictureBox()
             {
                 Name = "player",
                 Size = new Size(50, 50),
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Image =  PlayerImage.RunLeft,
-                Location = new Point(btn_Start.Location.X - 60, btn_Start.Location.Y + 20),
+                Image = Images.StartRun,
+                Location = new Point(btn_Start.Location.X - 60, btn_Start.Location.Y + 10),
             };
             playerLogo1 = new PictureBox()
             {
                 Name = "player",
                 Size = new Size(50, 50),
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Image =  PlayerImage.RunUp,
-                Location = new Point(btn_EXIT.Location.X - 60, btn_EXIT.Location.Y + 20),
+                Image = Images.ExitRun,
+                Location = new Point(btn_EXIT.Location.X - 60, btn_EXIT.Location.Y + 10),
             };
             this.Controls.Add(playerLogo1);
             this.Controls.Add(playerLogo);
+
             playerLogo.Visible = playerLogo1.Visible = false;
-            pictureBox_Logo.Image = DecorateImage.LogoGame;
+            playerLogo.BackColor = playerLogo1.BackColor = Color.Transparent; 
+            playerLogo.BringToFront(); 
+            playerLogo1.BringToFront();
+            #endregion
+            #region Picture initial image
+            pictureBox_Logo.Image = Images.LogoGame;
+            pictureBox1.Image = Images.Library;
+            pictureBox2.Image = Images.Library2;
+            pictureBox3.Image = pictureBox4.Image  = Images.Fire;
+            pictureBox5.Image = Images.Fire2;
+
+            pictureBox1.Controls.Add(pictureBox5);
+            pictureBox2.Controls.Add(pictureBox3);
+            pictureBox2.Controls.Add(pictureBox4);
+
+            pictureBox3.Location = new Point(100, 100);
+            pictureBox4.Location = new Point(150, 110);
+            pictureBox5.Location = new Point(20,107);
+            #endregion
         }
 
         private void OpenGameForm(object sender, EventArgs e)
         {
+            // Fx sound 
+            _Fx = new Thread(EffectSound.Click);
+            _Fx.Start();
+
             RegisterForm registerForm = new RegisterForm();
             registerForm.Show();
             this.Hide();
@@ -51,20 +74,15 @@ namespace BomberMan
 
         private void Setup(object sender, EventArgs e)
         {
-            worker = new Thread(SoundEffect.Effects);
-            SoundEffect.BGM_Play();
-        }
+            this.Icon = new Icon(Images.IconGame);
 
-        private void Play_Effect(object sender, EventArgs e)
-        {
-            worker = new Thread(SoundEffect.Effects);
-            worker.Start();
+            BackGroundMusic.Set(Music.MainTheme);
+            BackGroundMusic.Play();
         }
 
         // ----------------------
         // PROPERTIES FOR BUTTON
         // ----------------------
-
         private int lineSpeed = 10;
 
         //--------------

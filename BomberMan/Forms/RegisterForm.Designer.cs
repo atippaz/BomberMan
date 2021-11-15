@@ -35,6 +35,7 @@ namespace BomberMan {
             this.Name_RealTime = new System.Windows.Forms.Label();
             this.line_type = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblWarning = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Character)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -104,7 +105,7 @@ namespace BomberMan {
             this.pictureBox_Character.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox_Character.Location = new System.Drawing.Point(178, 241);
             this.pictureBox_Character.Name = "pictureBox_Character";
-            this.pictureBox_Character.Size = new System.Drawing.Size(68, 80);
+            this.pictureBox_Character.Size = new System.Drawing.Size(77, 80);
             this.pictureBox_Character.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox_Character.TabIndex = 5;
             this.pictureBox_Character.TabStop = false;
@@ -136,6 +137,18 @@ namespace BomberMan {
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
+            // lblWarning
+            // 
+            this.lblWarning.AutoSize = true;
+            this.lblWarning.Font = new System.Drawing.Font("Consolas", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWarning.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.lblWarning.Location = new System.Drawing.Point(538, 163);
+            this.lblWarning.Name = "lblWarning";
+            this.lblWarning.Size = new System.Drawing.Size(145, 13);
+            this.lblWarning.TabIndex = 1;
+            this.lblWarning.Text = "Please type 8 charaters";
+            this.lblWarning.Visible = false;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -146,6 +159,7 @@ namespace BomberMan {
             this.Controls.Add(this.pictureBox_Character);
             this.Controls.Add(this.line_type);
             this.Controls.Add(this.btn_Play);
+            this.Controls.Add(this.lblWarning);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPlayerName);
             this.Controls.Add(this.pictureBox1);
@@ -174,5 +188,6 @@ namespace BomberMan {
         private System.Windows.Forms.Label Name_RealTime;
         private System.Windows.Forms.Label line_type;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label lblWarning;
     }
 }

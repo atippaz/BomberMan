@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Class\Characters\CharacterBase.cs" />
     <Compile Include="Class\Characters\CharacterMove.cs" />
+    <Compile Include="Class\Sounds\Sound.cs" />
     <Compile Include="Class\Characters\Characters.cs" />
     <Compile Include="Class\Images\MapImage.cs" />
     <Compile Include="Class\Paths\Paths.cs" />
@@ -63,8 +64,8 @@
     <Compile Include="Class\Items\Items.cs" />
     <Compile Include="Class\Images\PlayerImage.cs" />
     <Compile Include="Class\Maps\Map.cs" />
-    <Compile Include="Class\Sounds\SoundEffect.cs" />
-    <Compile Include="Class\Images\DecorateImage.cs" />
+    <Compile Include="Class\Sounds\EffectSound.cs" />
+    <Compile Include="Class\Images\Images.cs" />
     <Compile Include="Class\Attribute\Colors.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
@@ -86,6 +87,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Class\Sounds\BackGroundMusic.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -121,12 +123,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <None Include="resource\MusicEffect\Bgm.wav" />
+    <None Include="resource\Sounds\Fx\Click.wav" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="resource\MusicEffect\Bgm2.wav" />
+    <None Include="resource\Images\LogoGame.gif" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <None Include="resource\MusicEffect\btnClick.wav" />
   </ItemGroup>
   <ItemGroup>
@@ -164,6 +167,22 @@
     <Content Include="resource\Character\Player\student_run_left.gif" />
     <Content Include="resource\Character\Player\student_run_right.gif" />
     <Content Include="resource\Character\Player\student_run_up.gif" />
+=======
+    <Content Include="resource\Character\Player\Player_run_right.gif" />
+    <Content Include="resource\Character\Player\Player_run_down.gif" />
+    <Content Include="resource\Character\Player\Player_run_up.gif" />
+    <Content Include="resource\Images\Fire.gif" />
+    <Content Include="resource\Images\Fire2.gif" />
+    <Content Include="resource\Images\IconGame.ico" />
+    <Content Include="resource\Images\Library.gif" />
+    <Content Include="resource\Images\Library2.gif" />
+    <Content Include="resource\Character\Player\Player_run_left.gif" />
+    <Content Include="resource\Sounds\Bgm\MainTheme.wav" />
+    <Content Include="resource\Images\Blackboard.jpg" />
+    <Content Include="resource\Character\Player\Player_idle.gif" />
+    <Content Include="resource\Images\StartRun.gif" />
+    <Content Include="resource\Images\ExitRun.gif" />
+>>>>>>> Dev_FormEffect
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
