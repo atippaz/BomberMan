@@ -53,9 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Characters\CharacterBase.cs" />
+    <Compile Include="Class\Characters\CharacterMove.cs" />
     <Compile Include="Class\Characters\Characters.cs" />
-    <Compile Include="Class\Characters\Enemy.cs" />
-    <Compile Include="Class\Characters\Player.cs" />
+    <Compile Include="Class\Images\MapImage.cs" />
+    <Compile Include="Class\Paths\Paths.cs" />
+    <Compile Include="Class\Players\Enemy.cs" />
+    <Compile Include="Class\Players\Player.cs" />
     <Compile Include="Class\Items\Items.cs" />
     <Compile Include="Class\Images\PlayerImage.cs" />
     <Compile Include="Class\Maps\Map.cs" />
@@ -147,6 +151,10 @@
     <None Include="resource\DecorateImage\logo.gif" />
   </ItemGroup>
   <ItemGroup>
+
+    <Content Include="resource\Maps\Bomb.png" />
+    <Content Include="resource\Maps\Wall.png" />
+    <Content Include="resource\Maps\Box.png" />
     <Content Include="resource\DecorateImage\BombICON.ico" />
     <None Include="Resources\BG_update.wav" />
     <Content Include="resource\DecorateImage\Blackboard.jpg" />

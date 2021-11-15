@@ -24,7 +24,8 @@ namespace BomberMan
                 Size = size,
                 Location = position,
                 Image = mapImage,
-                SizeMode = PictureBoxSizeMode.Zoom,
+                SizeMode = PictureBoxSizeMode.Normal,
+                BackgroundImageLayout = ImageLayout.Stretch,
                 BorderStyle = BorderStyle.Fixed3D,
             };
 
@@ -33,9 +34,10 @@ namespace BomberMan
         {
             form.Controls.Add(_pbMap);
         }
-        public void AddPicture(PictureBox elements)
+        public void AddTiles(PictureBox elements)
         {
             this._pbMap.Controls.Add(elements);
+            elements.BackColor = Color.Transparent;
         }
     }
 }
