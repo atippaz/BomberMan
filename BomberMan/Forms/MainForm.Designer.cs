@@ -178,9 +178,9 @@
             this.name.AutoSize = true;
             this.name.Location = new System.Drawing.Point(84, 173);
             this.name.Name = "name";
-            this.name.Size = new System.Drawing.Size(46, 13);
+            this.name.Size = new System.Drawing.Size(51, 13);
             this.name.TabIndex = 14;
-            this.name.Text = "labelasa";
+            this.name.Text = "aabelasA";
             // 
             // score
             // 

@@ -3,12 +3,14 @@ using System.IO;
 
 namespace BomberMan {
     static class Encryption {
+        #region Fields
         private static string _Username;
         private static int _HighScore;
         private static int key = 20;
         private static int index;
         private static string[] _EngLang =
             {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+        #endregion
 
         #region Properties 
         public static int HightScore { get => _HighScore; }
@@ -16,7 +18,7 @@ namespace BomberMan {
         // public static int SetKey { set { key = value; } }
         #endregion
 
-        #region Encrypt&Decrypt Method
+        #region Encrypt and Decrypt methods
         public static void Encrypt(string username, string score) {
             string strEncrypt = "";
             char str = ' ';
@@ -75,6 +77,5 @@ namespace BomberMan {
             }
         }
         #endregion
-
     }
 }

@@ -13,7 +13,5 @@ namespace BomberMan
         static public Image Box = Image.FromFile(Path.GetFullPath(Paths.PathMap+"Box.png"));
         static public Image Wall = Image.FromFile(Path.GetFullPath(Paths.PathMap + "Wall.png"));
         static public Image Bomb = Image.FromFile(Path.GetFullPath(Paths.PathMap + "Bomb.png"));
-
-
     }
 }

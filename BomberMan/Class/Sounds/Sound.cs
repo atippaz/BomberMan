@@ -1,7 +1,7 @@
 ﻿using System;
-using System.IO;
 
 namespace BomberMan {
+    #region Enum storag sound files
     enum Music {
         MainTheme,
         GameTheme,
@@ -10,16 +10,13 @@ namespace BomberMan {
     enum Effect {
         Click,
     }
-
+    #endregion
 
     public static class BgmPath {
-        public static string Path(Enum theme) =>
-            $"..\\..\\resource\\Sounds\\Bgm\\{theme.ToString()}.wav";
+        public static string Path(Enum theme) =>$"{Paths.PathBgm}{theme.ToString()}.wav";
     }
-
     public static class FxPatch {
-        public static string Path(Enum fx) =>
-            $"..\\..\\resource\\Sounds\\Fx\\{fx.ToString()}.wav";
+        public static string Path(Enum fx) =>$"{Paths.PathFx}{fx.ToString()}.wav";
     }
 }
 

@@ -1,5 +1,6 @@
 ﻿namespace BomberMan {
     public static class UsernameValidate {
+        #region Method
         public static bool CheckTHLang(string str) {
             bool isTH = false;
             if (str != "") {
@@ -12,5 +13,6 @@
             }
             return isTH;
         }
+        #endregion
     }
 }

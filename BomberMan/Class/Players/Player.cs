@@ -4,7 +4,6 @@ namespace BomberMan
 {
     class Player : Characters
     {
-
         public Player(PictureBox BackGround)
         {
             Animation.Image = PlayerImage.Idle;

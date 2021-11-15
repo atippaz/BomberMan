@@ -1,11 +1,12 @@
-﻿namespace BomberMan
-{
-    static class Paths
-    {
+﻿namespace BomberMan {
+    static class Paths {
         static private string path = "..\\..\\";
-        public static string PathDecorate = path+"resource\\DecorateImage\\";
-        public static string PathPlayer = path+"resource\\Character\\Player\\";
+
+        public static string PathImage = path + "resource\\Images\\";
+        public static string PathPlayer = path + "resource\\Character\\Player\\";
         public static string PathMap = path + "resource\\Maps\\";
+        public static string PathBgm = path + "resource\\Sounds\\Bgm\\";
+        public static string PathFx = path + "resource\\Sounds\\Fx\\";
         public static string PathHighScore = path + "resource\\HighScore\\HighScore.txt";
     }
 }
