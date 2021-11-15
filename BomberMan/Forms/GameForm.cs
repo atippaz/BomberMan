@@ -6,28 +6,21 @@ namespace BomberMan
 {
     public partial class Game : Form
     {
-        readonly Timer time = new Timer();
-        List<Control> Box;
-        List<Control> Wall;
-        List<Control> Tile;
         Map map;
-        PictureBox tiles;
-        PictureBox hitbox ;
-        Player player; Enemy Enemy;
-        string Directions;
-        bool walkAble;
-        int position, size;
-        int TileSize;
         int steps;
-        public Game(string Playername)
-        {
-            InitializeComponent();
-            Init();
-            Enemy = new Enemy();
-            player = new Player(Playername, map.MapProperties);
-            player.Speed = 10;
-        }
-
+        Enemy Enemy;
+        int TileSize;
+        Player player;
+        bool walkAble;
+        PictureBox tiles;
+        string Directions;
+        PictureBox hitbox;
+        List<Control> Box;
+        int position, size;
+        List<Control> Tile;
+        List<Control> Wall;
+        readonly Timer time = new Timer();
+        #region don't forget delete some code here!!
         void Init()
         {
 
@@ -43,7 +36,7 @@ namespace BomberMan
             this.Controls.Add(hitbox);
             CreateMap();
             map.AddTiles(hitbox);
-           
+            
             Box = new List<Control>();
             Wall = new List<Control>();
             Tile = new List<Control>();
@@ -61,7 +54,7 @@ namespace BomberMan
                 }
                 #region delete here !!
                 //ลบด้วยใช้ตอนเทสเท่านั้น 
-                else if(items is PictureBox && (string)items.Tag == "Bomb")
+                else if (items is PictureBox && (string)items.Tag == "Bomb")
                 {
                     Tile.Add(items);
                 }
@@ -71,36 +64,9 @@ namespace BomberMan
             time.Interval = 35;
             time.Tick += Update;
             time.Start();
-
         }
-        void ResizeForm(Form BrforeFormResize, Map AfterFormResize)
-        {
-            int x = AfterFormResize.MapProperties.Location.X - BrforeFormResize.Location.X;
-            int y = AfterFormResize.MapProperties.Location.Y - BrforeFormResize.Location.Y;
-            while (AfterFormResize.MapProperties.Width % 10 != 0)
-            {
-                AfterFormResize.MapProperties.Width += 1;
-            }
-            while (AfterFormResize.MapProperties.Height % 10 != 0)
-            {
-                AfterFormResize.MapProperties.Height += 1;
-            }
-            while ((BrforeFormResize.Width < AfterFormResize.MapProperties.Width + x))
-            {
-                BrforeFormResize.Width += 1;
-            }
-            while ((BrforeFormResize.Height < AfterFormResize.MapProperties.Height + y))
-            {
-                BrforeFormResize.Height += 1;
-            }
-            Console.WriteLine($"{AfterFormResize.MapProperties.Location.X - BrforeFormResize.Location.X }");
-            Console.WriteLine($"{AfterFormResize.MapProperties.Location.Y - BrforeFormResize.Location.Y }");
-            Console.WriteLine($"{ BrforeFormResize.Height - AfterFormResize.MapProperties.Height}");
-            Console.WriteLine($"{ BrforeFormResize.Width - AfterFormResize.MapProperties.Width}");
-            Console.WriteLine($"{BrforeFormResize.Width} :{ AfterFormResize.MapProperties.Width}");
-            Console.WriteLine($"{BrforeFormResize.Height} :{ AfterFormResize.MapProperties.Height}");
-        }
-        void CreateMap()
+        #endregion
+        private void CreateMap()
         {
             map = new Map(DecorateImage.Blackboard, new Size(size, size), new Point(position, position));
             for (int i = 1; i < 5; i++)
@@ -115,7 +81,7 @@ namespace BomberMan
                 };
                 map.AddTiles(tiles);
             }
-            for(int j = 5; j > 0; j--)
+            for (int j = 5; j > 0; j--)
             {
                 tiles = new PictureBox()
                 {
@@ -142,7 +108,70 @@ namespace BomberMan
             map.Add(this);
             //ResizeForm(this, map);
         }
+        public Game(string Playername)
+        {
+            InitializeComponent();
+            Init();
+            Enemy = new Enemy();
+            player = new Player(Playername, map.MapProperties);
+            player.Speed = 1;
+        }
+        private void Update(object sender, EventArgs a)
+        {
 
+            Point location = new Point(0,0);
+            hitbox.BackColor = Color.Red;
+            #region check
+            if (Directions == "Right")
+            {
+                location = new Point(player.Location.X + TileSize, player.Location.Y);
+            }
+            else if (Directions == "Left")
+            {
+                location = new Point(player.Location.X - TileSize, player.Location.Y);
+            }
+            else if (Directions == "Up")
+            {
+                location = new Point(player.Location.X, player.Location.Y - TileSize);
+            }
+            else if (Directions == "Down")
+            {
+                location = new Point(player.Location.X, player.Location.Y + TileSize);
+            }
+            hitbox.Location = location;
+            Tile.ForEach((boxs) =>
+            {
+                if (location == boxs.Location)
+                {
+                    walkAble = false;
+                    player.WalkFinish = true;
+                }
+            });
+            #endregion
+
+            if (walkAble)
+            {
+                if (steps > 0)
+                {
+                    player.Move(Directions);
+                    steps -= player.Speed;
+                }
+                else
+                {
+                    player.WalkFinish = true;
+                    Directions = "";
+                    walkAble = false;
+                }
+            }
+            player.AnimationDirector = Directions;
+        }
+        private void KeyIsUp(object sender, KeyEventArgs e)
+        {
+            /*if ((e.KeyCode == Keys.D || e.KeyCode == Keys.Right) || (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)|| (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)|| (e.KeyCode == Keys.W || e.KeyCode == Keys.Up))
+            {
+                Directions = "";
+            }*/
+        }
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (player.WalkFinish)
@@ -177,89 +206,32 @@ namespace BomberMan
                 }
             }
         }
-
-        private void KeyIsUp(object sender, KeyEventArgs e)
+        private void ResizeForm(Form BrforeFormResize, Map AfterFormResize)
         {
-            /*if ((e.KeyCode == Keys.D || e.KeyCode == Keys.Right) || (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)|| (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)|| (e.KeyCode == Keys.W || e.KeyCode == Keys.Up))
+            int x = AfterFormResize.MapProperties.Location.X - BrforeFormResize.Location.X;
+            int y = AfterFormResize.MapProperties.Location.Y - BrforeFormResize.Location.Y;
+            while (AfterFormResize.MapProperties.Width % 10 != 0)
             {
-                Directions = "";
-            }*/
+                AfterFormResize.MapProperties.Width += 1;
+            }
+            while (AfterFormResize.MapProperties.Height % 10 != 0)
+            {
+                AfterFormResize.MapProperties.Height += 1;
+            }
+            while ((BrforeFormResize.Width < AfterFormResize.MapProperties.Width + x))
+            {
+                BrforeFormResize.Width += 1;
+            }
+            while ((BrforeFormResize.Height < AfterFormResize.MapProperties.Height + y))
+            {
+                BrforeFormResize.Height += 1;
+            }
+            Console.WriteLine($"{AfterFormResize.MapProperties.Location.X - BrforeFormResize.Location.X }");
+            Console.WriteLine($"{AfterFormResize.MapProperties.Location.Y - BrforeFormResize.Location.Y }");
+            Console.WriteLine($"{ BrforeFormResize.Height - AfterFormResize.MapProperties.Height}");
+            Console.WriteLine($"{ BrforeFormResize.Width - AfterFormResize.MapProperties.Width}");
+            Console.WriteLine($"{BrforeFormResize.Width} :{ AfterFormResize.MapProperties.Width}");
+            Console.WriteLine($"{BrforeFormResize.Height} :{ AfterFormResize.MapProperties.Height}");
         }
-
-        void Update(object sender, EventArgs a)
-        {
-            Point location;
-            hitbox.BackColor = Color.Red;
-            #region check
-            if (Directions == "Right")
-            {
-                location = new Point(player.Location.X + TileSize, player.Location.Y);
-                hitbox.Location = location;
-                foreach (var items in Tile)
-                {
-                    if (location == items.Location)
-                    {
-                        walkAble = false;
-                        player.WalkFinish = true;
-                    }
-                }
-            }
-            else if (Directions == "Left")
-            {
-                location = new Point(player.Location.X - TileSize, player.Location.Y);
-                hitbox.Location = location;
-                foreach (var items in Tile)
-                {
-                    if (location == items.Location)
-                    {
-                        walkAble = false;
-                        player.WalkFinish = true;
-                    }
-                }
-            }
-            else if (Directions == "Up")
-            {
-                location = new Point(player.Location.X, player.Location.Y - TileSize);
-                hitbox.Location = location;
-                foreach (var items in Tile)
-                {
-                    if (location == items.Location)
-                    {
-                        walkAble = false;
-                        player.WalkFinish = true;
-                    }
-                }
-            }
-            else if (Directions == "Down")
-            {
-                location = new Point(player.Location.X, player.Location.Y + TileSize);
-                hitbox.Location = location;
-                foreach (var items in Tile)
-                {
-                    if (location == items.Location)
-                    {
-                        walkAble = false;
-                        player.WalkFinish = true;
-                    }
-                }
-            }
-            #endregion
-            if (walkAble)
-            {
-                if (steps > 0)
-                {
-                    player.Move(Directions);
-                    steps -= player.Speed;
-                }
-                else
-                {
-                    player.WalkFinish = true;
-                    Directions = "";
-                    walkAble = false;
-                }
-            }
-            player.AnimationDirector = Directions;
-        }
-
     }
 }
