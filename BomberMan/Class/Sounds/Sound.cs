@@ -1,7 +1,7 @@
 ﻿using System;
 
 namespace BomberMan {
-    #region Enum storag sound files
+    #region Enum storag audio files
     enum Music {
         MainTheme,
         GameTheme,
