@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Class\Characters\CharacterBase.cs" />
     <Compile Include="Class\Characters\CharacterMove.cs" />
+    <Compile Include="Class\KeyBoard\KeyBoard.cs" />
     <Compile Include="Class\Sounds\Sound.cs" />
     <Compile Include="Class\Characters\Characters.cs" />
     <Compile Include="Class\Images\MapImage.cs" />
@@ -129,7 +130,6 @@
     <None Include="resource\Images\LogoGame.gif" />
   </ItemGroup>
   <ItemGroup>
-
     <None Include="resource\MusicEffect\btnClick.wav" />
   </ItemGroup>
   <ItemGroup>
@@ -154,7 +154,6 @@
     <None Include="resource\DecorateImage\logo.gif" />
   </ItemGroup>
   <ItemGroup>
-
     <Content Include="resource\Maps\Bomb.png" />
     <Content Include="resource\Maps\Wall.png" />
     <Content Include="resource\Maps\Box.png" />
@@ -167,7 +166,6 @@
     <Content Include="resource\Character\Player\student_run_left.gif" />
     <Content Include="resource\Character\Player\student_run_right.gif" />
     <Content Include="resource\Character\Player\student_run_up.gif" />
-
     <Content Include="resource\Character\Player\Player_run_right.gif" />
     <Content Include="resource\Character\Player\Player_run_down.gif" />
     <Content Include="resource\Character\Player\Player_run_up.gif" />
@@ -182,7 +180,6 @@
     <Content Include="resource\Character\Player\Player_idle.gif" />
     <Content Include="resource\Images\StartRun.gif" />
     <Content Include="resource\Images\ExitRun.gif" />
-
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

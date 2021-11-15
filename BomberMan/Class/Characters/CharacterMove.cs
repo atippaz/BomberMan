@@ -5,6 +5,7 @@ namespace BomberMan
     class CharacterMove : CharacterBase
     {
         public bool WalkFinish = true;
+        public string DirectionPlayer;
         #region Methods
         public virtual void Move(string directions)
         {

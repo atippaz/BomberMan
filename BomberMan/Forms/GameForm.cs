@@ -14,7 +14,7 @@ namespace BomberMan
         bool walkAble;
         PictureBox tiles;
         string Directions;
-        PictureBox hitbox;
+        //PictureBox hitbox;
         List<Control> Box;
         int position, size;
         List<Control> Tile;
@@ -28,15 +28,15 @@ namespace BomberMan
             this.Focus();
             position = 100;
             size = 500;
-            hitbox = new PictureBox()
+            /*hitbox = new PictureBox()
             {
                 Size = new Size(TileSize, TileSize),
                 BorderStyle = BorderStyle.Fixed3D
             };
-            this.Controls.Add(hitbox);
+            this.Controls.Add(hitbox);*/
             CreateMap();
-            map.AddTiles(hitbox);
-            
+            //map.AddTiles(hitbox);
+
             Box = new List<Control>();
             Wall = new List<Control>();
             Tile = new List<Control>();
@@ -61,14 +61,14 @@ namespace BomberMan
                 #endregion
             }
             // The duration of creating a loop, where 1000 is 1 second. and every Interval will do update
-            time.Interval = 35;
+            time.Interval = 10;
             time.Tick += Update;
             time.Start();
         }
         #endregion
         private void CreateMap()
         {
-            map = new Map(DecorateImage.Blackboard, new Size(size, size), new Point(position, position));
+            map = new Map(Images.Blackboard, new Size(size, size), new Point(position, position));
             for (int i = 1; i < 5; i++)
             {
                 tiles = new PictureBox()
@@ -114,13 +114,13 @@ namespace BomberMan
             Init();
             Enemy = new Enemy();
             player = new Player(Playername, map.MapProperties);
-            player.Speed = 1;
+            player.Speed = 5;
         }
         private void Update(object sender, EventArgs a)
         {
 
-            Point location = new Point(0,0);
-            hitbox.BackColor = Color.Red;
+            Point location = new Point(0, 0);
+            //hitbox.BackColor = Color.Red;
             #region check
             if (Directions == "Right")
             {
@@ -138,7 +138,7 @@ namespace BomberMan
             {
                 location = new Point(player.Location.X, player.Location.Y + TileSize);
             }
-            hitbox.Location = location;
+            //hitbox.Location = location;
             Tile.ForEach((boxs) =>
             {
                 if (location == boxs.Location)
@@ -159,47 +159,43 @@ namespace BomberMan
                 else
                 {
                     player.WalkFinish = true;
-                    Directions = "";
                     walkAble = false;
                 }
             }
-            player.AnimationDirector = Directions;
+            if (player.DirectionPlayer != Directions)
+            {
+                player.AnimationDirector = Directions;
+            }
         }
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            /*if ((e.KeyCode == Keys.D || e.KeyCode == Keys.Right) || (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)|| (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)|| (e.KeyCode == Keys.W || e.KeyCode == Keys.Up))
+            if (KeyBoard.CheckAll(e) && (player.WalkFinish || walkAble))
             {
-                Directions = "";
-            }*/
+                player.AnimationDirector = "";
+            }
         }
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
             if (player.WalkFinish)
             {
-                if ((e.KeyCode == Keys.D || e.KeyCode == Keys.Right))
+                if (KeyBoard.Right(e))
                 {
                     Directions = "Right";
-                    walkAble = true;
-                    player.WalkFinish = false;
-                    steps = TileSize;
                 }
-                if (e.KeyCode == Keys.A || e.KeyCode == Keys.Left)
+                if (KeyBoard.Left(e))
                 {
                     Directions = "Left";
-                    walkAble = true;
-                    player.WalkFinish = false;
-                    steps = TileSize;
                 }
-                if (e.KeyCode == Keys.W || e.KeyCode == Keys.Up)
+                if (KeyBoard.Up(e))
                 {
                     Directions = "Up";
-                    walkAble = true;
-                    player.WalkFinish = false;
-                    steps = TileSize;
                 }
-                if (e.KeyCode == Keys.S || e.KeyCode == Keys.Down)
+                if (KeyBoard.Down(e))
                 {
                     Directions = "Down";
+                }
+                if (KeyBoard.CheckAll(e))
+                {
                     walkAble = true;
                     player.WalkFinish = false;
                     steps = TileSize;
