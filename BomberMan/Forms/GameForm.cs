@@ -68,7 +68,7 @@ namespace BomberMan
         #endregion
         private void CreateMap()
         {
-            map = new Map(DecorateImage.Blackboard, new Size(size, size), new Point(position, position));
+            map = new Map(Images.Blackboard, new Size(size, size), new Point(position, position));
             for (int i = 1; i < 5; i++)
             {
                 tiles = new PictureBox()

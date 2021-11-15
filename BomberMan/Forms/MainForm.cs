@@ -54,6 +54,13 @@ namespace BomberMan
             pictureBox4.Location = new Point(150, 110);
             pictureBox5.Location = new Point(20,107);
             #endregion
+
+            ///** TEST Encrypt File ***///
+            //Encryption.Encrypt(name.Text,score.Text);
+            
+            //Encryption.Decrypt();
+            //name.Text = Encryption.Username;
+            //score.Text = Encryption.HightScore.ToString();
         }
 
         private void OpenGameForm(object sender, EventArgs e)

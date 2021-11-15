@@ -45,18 +45,24 @@ namespace BomberMan {
             btn_Play.Enabled = (txtPlayerName.Text.Length < 8) ? false : true;
         }
 
+        //---------------------
+        // PLAYER NAME TEXTBOX
+        //---------------------
         private void txtPlayerName_MouseClick(object sender, MouseEventArgs e) {
             focus = true;
         }
-
+        private void txtPlayerName_KeyPress(object sender, KeyPressEventArgs e) {
+            e.Handled = !(char.IsLetter(e.KeyChar) || e.KeyChar == (char)Keys.Back) || (e.KeyChar == (char)Keys.Space);
+        }
         private void txtPlayerName_TextChanged(object sender, EventArgs e) {
             Name_RealTime.Text = txtPlayerName.Text;
             line_type.Width = 13 * txtPlayerName.Text.Length;
             pictureBox_Character.Image = (txtPlayerName.Text.Length == 8) ? PlayerImage.RunDown : PlayerImage.Idle;
-            
-            lblWarning.Visible = (txtPlayerName.Text.Length < 8 && txtPlayerName.Text.Length > 0) ? true : false;
+          
+
+            lblWarning.Visible = (txtPlayerName.Text.Length < 8 && txtPlayerName.Text.Length > 0 ) ? true : false;
             if (!(lblWarning.Visible) && txtPlayerName.Text.Length == 8) {
-                lblWarning.Visible = true; 
+                lblWarning.Visible = true;
                 lblWarning.Text = "This name can be used";
                 lblWarning.ForeColor = Colors.Success;
             }
@@ -64,8 +70,19 @@ namespace BomberMan {
                 lblWarning.Text = "Please type 8 charaters";
                 lblWarning.ForeColor = Colors.Warning;
             }
+
+            if (UsernameValidate.CheckTHLang(txtPlayerName.Text)) {
+                txtPlayerName.Text = "";
+                //lblWarning.Visible = true;
+                //lblWarning.Text = "Please type English language";
+                //lblWarning.ForeColor = Colors.Success;
+            }
+
         }
 
+        //-------------
+        // PLAY BUTTON
+        //-------------
         private void btn_Play_MouseHover(object sender, EventArgs e) {
             btn_Play.BackColor = Colors.OrangeHover;
         }
@@ -92,5 +109,6 @@ namespace BomberMan {
         private void btn_Play_MouseDown(object sender, MouseEventArgs e) {
             btn_Play.BackColor = Colors.OrangeClick;
         }
+
     }
 }

@@ -51,6 +51,7 @@ namespace BomberMan {
             this.txtPlayerName.TabIndex = 0;
             this.txtPlayerName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPlayerName_MouseClick);
             this.txtPlayerName.TextChanged += new System.EventHandler(this.txtPlayerName_TextChanged);
+            this.txtPlayerName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlayerName_KeyPress);
             // 
             // label1
             // 
