@@ -23,6 +23,7 @@ namespace BomberMan
         int position, size;
         List<Control> Tile;
         List<Control> Wall;
+        List<Control> Bombs;
         readonly Timer time = new Timer();
         #region don't forget delete some code here!!
         void Init()
@@ -41,7 +42,7 @@ namespace BomberMan
             };
             this.Controls.Add(hitbox);
             map.AddTiles(hitbox);*/
-
+            Bombs = new List<Control>();
             Box = new List<Control>();
             Wall = new List<Control>();
             Tile = new List<Control>();
@@ -202,15 +203,30 @@ namespace BomberMan
                     BomeTime.Interval = 2000;
                     BomeTime.Tick += BombActivitor;
                     BomeTime.Start();
+                    Bombs.Add(bomb);
                 }
             }
         }
         private void BombActivitor(object sender, EventArgs a)
         {
+            var remove = new Control();
+            bool found = false;
             bomb.Visible = false;
-            BomeTime.Stop();
             player.Mana += 1;
             UseBomb = false;
+            Tile.ForEach((item) =>
+            {
+                foreach(var bomb in Bombs )
+                {
+                    if (item.Tag == bomb.Tag)
+                    {
+                    remove = item;
+                        break;
+                    }
+                }
+            });
+            Tile.Remove(remove);
+            BomeTime.Stop();
         }
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
