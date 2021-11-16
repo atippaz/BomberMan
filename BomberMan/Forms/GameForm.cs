@@ -14,8 +14,8 @@ namespace BomberMan
         Player player;
         bool UseBomb = true;
         bool walkAble;
-        PictureBox bomb;
-        Timer BomeTime;
+        Bomb bomb;
+        Timer Countdown;
         PictureBox tiles;
         string Directions;
         //PictureBox hitbox;
@@ -188,45 +188,21 @@ namespace BomberMan
                 {
                     Console.WriteLine($"{player.Mana}");
                     UseBomb = false;
-                    bomb = new PictureBox() 
-                    {
-                        Size = new Size(TileSize, TileSize),
-                        Location = player.Location,
-                        Image = MapImage.Bomb,
-                        Tag = "Bomb",
-                        SizeMode = PictureBoxSizeMode.Zoom
-                    };
-                    map.AddTiles(bomb);
+                    bomb = new Bomb(map,TileSize,player);
                     player.Mana -= 1;
-                    Tile.Add(bomb);
-                    BomeTime = new Timer();
-                    BomeTime.Interval = 2000;
-                    BomeTime.Tick += BombActivitor;
-                    BomeTime.Start();
-                    Bombs.Add(bomb);
+                    Tile.Add(bomb.GetBomb());
+                    Countdown = new Timer() {Interval = 1000 };
+                    Countdown.Tick += BombActivitor;
+                    Countdown.Start();
                 }
             }
         }
         private void BombActivitor(object sender, EventArgs a)
         {
-            var remove = new Control();
-            bool found = false;
-            bomb.Visible = false;
+            bomb.BombActive(map,player,Tile);
             player.Mana += 1;
             UseBomb = false;
-            Tile.ForEach((item) =>
-            {
-                foreach(var bomb in Bombs )
-                {
-                    if (item.Tag == bomb.Tag)
-                    {
-                    remove = item;
-                        break;
-                    }
-                }
-            });
-            Tile.Remove(remove);
-            BomeTime.Stop();
+            Countdown.Stop();
         }
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {

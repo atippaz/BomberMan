@@ -11,14 +11,62 @@ namespace BomberMan
     class Fires
     {
         private PictureBox fire;
-        public PictureBox Up()
+        List<Control> Fire;
+        public Fires() 
         {
-            return fire = new PictureBox()
+            Fire = new List<Control>();
+        }
+        public void Up(Map map,Point bomb,int power ,int TileSize)
+        {
+             fire = new PictureBox()
             {
-               // Site = new Size(),
-               // Location = new Point(),
-               // Image = MapImage.Fire,
+                Size = new Size(TileSize, TileSize),
+                Location = new Point( bomb.X,bomb.Y - TileSize),
+                Image = Images.Fire,
+                SizeMode = PictureBoxSizeMode.Zoom,
             };
+            Fire.Add(fire);
+            map.AddTiles(fire);
+        }
+        public void Left(Map map, Point bomb, int power, int TileSize)
+        {
+            fire = new PictureBox()
+            {
+                Size = new Size(TileSize, TileSize),
+                Location = new Point(bomb.X-TileSize, bomb.Y),
+                Image = Images.Fire,
+                SizeMode = PictureBoxSizeMode.Zoom,
+            };
+            Fire.Add(fire);
+            map.AddTiles(fire);
+        }
+        public void Down(Map map, Point bomb, int power, int TileSize)
+        {
+            fire = new PictureBox()
+            {
+                Size = new Size(TileSize, TileSize),
+                Location = new Point(bomb.X, bomb.Y + TileSize),
+                Image = Images.Fire,
+                SizeMode = PictureBoxSizeMode.Zoom,
+            };
+            Fire.Add(fire);
+            map.AddTiles(fire);
+        }
+        public void Right(Map map, Point bomb, int power, int TileSize)
+        {
+            fire = new PictureBox()
+            {
+                Size = new Size(TileSize, TileSize),
+                Location = new Point(bomb.X +TileSize, bomb.Y),
+                Image = Images.Fire,
+                SizeMode = PictureBoxSizeMode.Zoom,
+            };
+            Fire.Add(fire);
+            map.AddTiles(fire);
+        }
+        public void DeleteFire()
+        {
+            Fire.ForEach((fire) => fire.Visible = false);
         }
     }
 }
