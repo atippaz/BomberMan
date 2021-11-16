@@ -53,10 +53,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Items\Bomb\Bomb.cs" />
     <Compile Include="Class\Characters\CharacterBase.cs" />
     <Compile Include="Class\Characters\CharacterBehavior.cs" />
     <Compile Include="Class\Characters\CharacterMove.cs" />
-    <Compile Include="Class\Items\Bomb\Bombs.cs" />
     <Compile Include="Class\Items\Fires.cs" />
     <Compile Include="Class\KeyBoard\KeyBoard.cs" />
     <Compile Include="Class\Sounds\Sound.cs" />
@@ -68,7 +68,7 @@
     <Compile Include="Class\Items\Items.cs" />
     <Compile Include="Class\Images\PlayerImage.cs" />
     <Compile Include="Class\Maps\Map.cs" />
-	  <Compile Include="Class\Maps\Walls.cs" />
+    <Compile Include="Class\Maps\Walls.cs" />
     <Compile Include="Class\Sounds\EffectSound.cs" />
     <Compile Include="Class\Images\Images.cs" />
     <Compile Include="Class\Attribute\Colors.cs" />

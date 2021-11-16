@@ -7,6 +7,7 @@
         private int _Speed;
         private int _Mana;
         private int _MaxHP;
+        private int _AtteckPower = 1;
         private int _MaxMana = 3;
         private int _MaxSpeed=10;
         private string _Name;
@@ -46,6 +47,11 @@
         {
             get => _Speed;
             set => _Speed = (value >= 0 && value <= MaxSpeed) ? value : 10;
+        }
+        public int Power
+        {
+            get => _AtteckPower;
+            set => _AtteckPower = (value >= 0) ? value : 1;
         }
         #endregion
     }
