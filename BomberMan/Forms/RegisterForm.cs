@@ -53,7 +53,7 @@ namespace BomberMan {
             // BackGroundMusic.Set(Music.MainTheme);
             //BackGroundMusic.Play();
             Game GameForm = new Game($"{Name_RealTime.Text}");
-            this.Close();
+            this.Hide();
             GameForm.Show();
         }
         private void btn_Play_MouseHover(object sender, EventArgs e) {
