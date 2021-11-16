@@ -71,65 +71,8 @@ namespace BomberMan
         private void CreateMap()
         {
             map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);
-
-            for (int i = 0; i < Math.Pow((size / TileSize), 2); i++)
-            {
-                if (i / ((size / TileSize) - 1) <= 1 && i != (size / TileSize))
-                {
-                    tiles = new PictureBox()
-                    {
-                        Size = new Size(TileSize, TileSize),
-                        SizeMode = PictureBoxSizeMode.Zoom,
-                        Image = MapImage.BookBox,
-                        Tag = "Wall",
-                        Location = new Point(i * TileSize, i / ((size / TileSize) - 1)),
-                    };
-
-                    tiles.BringToFront();
-                    map.AddTiles(tiles);
-                }
-                else if ((i - 1) % ((size / TileSize) - 1) == 0)
-                {
-                    tiles = new PictureBox()
-                    {
-                        Size = new Size(TileSize, TileSize),
-                        SizeMode = PictureBoxSizeMode.Zoom,
-                        Image = MapImage.BookBox,
-                        Tag = "Wall",
-                        Location = new Point(0, TileSize * ((i - 1) / ((size / TileSize) - 1))),
-                    };
-
-                    tiles.BringToFront();
-                    map.AddTiles(tiles);
-                }
-                else if (i % ((size / TileSize) - 1) == 0 && i != (Math.Pow((size / TileSize), 2) - 1))
-                {
-                    tiles = new PictureBox()
-                    {
-                        Size = new Size(TileSize, TileSize),
-                        SizeMode = PictureBoxSizeMode.Zoom,
-                        Image = MapImage.BookBox,
-                        Tag = "Wall",
-                        Location = new Point(((size / TileSize) - 1) * TileSize, TileSize * ((i - 1) / ((size / TileSize) - 1))),
-                    };
-
-                    tiles.BringToFront();
-                    map.AddTiles(tiles);
-                }
-                else if (i >= (Math.Pow((size / TileSize), 2) - ((size / TileSize) - 1)))
-                {
-                    tiles = new PictureBox()
-                    {
-                        Size = new Size(TileSize, TileSize),
-                        SizeMode = PictureBoxSizeMode.Zoom,
-                        Image = MapImage.BookBox,
-                        Tag = "Wall",
-                        Location = new Point(TileSize * ((i - 1) % ((size / TileSize) - 1)), ((size / TileSize) - 1) * TileSize),
-                    };
-                    tiles.BringToFront();
-                    map.AddTiles(tiles);
-                }
-            }
+            Walls wall = new Walls();
+            wall.Create(map,size,TileSize);
             ResizeForm(this, map);
         }
         public Game(string Playername)
@@ -240,12 +183,10 @@ namespace BomberMan
                 }
             }
         }
-
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
-
         private void ResizeForm(Form BrforeFormResize, Map AfterFormResize)
         {
             int WidthBF = AfterFormResize.MapProperties.Location.X - BrforeFormResize.Location.X;
