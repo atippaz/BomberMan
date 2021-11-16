@@ -104,5 +104,10 @@ namespace BomberMan {
             #endregion
         }
         #endregion
+
+        private void RegisterForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
