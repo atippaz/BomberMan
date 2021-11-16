@@ -71,6 +71,7 @@ namespace BomberMan
         private void CreateMap()
         {
             map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);
+
             for (int i = 1; i < 5; i++)
             {
                 tiles = new PictureBox()

@@ -1,6 +1,5 @@
 ﻿using System.IO;
 using System.Drawing;
-
 namespace BomberMan
 {
     static class PlayerImage
