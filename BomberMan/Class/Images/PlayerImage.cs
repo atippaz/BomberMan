@@ -1,8 +1,9 @@
 ﻿using System.IO;
 using System.Drawing;
-
-namespace BomberMan {
-    static class PlayerImage {
+namespace BomberMan
+{
+    static class PlayerImage
+    {
         static public Image Idle = Image.FromFile(Path.GetFullPath(Paths.PathPlayer + "Player_idle.gif"));
         static public Image RunLeft = Image.FromFile(Path.GetFullPath(Paths.PathPlayer + "Player_run_left.gif"));
         static public Image RunRight = Image.FromFile(Path.GetFullPath(Paths.PathPlayer + "Player_run_right.gif"));

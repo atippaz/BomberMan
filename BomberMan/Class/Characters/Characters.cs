@@ -48,6 +48,7 @@ namespace BomberMan
                 {
                     _Animation.Image = PlayerImage.Idle;
                 }
+                DirectionPlayer = value;
             }
         }
     }
