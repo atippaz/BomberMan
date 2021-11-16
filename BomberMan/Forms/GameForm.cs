@@ -28,7 +28,7 @@ namespace BomberMan
             TileSize = 50;
             this.Focus();
             position = 100;
-            size = 750;
+            size = 800; // 16 * 50
             
             CreateMap();
             /*hitbox = new PictureBox()
@@ -143,12 +143,13 @@ namespace BomberMan
             {
                 location = new Point(player.Location.X, player.Location.Y + TileSize);
             }
-           // hitbox.Location = location;
-            if ((location.X < 0 || location.X > map.MapProperties.Width) || (location.Y < 0 || location.Y > map.MapProperties.Height))
-            {
-                walkAble = false;
-                player.WalkFinish = true;
-            }
+            label1.Text = player.Location.X.ToString();
+            label2.Text = player.Location.Y.ToString();
+            // hitbox.Location = location;
+            //if ((location.X < 0 || location.X > map.MapProperties.Width) || (location.Y < 0 || location.Y > map.MapProperties.Height)) {
+            //    walkAble = false;
+            //    player.WalkFinish = true;
+            //}
             if (walkAble)
             {
                 Tile.ForEach((boxs) =>
