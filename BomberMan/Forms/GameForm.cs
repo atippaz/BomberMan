@@ -28,8 +28,8 @@ namespace BomberMan
             TileSize = 50;
             this.Focus();
             position = 100;
-            size = 800; // 16 * 50
-            
+            size = 750; // 15 * 50
+
             CreateMap();
             /*hitbox = new PictureBox()
             {
@@ -72,44 +72,63 @@ namespace BomberMan
         {
             map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);
 
-            for (int i = 1; i < 5; i++)
+            for (int i = 0; i < Math.Pow((size / TileSize), 2); i++)
             {
-                tiles = new PictureBox()
+                if (i / ((size / TileSize) - 1) <= 1 && i != (size / TileSize))
                 {
-                    Size = new Size(50, 50),
-                    Location = new Point(i * 100, i * 100),
-                    Tag = "Wall",
-                    Image = MapImage.BookBox,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                tiles.BringToFront();
-                map.AddTiles(tiles);
-            }
-            for (int j = 5; j > 0; j--)
-            {
-                tiles = new PictureBox()
+                    tiles = new PictureBox()
+                    {
+                        Size = new Size(TileSize, TileSize),
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Image = MapImage.BookBox,
+                        Tag = "Wall",
+                        Location = new Point(i * TileSize, i / ((size / TileSize) - 1)),
+                    };
+
+                    tiles.BringToFront();
+                    map.AddTiles(tiles);
+                }
+                else if ((i - 1) % ((size / TileSize) - 1) == 0)
                 {
-                    Size = new Size(50, 50),
-                    Location = new Point(j * 150, j * 50),
-                    Tag = "Box",
-                    Image = MapImage.Box,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                tiles.BringToFront();
-                map.AddTiles(tiles);
-            }
-            for (int j = 5; j > 0; j--)
-            {
-                tiles = new PictureBox()
+                    tiles = new PictureBox()
+                    {
+                        Size = new Size(TileSize, TileSize),
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Image = MapImage.BookBox,
+                        Tag = "Wall",
+                        Location = new Point(0, TileSize * ((i - 1) / ((size / TileSize) - 1))),
+                    };
+
+                    tiles.BringToFront();
+                    map.AddTiles(tiles);
+                }
+                else if (i % ((size / TileSize) - 1) == 0 && i != (Math.Pow((size / TileSize), 2) - 1))
                 {
-                    Size = new Size(50, 50),
-                    Location = new Point(j * 100, j * 50),
-                    Tag = "Bomb",
-                    Image = MapImage.Bomb,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                tiles.BringToFront();
-                map.AddTiles(tiles);
+                    tiles = new PictureBox()
+                    {
+                        Size = new Size(TileSize, TileSize),
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Image = MapImage.BookBox,
+                        Tag = "Wall",
+                        Location = new Point(((size / TileSize) - 1) * TileSize, TileSize * ((i - 1) / ((size / TileSize) - 1))),
+                    };
+
+                    tiles.BringToFront();
+                    map.AddTiles(tiles);
+                }
+                else if (i >= (Math.Pow((size / TileSize), 2) - ((size / TileSize) - 1)))
+                {
+                    tiles = new PictureBox()
+                    {
+                        Size = new Size(TileSize, TileSize),
+                        SizeMode = PictureBoxSizeMode.Zoom,
+                        Image = MapImage.BookBox,
+                        Tag = "Wall",
+                        Location = new Point(TileSize * ((i - 1) % ((size / TileSize) - 1)), ((size / TileSize) - 1) * TileSize),
+                    };
+                    tiles.BringToFront();
+                    map.AddTiles(tiles);
+                }
             }
             ResizeForm(this, map);
         }

@@ -20,7 +20,7 @@ namespace BomberMan
         {
             Animation.Image = PlayerImage.Idle;
             Size = new Size(50, 50);
-            Location = new Point(0, 0);
+            Location = new Point(50, 50);
             MaxHP = 3;
             MaxMana = 1;
             MaxSpeed = 10;
