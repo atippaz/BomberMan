@@ -7,7 +7,7 @@
         private int _Speed;
         private int _Mana;
         private int _MaxHP;
-        private int _MaxMana;
+        private int _MaxMana = 3;
         private int _MaxSpeed=10;
         private string _Name;
         #endregion

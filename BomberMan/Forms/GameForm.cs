@@ -12,7 +12,10 @@ namespace BomberMan
         Enemy Enemy;
         int TileSize;
         Player player;
+        bool UseBomb = true;
         bool walkAble;
+        PictureBox bomb;
+        Timer BomeTime;
         PictureBox tiles;
         string Directions;
         //PictureBox hitbox;
@@ -28,8 +31,8 @@ namespace BomberMan
             TileSize = 50;
             this.Focus();
             position = 100;
-            size = 800; // 16 * 50
-            
+            size = 750; // 15 * 50
+
             CreateMap();
             /*hitbox = new PictureBox()
             {
@@ -71,46 +74,8 @@ namespace BomberMan
         private void CreateMap()
         {
             map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);
-
-            for (int i = 1; i < 5; i++)
-            {
-                tiles = new PictureBox()
-                {
-                    Size = new Size(50, 50),
-                    Location = new Point(i * 100, i * 100),
-                    Tag = "Wall",
-                    Image = MapImage.BookBox,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                tiles.BringToFront();
-                map.AddTiles(tiles);
-            }
-            for (int j = 5; j > 0; j--)
-            {
-                tiles = new PictureBox()
-                {
-                    Size = new Size(50, 50),
-                    Location = new Point(j * 150, j * 50),
-                    Tag = "Box",
-                    Image = MapImage.Box,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                tiles.BringToFront();
-                map.AddTiles(tiles);
-            }
-            for (int j = 5; j > 0; j--)
-            {
-                tiles = new PictureBox()
-                {
-                    Size = new Size(50, 50),
-                    Location = new Point(j * 100, j * 50),
-                    Tag = "Bomb",
-                    Image = MapImage.Bomb,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                tiles.BringToFront();
-                map.AddTiles(tiles);
-            }
+            Walls wall = new Walls();
+            wall.Create(map,size,TileSize);
             ResizeForm(this, map);
         }
         public Game(string Playername)
@@ -120,6 +85,8 @@ namespace BomberMan
             Enemy = new Enemy();
             player = new Player(Playername, map.MapProperties);
             player.Speed = 50;
+            player.Mana = 1;
+            Console.WriteLine($"{player.Mana}");
         }
         private void Update(object sender, EventArgs a)
         {
@@ -175,6 +142,7 @@ namespace BomberMan
                 {
                     player.WalkFinish = true;
                     walkAble = false;
+                    UseBomb = true;
                 }
             }
             if (player.DirectionPlayer != Directions)
@@ -215,18 +183,39 @@ namespace BomberMan
                     player.WalkFinish = false;
                     steps = TileSize;
                 }
-                if (KeyBoard.SpaceBar(e))
+                if (KeyBoard.SpaceBar(e) && (player.Mana>0) && UseBomb)
                 {
-
+                    Console.WriteLine($"{player.Mana}");
+                    UseBomb = false;
+                    bomb = new PictureBox() 
+                    {
+                        Size = new Size(TileSize, TileSize),
+                        Location = player.Location,
+                        Image = MapImage.Bomb,
+                        Tag = "Bomb",
+                        SizeMode = PictureBoxSizeMode.Zoom
+                    };
+                    map.AddTiles(bomb);
+                    player.Mana -= 1;
+                    Tile.Add(bomb);
+                    BomeTime = new Timer();
+                    BomeTime.Interval = 2000;
+                    BomeTime.Tick += BombActivitor;
+                    BomeTime.Start();
                 }
             }
         }
-
+        private void BombActivitor(object sender, EventArgs a)
+        {
+            bomb.Visible = false;
+            BomeTime.Stop();
+            player.Mana += 1;
+            UseBomb = false;
+        }
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
         }
-
         private void ResizeForm(Form BrforeFormResize, Map AfterFormResize)
         {
             int WidthBF = AfterFormResize.MapProperties.Location.X - BrforeFormResize.Location.X;
