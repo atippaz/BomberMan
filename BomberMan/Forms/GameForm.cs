@@ -12,7 +12,10 @@ namespace BomberMan
         Enemy Enemy;
         int TileSize;
         Player player;
+        bool UseBomb = true;
         bool walkAble;
+        PictureBox bomb;
+        Timer BomeTime;
         PictureBox tiles;
         string Directions;
         //PictureBox hitbox;
@@ -82,6 +85,8 @@ namespace BomberMan
             Enemy = new Enemy();
             player = new Player(Playername, map.MapProperties);
             player.Speed = 50;
+            player.Mana = 1;
+            Console.WriteLine($"{player.Mana}");
         }
         private void Update(object sender, EventArgs a)
         {
@@ -137,6 +142,7 @@ namespace BomberMan
                 {
                     player.WalkFinish = true;
                     walkAble = false;
+                    UseBomb = true;
                 }
             }
             if (player.DirectionPlayer != Directions)
@@ -177,11 +183,34 @@ namespace BomberMan
                     player.WalkFinish = false;
                     steps = TileSize;
                 }
-                if (KeyBoard.SpaceBar(e))
+                if (KeyBoard.SpaceBar(e) && (player.Mana>0) && UseBomb)
                 {
-
+                    Console.WriteLine($"{player.Mana}");
+                    UseBomb = false;
+                    bomb = new PictureBox() 
+                    {
+                        Size = new Size(TileSize, TileSize),
+                        Location = player.Location,
+                        Image = MapImage.Bomb,
+                        Tag = "Bomb",
+                        SizeMode = PictureBoxSizeMode.Zoom
+                    };
+                    map.AddTiles(bomb);
+                    player.Mana -= 1;
+                    Tile.Add(bomb);
+                    BomeTime = new Timer();
+                    BomeTime.Interval = 2000;
+                    BomeTime.Tick += BombActivitor;
+                    BomeTime.Start();
                 }
             }
+        }
+        private void BombActivitor(object sender, EventArgs a)
+        {
+            bomb.Visible = false;
+            BomeTime.Stop();
+            player.Mana += 1;
+            UseBomb = false;
         }
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
