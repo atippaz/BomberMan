@@ -2,7 +2,7 @@
 
 namespace BomberMan
 {
-    class CharacterMove : CharacterBase
+    class CharacterMove :CharacterBehavior
     {
         public bool WalkFinish = true;
         public string DirectionPlayer;

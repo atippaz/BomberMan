@@ -15,20 +15,17 @@ namespace BomberMan
             set => _pbMap.Image = value;
         }
 
-        public Map(Image mapImage, Size size,Point position)
+        public Map(Image mapImage, Size size,Point position,Form form)
         {
-            System.Console.WriteLine($"{mapImage}");
             this._pbMap = new PictureBox()
             {
                 Name = "Map",
                 Size = size,
                 Location = position,
-                Image = mapImage,
-                SizeMode = PictureBoxSizeMode.Normal,
-                BackgroundImageLayout = ImageLayout.Stretch,
-                BorderStyle = BorderStyle.Fixed3D,
+                BackgroundImage = mapImage,
+                BackgroundImageLayout = ImageLayout.Tile,
             };
-
+            form.Controls.Add(this._pbMap);
         }
         public void Add(Form form)
         {

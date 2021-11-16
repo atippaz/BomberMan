@@ -23,5 +23,9 @@ namespace BomberMan
         {
             return (e.KeyCode == Keys.W || e.KeyCode == Keys.Up) ? true : false;
         }
+        public static bool SpaceBar(KeyEventArgs e)
+        {
+            return (e.KeyCode == Keys.Space) ? true : false;
+        }
     }
 }
