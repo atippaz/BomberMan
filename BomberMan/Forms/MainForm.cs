@@ -2,27 +2,62 @@
 using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using System.IO;
 
 namespace BomberMan {
     public partial class MainForm : Form {
+        #region Fields
+        private int lineSpeed = 10;
+        private Thread _Fx;
+        PictureBox playerLogo, playerLogo1;
+        #endregion
 
-        Thread worker;
-         
         public MainForm() {
             InitializeComponent();
+            #region initial value to PictureBox 
+            playerLogo = new PictureBox() {
+                Name = "player",
+                Size = new Size(50, 50),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Image = Images.BtnStartCharacterAnimate,
+                Location = new Point(btn_Start.Location.X - 60, btn_Start.Location.Y + 10),
+            };
+            playerLogo1 = new PictureBox() {
+                Name = "player",
+                Size = new Size(50, 50),
+                SizeMode = PictureBoxSizeMode.Zoom,
+                Image = Images.BtnExitCharaterAnimate,
+                Location = new Point(btn_EXIT.Location.X - 60, btn_EXIT.Location.Y + 10),
+            };
+            this.Controls.Add(playerLogo1);
+            this.Controls.Add(playerLogo);
 
-            // initial value for control
-            this.BackColor = label1.BackColor = Colors.White;
+            playerLogo.Visible = playerLogo1.Visible = false;
+            playerLogo.BackColor = playerLogo1.BackColor = Color.Transparent;
+            playerLogo.BringToFront();
+            playerLogo1.BringToFront();
 
-            pictureBox_Logo.Image = Image.FromFile(Path.GetFullPath(DecorateImage.LogoGame));
-            pictureBox1.Image = PlayerImage.RunLeft;
-            pictureBox2.Image = PlayerImage.RunUp;
+            pictureBox_Logo.Image = Images.LogoGame;
+            pictureBox1.Image = Images.Library;
+            pictureBox2.Image = Images.Library2;
+            pictureBox3.Image = pictureBox4.Image = Images.Fire;
+            pictureBox5.Image = Images.Fire2;
 
-            pictureBox1.Visible= pictureBox2.Visible = false;
+            pictureBox1.Controls.Add(pictureBox5);
+            pictureBox2.Controls.Add(pictureBox3);
+            pictureBox2.Controls.Add(pictureBox4);
+
+            pictureBox3.Location = new Point(100, 100);
+            pictureBox4.Location = new Point(150, 110);
+            pictureBox5.Location = new Point(20, 107);
+            #endregion
         }
 
+        #region MainForm event method
         private void OpenGameForm(object sender, EventArgs e) {
+            // Fx sound 
+            _Fx = new Thread(EffectSound.Click);
+            _Fx.Start();
+
             RegisterForm registerForm = new RegisterForm();
             registerForm.Show();
             this.Hide();
@@ -33,37 +68,25 @@ namespace BomberMan {
         }
 
         private void Setup(object sender, EventArgs e) {
-          worker = new Thread(SoundEffect.Effects);
-          SoundEffect.BGM_Play();
+            this.Icon = new Icon(Images.IconGame);
+            BackGroundMusic.Set(Music.MainTheme);
+            BackGroundMusic.Play();
         }
+        #endregion
 
-        private void Play_Effect(object sender, EventArgs e) {
-            worker = new Thread(SoundEffect.Effects);
-            worker.Start();
-        }
+        #region START BUTTON 
 
-        // ----------------------
-        // PROPERTIES FOR BUTTON
-        // ----------------------
-
-        private int lineSpeed = 9;
-
-        //--------------
-        // START BUTTON 
-        //--------------
         #region Attribute of START BUTTON
         private bool leave_btnStart = false;
         private bool hover_btnStart = false;
         #endregion
         private void btn_Start_MouseHover(object sender, EventArgs e) {
             btn_Start.BackColor = Colors.OrangeHover;
-
             hover_btnStart = true;
             leave_btnStart = false;
         }
         private void btn_Start_MouseLeave(object sender, EventArgs e) {
             btn_Start.BackColor = Colors.OrangeLeave;
-
             hover_btnStart = false;
             leave_btnStart = true;
         }
@@ -74,10 +97,10 @@ namespace BomberMan {
             btn_Start.BackColor = Colors.OrangeClick;
             btn_Start.Size = new Size(237, 73);
         }
+        #endregion
 
-        //--------------
-        // EXIT BUTTON 
-        //--------------
+        #region EXIT BUTTON 
+
         #region Attribute of EXIT BUTTON
         private bool leave_btnEXIT = false;
         private bool hover_btnEXIT = false;
@@ -97,41 +120,27 @@ namespace BomberMan {
         private void btn_EXIT_MouseDown(object sender, MouseEventArgs e) {
             btn_EXIT.BackColor = Colors.GreyClick;
         }
+        #endregion
 
-        // ----------------
-        // ANIMATION BUTTON
-        // ----------------
+        #region ANIMATION FOR BUTTON
         private void timer_Animation_Tick(object sender, EventArgs e) {
-
-            if (leave_btnStart) {
-                if (lineSlide1.Location.X >= 52) {
-                    lineSlide1.Left -= lineSpeed;
-                }
-                pictureBox1.Visible = false;
+            if (lineSlide1.Width < btn_Start.Width && hover_btnStart) {
+                lineSlide1.Width += lineSpeed;
+                playerLogo.Visible = true;
             }
-
-            if (hover_btnStart) {
-                if (lineSlide1.Location.X < 286) {
-                    lineSlide1.Left += lineSpeed;
-                }
-                pictureBox1.Visible = true;
+            else if (lineSlide1.Width > 0 && leave_btnStart) {
+                lineSlide1.Width -= lineSpeed;
+                playerLogo.Visible = false;
             }
-
-            if (hover_btnEXIT) {
-                if (lineSlide2.Location.X < 286) {
-                    lineSlide2.Left += lineSpeed;
-                }
-                pictureBox2.Visible = true;
+            if (lineSlide2.Width < btn_Start.Width && hover_btnEXIT) {
+                lineSlide2.Width += lineSpeed;
+                playerLogo1.Visible = true;
             }
-
-            if (leave_btnEXIT) {
-                if (lineSlide2.Location.X >= 52) {
-                    lineSlide2.Left -= lineSpeed;
-                }
-                pictureBox2.Visible = false;
+            else if (lineSlide2.Width > 0 && leave_btnEXIT) {
+                lineSlide2.Width -= lineSpeed;
+                playerLogo1.Visible = false;
             }
         }
-
-
+        #endregion
     }
 }

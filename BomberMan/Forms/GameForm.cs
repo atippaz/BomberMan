@@ -1,55 +1,268 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
 
 namespace BomberMan
 {
     public partial class Game : Form
     {
+        Map map;
+        int steps;
+        Enemy Enemy;
+        int TileSize;
+        Player player;
+        bool UseBomb = true;
+        bool walkAble;
+        PictureBox bomb;
+        Timer BomeTime;
+        PictureBox tiles;
+        string Directions;
+        //PictureBox hitbox;
+        List<Control> Box;
+        int position, size;
+        List<Control> Tile;
+        List<Control> Wall;
+        List<Control> Bombs;
         readonly Timer time = new Timer();
-        PictureBox Player;
-        Player playerProperties;
-        public Game()
+        #region don't forget delete some code here!!
+        void Init()
         {
-            InitializeComponent();
+
+            TileSize = 50;
+            this.Focus();
+            position = 100;
+            size = 750; // 15 * 50
+
+            CreateMap();
+            /*hitbox = new PictureBox()
+            {
+                Size = new Size(TileSize, TileSize),
+                BorderStyle = BorderStyle.Fixed3D
+            };
+            this.Controls.Add(hitbox);
+            map.AddTiles(hitbox);*/
+            Bombs = new List<Control>();
+            Box = new List<Control>();
+            Wall = new List<Control>();
+            Tile = new List<Control>();
+            foreach (Control items in map.MapProperties.Controls)
+            {
+                if (items is PictureBox && (string)items.Tag == "Wall")
+                {
+                    Wall.Add(items);
+                    Tile.Add(items);
+                }
+                else if (items is PictureBox && (string)items.Tag == "Box")
+                {
+                    Box.Add(items);
+                    Tile.Add(items);
+                }
+                #region delete here !!
+                //ลบด้วยใช้ตอนเทสเท่านั้น 
+                else if (items is PictureBox && (string)items.Tag == "Bomb")
+                {
+                    Tile.Add(items);
+                }
+                #endregion
+            }
+            // The duration of creating a loop, where 1000 is 1 second. and every Interval will do update
+            time.Interval = 10;
+            time.Tick += Update;
+            time.Start();
+        }
+        #endregion
+        private void CreateMap()
+        {
+            map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);
+            Walls wall = new Walls();
+            wall.Create(map,size,TileSize);
+            ResizeForm(this, map);
         }
         public Game(string Playername)
         {
             InitializeComponent();
+            Init();
+            Enemy = new Enemy();
+            player = new Player(Playername, map.MapProperties);
+            player.Speed = 50;
+            player.Mana = 1;
+            Console.WriteLine($"{player.Mana}");
         }
-
-        private void TestBtn(object sender, EventArgs e)
-        {
-           
-        }
-        void Init(object sender, EventArgs e)
-        {
-            this.Focus();
-            CreateMap();
-            // The duration of creating a loop, where 1000 is 1 second. and every Interval will do update
-            time.Interval = 35;
-            time.Tick += Update;
-            time.Start();
-
-        }
-        void CreateMap() { }
-        void Update(object sender, EventArgs a)
+        private void Update(object sender, EventArgs a)
         {
 
-        }
+            Point location = new Point(0, 0);
+            //hitbox.BackColor = Color.Red;
+            #region check
+            if (Directions == "Right")
+            {
+                location = new Point(player.Location.X + TileSize, player.Location.Y);
+            }
+            else if (Directions == "Left")
+            {
+                location = new Point(player.Location.X - TileSize, player.Location.Y);
+            }
+            else if (Directions == "Up")
+            {
+                location = new Point(player.Location.X, player.Location.Y - TileSize);
+            }
+            else if (Directions == "Down")
+            {
+                location = new Point(player.Location.X, player.Location.Y + TileSize);
+            }
+            label1.Text = player.Location.X.ToString();
+            label2.Text = player.Location.Y.ToString();
+            // hitbox.Location = location;
+            //if ((location.X < 0 || location.X > map.MapProperties.Width) || (location.Y < 0 || location.Y > map.MapProperties.Height)) {
+            //    walkAble = false;
+            //    player.WalkFinish = true;
+            //}
+            if (walkAble)
+            {
+                Tile.ForEach((boxs) =>
+                {
+                    if (location == boxs.Location)
+                    {
+                        walkAble = false;
+                        player.WalkFinish = true;
+                    }
+                });
+            }
 
-        private void OpenMainForm(object sender, EventArgs e)
+            #endregion
+
+            if (walkAble)
+            {
+                if (steps > 0)
+                {
+                    player.Move(Directions);
+                    steps -= player.Speed;
+                }
+                else
+                {
+                    player.WalkFinish = true;
+                    walkAble = false;
+                    UseBomb = true;
+                }
+            }
+            if (player.DirectionPlayer != Directions)
+            {
+                player.AnimationDirector = Directions;
+            }
+        }
+        private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            MainForm form = new MainForm();
-            form.Show();
-            this.Close();
+            if (KeyBoard.CheckAll(e) && (player.WalkFinish || walkAble))
+            {
+                player.AnimationDirector = "";
+            }
+        }
+        private void KeyIsDown(object sender, KeyEventArgs e)
+        {
+            if (player.WalkFinish)
+            {
+                if (KeyBoard.Right(e))
+                {
+                    Directions = "Right";
+                }
+                if (KeyBoard.Left(e))
+                {
+                    Directions = "Left";
+                }
+                if (KeyBoard.Up(e))
+                {
+                    Directions = "Up";
+                }
+                if (KeyBoard.Down(e))
+                {
+                    Directions = "Down";
+                }
+                if (KeyBoard.CheckAll(e))
+                {
+                    walkAble = true;
+                    player.WalkFinish = false;
+                    steps = TileSize;
+                }
+                if (KeyBoard.SpaceBar(e) && (player.Mana>0) && UseBomb)
+                {
+                    Console.WriteLine($"{player.Mana}");
+                    UseBomb = false;
+                    bomb = new PictureBox() 
+                    {
+                        Size = new Size(TileSize, TileSize),
+                        Location = player.Location,
+                        Image = MapImage.Bomb,
+                        Tag = "Bomb",
+                        SizeMode = PictureBoxSizeMode.Zoom
+                    };
+                    map.AddTiles(bomb);
+                    player.Mana -= 1;
+                    Tile.Add(bomb);
+                    BomeTime = new Timer();
+                    BomeTime.Interval = 2000;
+                    BomeTime.Tick += BombActivitor;
+                    BomeTime.Start();
+                    Bombs.Add(bomb);
+                }
+            }
+        }
+        private void BombActivitor(object sender, EventArgs a)
+        {
+            var remove = new Control();
+            bool found = false;
+            bomb.Visible = false;
+            player.Mana += 1;
+            UseBomb = false;
+            Tile.ForEach((item) =>
+            {
+                foreach(var bomb in Bombs )
+                {
+                    if (item.Tag == bomb.Tag)
+                    {
+                    remove = item;
+                        break;
+                    }
+                }
+            });
+            Tile.Remove(remove);
+            BomeTime.Stop();
+        }
+        private void Game_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+        private void ResizeForm(Form BrforeFormResize, Map AfterFormResize)
+        {
+            int WidthBF = AfterFormResize.MapProperties.Location.X - BrforeFormResize.Location.X;
+            int HeightBF = AfterFormResize.MapProperties.Location.Y - BrforeFormResize.Location.Y;
+            int WidthAT = BrforeFormResize.Width;
+            int HeightAT = BrforeFormResize.Height;
+            if (BrforeFormResize.Size.Width < AfterFormResize.MapProperties.Width || BrforeFormResize.Size.Height < AfterFormResize.MapProperties.Height)
+            {
+                while ((WidthAT <= AfterFormResize.MapProperties.Width + WidthBF + 120))
+                {
+                    WidthAT += 1;
+                }
+                while ((HeightAT <= AfterFormResize.MapProperties.Height + HeightBF + 200))
+                {
+                    HeightAT += 1;
+                }
+            }
+            else
+            {
+                while ((WidthAT >= AfterFormResize.MapProperties.Width + WidthBF + 120))
+                {
+                    WidthAT -= 1;
+                }
+                while ((HeightAT >= AfterFormResize.MapProperties.Height + HeightBF + 120))
+                {
+                    HeightAT -= 1;
+                }
+            }
+            BrforeFormResize.Width = WidthAT;
+            BrforeFormResize.Height = HeightAT;
+            this.StartPosition = FormStartPosition.CenterScreen;
         }
     }
 }

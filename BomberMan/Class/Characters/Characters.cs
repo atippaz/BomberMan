@@ -1,37 +1,55 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
+
 namespace BomberMan
 {
-    abstract class Characters
+    class Characters : CharacterMove
     {
-        #region Fields
-        private int _nHP;
-        private PictureBox _pbCharacter;
-        readonly private int _nAttack;
-        #endregion
-        #region Properties
-        public int HP { get => _nHP; }
-        public int Attack { get => _nAttack; }
-        public PictureBox Character { get; set; }
-        #endregion
-        #region Constructors
-        public Characters()
+        private PictureBox _Animation = new PictureBox()
         {
-            Character.Name = "Player001";
-            this._nHP = 3;
-        }
-        public Characters(string sName, int nHp, int nPositionX, int nPositionY, int nWidth, int nHeight,string image)
+            SizeMode = PictureBoxSizeMode.Zoom,
+        };
+        public PictureBox Animation
         {
-          
-            this._nHP = (nHp > 0) ? nHp : 3;
-            
+            get => _Animation;
+            set => _Animation = value;
         }
-        #endregion
-        #region Methods
-        abstract public void Move();
-        internal void SetHp(int value)
+        public Size Size
         {
-            this._nHP += value;
+            get => _Animation.Size;
+            set => _Animation.Size = (value.Width > 0 && value.Height > 0) ? value : new Size(50, 50);
         }
-        #endregion
+        public Point Location
+        {
+            get => _Animation.Location;
+            set => _Animation.Location = (value.X > 0 && value.Y > 0) ? value : new Point(0, 0);
+        }
+        public string AnimationDirector
+        {
+            set
+            {
+                if (value == "Right")
+                {
+                    _Animation.Image = PlayerImage.RunRight;
+                }
+                else if (value == "Left")
+                {
+                    _Animation.Image = PlayerImage.RunLeft;
+                }
+                else if (value == "Up")
+                {
+                    _Animation.Image = PlayerImage.RunUp;
+                }
+                else if (value == "Down")
+                {
+                    _Animation.Image = PlayerImage.RunDown;
+                }
+                else
+                {
+                    _Animation.Image = PlayerImage.Idle;
+                }
+                DirectionPlayer = value;
+            }
+        }
     }
 }
