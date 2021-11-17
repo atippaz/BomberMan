@@ -63,7 +63,7 @@ namespace BomberMan
             wall.Create(Storages.Map,size,TileSize);
             Boxs box = new Boxs();
             box.Create(Storages.Map, size, TileSize);
-            ResizeForm(this, Storages.Map);
+            FormEditor.Resize(this);
         }
         public Game(string PlayerName)
         {
@@ -180,6 +180,10 @@ namespace BomberMan
                     Countdown.Tick += BombActivitor;
                     Countdown.Start();
                 }
+                if(e.KeyCode == Keys.F)
+                {
+                    RandomItems.Randomitem();
+                }
             }
         }
         private void BombActivitor(object sender, EventArgs a)
@@ -192,38 +196,6 @@ namespace BomberMan
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
-        }
-        private void ResizeForm(Form BrforeFormResize, Map AfterFormResize)
-        {
-            int WidthBF = AfterFormResize.MapProperties.Location.X - BrforeFormResize.Location.X;
-            int HeightBF = AfterFormResize.MapProperties.Location.Y - BrforeFormResize.Location.Y;
-            int WidthAT = BrforeFormResize.Width;
-            int HeightAT = BrforeFormResize.Height;
-            if (BrforeFormResize.Size.Width < AfterFormResize.MapProperties.Width || BrforeFormResize.Size.Height < AfterFormResize.MapProperties.Height)
-            {
-                while ((WidthAT <= AfterFormResize.MapProperties.Width + WidthBF + 120))
-                {
-                    WidthAT += 1;
-                }
-                while ((HeightAT <= AfterFormResize.MapProperties.Height + HeightBF + 200))
-                {
-                    HeightAT += 1;
-                }
-            }
-            else
-            {
-                while ((WidthAT >= AfterFormResize.MapProperties.Width + WidthBF + 120))
-                {
-                    WidthAT -= 1;
-                }
-                while ((HeightAT >= AfterFormResize.MapProperties.Height + HeightBF + 120))
-                {
-                    HeightAT -= 1;
-                }
-            }
-            BrforeFormResize.Width = WidthAT;
-            BrforeFormResize.Height = HeightAT;
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
     }
 }

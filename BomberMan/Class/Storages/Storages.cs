@@ -9,6 +9,7 @@ namespace BomberMan {
         public static List<Control> Boxs = new List<Control>();
         public static List<Control> Bombs = new List<Control>();
         public static List<Control> Fires = new List<Control>();
+        public static List<Control> Items = new List<Control>();
         public static Map Map;
         public static Player Player;
         public static Enemy Enemy;

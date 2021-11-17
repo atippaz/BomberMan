@@ -1,9 +1,12 @@
-﻿namespace BomberMan
+﻿using System.Windows.Forms;
+
+namespace BomberMan
 {
     abstract class Items
     {
         #region Fields
         private string _sName;
+       protected PictureBox ItemImage;
         #endregion
         #region Properties
         public string Name { get => _sName; }
