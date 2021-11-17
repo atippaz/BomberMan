@@ -21,7 +21,7 @@ namespace BomberMan
         }
         public override void Effect(Player player)
         {
-            player.HP += 1;
+            player.HP -= 1;
         }
     }
 

@@ -70,99 +70,107 @@ namespace BomberMan
             InitializeComponent();
             Init();
             Storages.CreatePlayer(PlayerName);
+            Storages.CreateEnemy();
             Storages.Player.Speed = 50;
             Storages.Player.Mana = 2;
             Storages.Player.Power = 3;
         }
         private void Update(object sender, EventArgs a)
         {
-
-            Point location = new Point(0, 0);
-            //hitbox.BackColor = Color.Red;
-            #region check
-            if (Directions == "Right")
+            if (Storages.Player.HP > 0 && Storages.Enemy.HP > 0)
             {
-                location = new Point(Storages.Player.Location.X + TileSize, Storages.Player.Location.Y);
-            }
-            else if (Directions == "Left")
-            {
-                location = new Point(Storages.Player.Location.X - TileSize, Storages.Player.Location.Y);
-            }
-            else if (Directions == "Up")
-            {
-                location = new Point(Storages.Player.Location.X, Storages.Player.Location.Y - TileSize);
-            }
-            else if (Directions == "Down")
-            {
-                location = new Point(Storages.Player.Location.X, Storages.Player.Location.Y + TileSize);
-            }
-            label1.Text = Storages.Player.Location.X.ToString();
-            label2.Text = Storages.Player.Location.Y.ToString();
-            // hitbox.Location = location;
-            //if ((location.X < 0 || location.X > map.MapProperties.Width) || (location.Y < 0 || location.Y > map.MapProperties.Height)) {
-            //    walkAble = false;
-            //    player.WalkFinish = true;
-            //}
-            if (walkAble)
-            {
-                Storages.Tiles.ForEach((boxs) =>
-                 {
-                     if (location == boxs.Location)
-                     {
-                         walkAble = false;
-                         Storages.Player.WalkFinish = true;
-                     }
-                 });
-            }
-
-            #endregion
-
-            if (walkAble)
-            {
-                if (steps > 0)
+                Point location = new Point(0, 0);
+                //hitbox.BackColor = Color.Red;
+                #region check
+                if (Directions == "Right")
                 {
-                    Storages.Player.Move(Directions);
-                    steps -= Storages.Player.Speed;
+                    location = new Point(Storages.Player.Location.X + TileSize, Storages.Player.Location.Y);
                 }
-                else
+                else if (Directions == "Left")
                 {
-                    Storages.Player.WalkFinish = true;
-                    walkAble = false;
-                    UseBomb = true;
+                    location = new Point(Storages.Player.Location.X - TileSize, Storages.Player.Location.Y);
                 }
-            }
-            if (Storages.Player.DirectionPlayer != Directions)
-            {
-                Storages.Player.AnimationDirector = Directions;
-            }
-            //buff
-            Storages.ItemHasDrop = (Storages.Items.Count != 0) ? true : false;
-            if (Storages.ItemHasDrop)
-            {
-                Items tempItem = new Items();
-                Control tempImages = new Control();
-                Storages.Items.ForEach((buff) =>
+                else if (Directions == "Up")
                 {
-                    if (Storages.Player.Location == buff.Location)
+                    location = new Point(Storages.Player.Location.X, Storages.Player.Location.Y - TileSize);
+                }
+                else if (Directions == "Down")
+                {
+                    location = new Point(Storages.Player.Location.X, Storages.Player.Location.Y + TileSize);
+                }
+                label1.Text = Storages.Player.Location.X.ToString();
+                label2.Text = Storages.Player.Location.Y.ToString();
+                // hitbox.Location = location;
+                //if ((location.X < 0 || location.X > map.MapProperties.Width) || (location.Y < 0 || location.Y > map.MapProperties.Height)) {
+                //    walkAble = false;
+                //    player.WalkFinish = true;
+                //}
+                if (walkAble)
+                {
+                    Storages.Tiles.ForEach((boxs) =>
                     {
-                        buff.Effect(Storages.Player);
-                        tempItem = buff;
-                        Storages.ItemImage.ForEach((image) =>
+                        if (location == boxs.Location)
                         {
-                            if (buff.Image == image)
-                            {
-                                image.Visible = false;
-                                tempImages = image;
-                                EffectSound.Click();
-                            }
-                        });
+                            walkAble = false;
+                            Storages.Player.WalkFinish = true;
+                        }
+                    });
+                }
+
+                #endregion
+
+                if (walkAble)
+                {
+                    if (steps > 0)
+                    {
+                        Storages.Player.Move(Directions);
+                        steps -= Storages.Player.Speed;
+                    }
+                    else
+                    {
+                        Storages.Player.WalkFinish = true;
+                        walkAble = false;
+                        UseBomb = true;
                     }
                 }
-                );
-                Storages.Items.Remove(tempItem);
-                Storages.ItemImage.Remove(tempImages);
+                if (Storages.Player.DirectionPlayer != Directions)
+                {
+                    Storages.Player.AnimationDirector = Directions;
+                }
+                //buff check
+                Storages.ItemHasDrop = (Storages.Items.Count != 0) ? true : false;
+                if (Storages.ItemHasDrop)
+                {
+                    Items tempItem = new Items();
+                    Control tempImages = new Control();
+                    Storages.Items.ForEach((buff) =>
+                    {
+                        if (Storages.Player.Location == buff.Location)
+                        {
+                            buff.Effect(Storages.Player);
+                            tempItem = buff;
+                            Storages.ItemImage.ForEach((image) =>
+                            {
+                                if (buff.Image == image)
+                                {
+                                    image.Visible = false;
+                                    tempImages = image;
+                                    EffectSound.Click();
+                                }
+                            });
+                        }
+                    }
+                    );
+                    Storages.Items.Remove(tempItem);
+                    Storages.ItemImage.Remove(tempImages);
+                }
+                Player.Text = Storages.Player.ToString();
             }
-            Player.Text = Storages.Player.ToString();
+            else
+            {
+                time.Stop();
+                MessageBox.Show((Storages.Player.HP > 0) ? "Game Over Player Win" : "Game Over Enemy Win");
+            }
         }
         private void KeyIsUp(object sender, KeyEventArgs e)
         {

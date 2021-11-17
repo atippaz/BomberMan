@@ -3,11 +3,11 @@
     class CharacterBase
     {
         #region Fields
-        private int _HP =1;
-        private int _Speed =5;
-        private int _Mana=1;
-        private int _MaxHP =3;
-        private int _MaxAtk = 3 ;
+        private int _HP = 1;
+        private int _Speed = 5;
+        private int _Mana = 1;
+        private int _MaxHP = 3;
+        private int _MaxAtk = 3;
         private int _AtteckPower = 1;
         private int _MaxMana = 3;
         private int _MaxSpeed = 50;
@@ -46,14 +46,7 @@
             {
                 if (value <= MaxHP)
                 {
-                    if (value > 0)
-                    {
-                        _HP = value;
-                    }
-                    else
-                    {
-                        _HP = 1;
-                    }
+                    _HP = value;
                 }
                 else
                 {
@@ -108,7 +101,7 @@
         public int Power
         {
             get => _AtteckPower;
-            set 
+            set
             {
                 if (value <= MaxAtk)
                 {

@@ -22,7 +22,11 @@ namespace BomberMan {
         }
         public static void CreatePlayer(string PlayerName)
         {
-            Player = new Player(PlayerName, Storages.Map.MapProperties);
+            Player = new Player(PlayerName);
+        }
+        public static void CreateEnemy()
+        {
+            Enemy = new Enemy();
         }
     }
 }
