@@ -6,10 +6,11 @@ namespace BomberMan
     {
         #region Fields
         private string _sName;
-       protected PictureBox ItemImage;
+        protected PictureBox ItemImage;
         #endregion
         #region Properties
         public string Name { get => _sName; }
+        public PictureBox Image { get => ItemImage; }
         #endregion
         #region Constructors
         public Items()

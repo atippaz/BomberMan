@@ -7,40 +7,36 @@ namespace BomberMan
         static public void Randomitem()
         {
             /*rate drop 
-             * Speed buff = 33.33%
-             * Heal Buff = 33.33%
-             * Power Buff = 33.33%
-             * Dont drop any Buff   
+             * Dont Drop any Buff 80%
+             * Drop any Buff 20%
+             * Speed buff = 50%
+             * Heal Buff = 20%
+             * Power Buff = 30%
              */
             Random randomBuff = new Random();
-            int randomvalue = randomBuff.Next(0, 10);
-            /* for (int i = 0; i < 50; i++)
-             {
-                 int randomvalue = randomBuff.Next(0, 10);*/
-            if (randomvalue > 8)
+            Storages.LocationItemRandom.ForEach((location) =>
             {
-                randomvalue = randomBuff.Next(0, 10);
-                Console.WriteLine($"{randomvalue}");
-                if(randomvalue > 8)
+                int randomvalue = randomBuff.Next(1, 10);
+                if (randomvalue > 8)
                 {
-                    HealBuff buff = new HealBuff(new System.Drawing.Point(100,100),50);
+                    randomvalue = randomBuff.Next(1, 10);
+                    Items buff;
+                    if (randomvalue > 8)
+                    {
+                        buff = new HealBuff(location, 50);
+                    }
+                    else if (randomvalue > 3)
+                    {
+                        buff = new SpeedBuff(location, 50);
+                    }
+                    else
+                    {
+                        buff = new PowerBuff(location, 50);
+                    }
+                    Storages.Items.Add(buff.Image);
                 }
-                else if(randomvalue > 4)
-                {
-                    SpeedBuff buff = new SpeedBuff(new System.Drawing.Point(100, 100), 50);
-                }
-                else
-                {
-                    PowerBuff buff = new PowerBuff(new System.Drawing.Point(100, 100), 50);
-                }
-            }
-            /*else
-            {
-                dondrop++;
-            }*/
-            /*}
-            Console.WriteLine($"drop : {drop} \nnot drop{dondrop}");*/
-
+            });
+            Storages.LocationItemRandom.Clear();
         }
     }
 }
