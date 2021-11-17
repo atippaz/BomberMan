@@ -51,6 +51,10 @@ namespace BomberMan
             BombTime.Interval = 1000;
             BombTime.Tick += BombActivitor;
             BombTime.Start();
+            this.map = map;
+            this.player = player;
+            player.Animation.BringToFront();
+            Tile.Remove(bombs);
         }
         private void BombActivitor(object sender, EventArgs a)
         {

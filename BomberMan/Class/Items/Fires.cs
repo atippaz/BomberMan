@@ -86,7 +86,7 @@ namespace BomberMan
         }
         public void DeleteFire()
         {
-            Fire.ForEach((fire) => fire.Visible = false);
+            Fire.ForEach((fires) => fires.Visible = false) ;
         }
     }
 }
