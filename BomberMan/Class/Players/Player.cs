@@ -48,6 +48,10 @@ namespace BomberMan
                 this.Animation.Top += this.Speed;
             }
         }
+        public override string ToString()
+        {
+            return $"{base.Name}: {base.Power} : {base.Speed} : {base.HP}";
+        }
         #endregion
     }
 }

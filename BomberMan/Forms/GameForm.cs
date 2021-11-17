@@ -135,6 +135,7 @@ namespace BomberMan
             {
                 Storages.Player.AnimationDirector = Directions;
             }
+            //buff
             Storages.ItemHasDrop = (Storages.Items.Count != 0) ? true : false;
             if (Storages.ItemHasDrop)
             {
@@ -161,7 +162,7 @@ namespace BomberMan
                 Storages.Items.Remove(tempItem);
                 Storages.ItemImage.Remove(tempImages);
             }
-
+            Player.Text = Storages.Player.ToString();
         }
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
