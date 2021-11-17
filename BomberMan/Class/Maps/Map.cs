@@ -33,5 +33,9 @@ namespace BomberMan
             this._pbMap.Controls.Add(elements);
             elements.BackColor = Color.Transparent;
         }
+        public void DeleteTile(PictureBox elements)
+        {
+            this._pbMap.Controls.Remove(elements);
+        }
     }
 }
