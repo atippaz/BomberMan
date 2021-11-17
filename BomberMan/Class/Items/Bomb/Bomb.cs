@@ -32,7 +32,7 @@ namespace BomberMan
             size = TileSize;
             bombs.BringToFront();
             Time = new Timer();
-            Time.Interval = 3000;
+            Time.Interval = 2000;
             Time.Tick += Remove;
             Time.Start();
         }
@@ -40,32 +40,32 @@ namespace BomberMan
         {
             return bombs;
         }
-        public void BombActive(Map map, Player player, List<Control> Tile)
+        public void BombActive(Map map, Player player)
         {
             this.map = map;
             this.player = player;
             BombTime = new Timer();
-            Tile.Remove(bombs);
-            power = player.Power;
-            player.Animation.BringToFront();
-            BombTime.Interval = 1000;
+            BombTime.Interval = 100;
             BombTime.Tick += BombActivitor;
             BombTime.Start();
+            this.map = map;
+            this.player = player;
+            player.Animation.BringToFront();
         }
         private void BombActivitor(object sender, EventArgs a)
         {
             bombs.Image = Images.Fire;
+            Storages.Tiles.Remove(bombs);
             fires = new Fires();
             fires.Up(map,this.bombs.Location,player.Power,size);
             fires.Down(map, this.bombs.Location, player.Power, size);
             fires.Left(map, this.bombs.Location, player.Power, size);
             fires.Right(map, this.bombs.Location, player.Power, size);
-            
         }
         private void Remove(object sender,EventArgs a)
         {
             fires.DeleteFire();
-            bombs.Visible = false;
+            map.DeleteTile(bombs);
             BombTime.Stop();
             Time.Stop();
         }

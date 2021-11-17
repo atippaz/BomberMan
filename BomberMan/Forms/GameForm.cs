@@ -7,23 +7,15 @@ namespace BomberMan
 {
     public partial class Game : Form
     {
-        Map map;
         int steps;
-        Enemy Enemy;
         int TileSize;
-        Player player;
         bool UseBomb = true;
         bool walkAble;
         Bomb bomb;
         Timer Countdown;
-        PictureBox tiles;
         string Directions;
         //PictureBox hitbox;
-        List<Control> Box;
         int position, size;
-        List<Control> Tile;
-        List<Control> Wall;
-        List<Control> Bombs;
         readonly Timer time = new Timer();
         #region don't forget delete some code here!!
         void Init()
@@ -32,8 +24,7 @@ namespace BomberMan
             TileSize = 50;
             this.Focus();
             position = 100;
-            size = 750; // 15 * 50
-
+            size = 750; // 15 x 50  
             CreateMap();
             /*hitbox = new PictureBox()
             {
@@ -42,29 +33,21 @@ namespace BomberMan
             };
             this.Controls.Add(hitbox);
             map.AddTiles(hitbox);*/
-            Bombs = new List<Control>();
-            Box = new List<Control>();
-            Wall = new List<Control>();
-            Tile = new List<Control>();
-            foreach (Control items in map.MapProperties.Controls)
+            Storages.Boxs = new List<Control>();
+            Storages.Walls = new List<Control>();
+            Storages.Tiles = new List<Control>();
+            foreach (Control items in Storages.Map.MapProperties.Controls)
             {
                 if (items is PictureBox && (string)items.Tag == "Wall")
                 {
-                    Wall.Add(items);
-                    Tile.Add(items);
+                    Storages.Walls.Add(items);
+                    Storages.Tiles.Add(items);
                 }
                 else if (items is PictureBox && (string)items.Tag == "Box")
                 {
-                    Box.Add(items);
-                    Tile.Add(items);
+                    Storages.Boxs.Add(items);
+                    Storages.Tiles.Add(items);
                 }
-                #region delete here !!
-                //ลบด้วยใช้ตอนเทสเท่านั้น 
-                else if (items is PictureBox && (string)items.Tag == "Bomb")
-                {
-                    Tile.Add(items);
-                }
-                #endregion
             }
             // The duration of creating a loop, where 1000 is 1 second. and every Interval will do update
             time.Interval = 10;
@@ -74,21 +57,22 @@ namespace BomberMan
         #endregion
         private void CreateMap()
         {
-            map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);
+            /*map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);*/
+            Storages.CreateMap(MapImage.TileBlue, size, position, this);
             Walls wall = new Walls();
-            wall.Create(map,size,TileSize);
-            ResizeForm(this, map);
+            wall.Create(Storages.Map,size,TileSize);
+            Boxs box = new Boxs();
+            box.Create(Storages.Map, size, TileSize);
+            ResizeForm(this, Storages.Map);
         }
-        public Game(string Playername)
+        public Game(string PlayerName)
         {
             InitializeComponent();
             Init();
-            Enemy = new Enemy();
-            player = new Player(Playername, map.MapProperties);
-            player.Speed = 50;
-            player.Mana = 1;
-            player.Power = 3;
-            Console.WriteLine($"{player.Mana}");
+            Storages.CreatePlayer(PlayerName);
+            Storages.Player.Speed = 50;
+            Storages.Player.Mana = 2;
+            Storages.Player.Power = 3;
         }
         private void Update(object sender, EventArgs a)
         {
@@ -98,22 +82,22 @@ namespace BomberMan
             #region check
             if (Directions == "Right")
             {
-                location = new Point(player.Location.X + TileSize, player.Location.Y);
+                location = new Point(Storages.Player.Location.X + TileSize, Storages.Player.Location.Y);
             }
             else if (Directions == "Left")
             {
-                location = new Point(player.Location.X - TileSize, player.Location.Y);
+                location = new Point(Storages.Player.Location.X - TileSize, Storages.Player.Location.Y);
             }
             else if (Directions == "Up")
             {
-                location = new Point(player.Location.X, player.Location.Y - TileSize);
+                location = new Point(Storages.Player.Location.X, Storages.Player.Location.Y - TileSize);
             }
             else if (Directions == "Down")
             {
-                location = new Point(player.Location.X, player.Location.Y + TileSize);
+                location = new Point(Storages.Player.Location.X, Storages.Player.Location.Y + TileSize);
             }
-            label1.Text = player.Location.X.ToString();
-            label2.Text = player.Location.Y.ToString();
+            label1.Text = Storages.Player.Location.X.ToString();
+            label2.Text = Storages.Player.Location.Y.ToString();
             // hitbox.Location = location;
             //if ((location.X < 0 || location.X > map.MapProperties.Width) || (location.Y < 0 || location.Y > map.MapProperties.Height)) {
             //    walkAble = false;
@@ -121,12 +105,12 @@ namespace BomberMan
             //}
             if (walkAble)
             {
-                Tile.ForEach((boxs) =>
+               Storages.Tiles.ForEach((boxs) =>
                 {
                     if (location == boxs.Location)
                     {
                         walkAble = false;
-                        player.WalkFinish = true;
+                        Storages.Player.WalkFinish = true;
                     }
                 });
             }
@@ -137,31 +121,31 @@ namespace BomberMan
             {
                 if (steps > 0)
                 {
-                    player.Move(Directions);
-                    steps -= player.Speed;
+                    Storages.Player.Move(Directions);
+                    steps -= Storages.Player.Speed;
                 }
                 else
                 {
-                    player.WalkFinish = true;
+                    Storages.Player.WalkFinish = true;
                     walkAble = false;
                     UseBomb = true;
                 }
             }
-            if (player.DirectionPlayer != Directions)
+            if (Storages.Player.DirectionPlayer != Directions)
             {
-                player.AnimationDirector = Directions;
+                Storages.Player.AnimationDirector = Directions;
             }
         }
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            if (KeyBoard.CheckAll(e) && (player.WalkFinish || walkAble))
+            if (KeyBoard.CheckAll(e) && (Storages.Player.WalkFinish || walkAble))
             {
-                player.AnimationDirector = "";
+                Storages.Player.AnimationDirector = "";
             }
         }
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            if (player.WalkFinish)
+            if (Storages.Player.WalkFinish)
             {
                 if (KeyBoard.Right(e))
                 {
@@ -182,16 +166,16 @@ namespace BomberMan
                 if (KeyBoard.CheckAll(e))
                 {
                     walkAble = true;
-                    player.WalkFinish = false;
+                    Storages.Player.WalkFinish = false;
                     steps = TileSize;
                 }
-                if (KeyBoard.SpaceBar(e) && (player.Mana>0) && UseBomb)
+                if (KeyBoard.SpaceBar(e) && (Storages.Player.Mana>0) && UseBomb)
                 {
-                    Console.WriteLine($"{player.Mana}");
+                    Console.WriteLine($"{Storages.Player.Mana}");
                     UseBomb = false;
-                    bomb = new Bomb(map,TileSize,player);
-                    player.Mana -= 1;
-                    Tile.Add(bomb.GetBomb());
+                    bomb = new Bomb(Storages.Map, TileSize, Storages.Player);
+                    Storages.Player.Mana -= 1;
+                    Storages.Tiles.Add(bomb.GetBomb());
                     Countdown = new Timer() {Interval = 1000 };
                     Countdown.Tick += BombActivitor;
                     Countdown.Start();
@@ -200,8 +184,8 @@ namespace BomberMan
         }
         private void BombActivitor(object sender, EventArgs a)
         {
-            bomb.BombActive(map,player,Tile);
-            player.Mana += 1;
+            bomb.BombActive(Storages.Map, Storages.Player);
+            Storages.Player.Mana += 1;
             UseBomb = true;
             Countdown.Stop();
         }
