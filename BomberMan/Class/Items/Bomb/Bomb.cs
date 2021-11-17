@@ -40,7 +40,7 @@ namespace BomberMan
         {
             return bombs;
         }
-        public void BombActive(Map map, Player player, List<Control> Tile)
+        public void BombActive(Map map, Player player)
         {
             this.map = map;
             this.player = player;
@@ -51,11 +51,11 @@ namespace BomberMan
             this.map = map;
             this.player = player;
             player.Animation.BringToFront();
-            Tile.Remove(bombs);
         }
         private void BombActivitor(object sender, EventArgs a)
         {
             bombs.Image = Images.Fire;
+            Storages.Tiles.Remove(bombs);
             fires = new Fires();
             fires.Up(map,this.bombs.Location,player.Power,size);
             fires.Down(map, this.bombs.Location, player.Power, size);
