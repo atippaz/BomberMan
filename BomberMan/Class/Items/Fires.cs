@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -84,7 +85,7 @@ namespace BomberMan
         }
         public void DeleteFire()
         {
-            Fire.ForEach((fire) => fire.Visible = false);
+            Fire.ForEach((fires) => fires.Visible = false) ;
         }
     }
 }

@@ -200,9 +200,8 @@ namespace BomberMan
         }
         private void BombActivitor(object sender, EventArgs a)
         {
-            bomb.BombActive(map,player,Tile,this);
+            bomb.BombActive(map,player,Tile);
             player.Mana += 1;
-            Tile.ForEach(item => Console.WriteLine($"{item.Tag}"));
             UseBomb = false;
             Countdown.Stop();
         }

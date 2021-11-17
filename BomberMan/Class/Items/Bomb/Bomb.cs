@@ -40,14 +40,14 @@ namespace BomberMan
         {
             return bombs;
         }
-        public void BombActive(Map map, Player player, List<Control> Tile,Form form)
+        public void BombActive(Map map, Player player, List<Control> Tile)
         {
+            this.map = map;
+            this.player = player;
             BombTime = new Timer();
             BombTime.Interval = 100;
             BombTime.Tick += BombActivitor;
             BombTime.Start();
-            this.map = map;
-            this.player = player;
             player.Animation.BringToFront();
             Tile.Remove(bombs);
         }
