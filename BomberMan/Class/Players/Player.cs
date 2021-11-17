@@ -10,8 +10,8 @@ namespace BomberMan
             Size = new Size(50, 50);
             Location = new Point(0, 0);
             MaxHP = 3;
-            MaxMana = 1;
-            MaxSpeed = 10;
+            MaxMana = 3;
+            MaxSpeed = 50;
             Name = "name";
             BackGround.Controls.Add(Animation);
             Animation.BackColor = Color.Transparent;
@@ -23,7 +23,7 @@ namespace BomberMan
             Location = new Point(50, 50);
             MaxHP = 3;
             MaxMana = 3;
-            MaxSpeed = 10;
+            MaxSpeed = 50;
             this.Name = Name;
             BackGround.Controls.Add(Animation);
             Animation.BackColor = Color.Transparent;

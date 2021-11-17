@@ -1,6 +1,6 @@
-﻿namespace BomberMan.Class.Items
+﻿namespace BomberMan
 {
-    class Items
+    abstract class Items
     {
         #region Fields
         private string _sName;
@@ -19,10 +19,7 @@
         }
         #endregion
         #region Methods
-        public void SetName(string name)
-        {
-            _sName = name;
-        }
+        abstract public void Effect(Player player);
         #endregion
     }
 }

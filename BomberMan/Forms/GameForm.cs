@@ -87,6 +87,7 @@ namespace BomberMan
             player = new Player(Playername, map.MapProperties);
             player.Speed = 50;
             player.Mana = 1;
+            player.Power = 3;
             Console.WriteLine($"{player.Mana}");
         }
         private void Update(object sender, EventArgs a)
@@ -201,7 +202,7 @@ namespace BomberMan
         {
             bomb.BombActive(map,player,Tile);
             player.Mana += 1;
-            UseBomb = false;
+            UseBomb = true;
             Countdown.Stop();
         }
         private void Game_FormClosed(object sender, FormClosedEventArgs e)

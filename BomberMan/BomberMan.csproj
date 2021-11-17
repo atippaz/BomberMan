@@ -57,6 +57,9 @@
     <Compile Include="Class\Characters\CharacterBase.cs" />
     <Compile Include="Class\Characters\CharacterBehavior.cs" />
     <Compile Include="Class\Characters\CharacterMove.cs" />
+    <Compile Include="Class\Items\Buff\HealBuff.cs" />
+    <Compile Include="Class\Items\Buff\PowerBuff.cs" />
+    <Compile Include="Class\Items\Buff\SpeedBuff.cs" />
     <Compile Include="Class\Items\Fires.cs" />
     <Compile Include="Class\KeyBoard\KeyBoard.cs" />
     <Compile Include="Class\Sounds\Sound.cs" />
@@ -65,7 +68,7 @@
     <Compile Include="Class\Paths\Paths.cs" />
     <Compile Include="Class\Players\Enemy.cs" />
     <Compile Include="Class\Players\Player.cs" />
-    <Compile Include="Class\Items\Items.cs" />
+    <Compile Include="Class\Items\Buff\Items.cs" />
     <Compile Include="Class\Images\PlayerImage.cs" />
     <Compile Include="Class\Maps\Map.cs" />
     <Compile Include="Class\Maps\Walls.cs" />
@@ -128,9 +131,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Class\Items\Buff\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="resource\Sounds\Fx\Click.wav" />
   </ItemGroup>
