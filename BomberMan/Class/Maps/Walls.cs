@@ -14,7 +14,7 @@ namespace BomberMan
             {
                 Size = new Size(TileSize, TileSize),
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Image = MapImage.BookBox,
+                Image = MapImage.Wall,
                 Tag = "Wall",
                 Location = new Point(0, TileSize * ((i - 1) / ((size / TileSize) - 1))),
             };
@@ -26,7 +26,7 @@ namespace BomberMan
             {
                 Size = new Size(TileSize, TileSize),
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Image = MapImage.BookBox,
+                Image = MapImage.Wall,
                 Tag = "Wall",
                 Location = new Point(((size / TileSize) - 1) * TileSize, TileSize * ((i - 1) / ((size / TileSize) - 1))),
             };
@@ -38,7 +38,7 @@ namespace BomberMan
             {
                 Size = new Size(TileSize, TileSize),
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Image = MapImage.BookBox,
+                Image = MapImage.Wall,
                 Tag = "Wall",
                 Location = new Point(i * TileSize, i / ((size / TileSize) - 1)),
             };
@@ -50,7 +50,7 @@ namespace BomberMan
             {
                 Size = new Size(TileSize, TileSize),
                 SizeMode = PictureBoxSizeMode.Zoom,
-                Image = MapImage.BookBox,
+                Image = MapImage.Wall,
                 Tag = "Wall",
                 Location = new Point(TileSize * ((i - 1) % ((size / TileSize) - 1)), ((size / TileSize) - 1) * TileSize),
             };

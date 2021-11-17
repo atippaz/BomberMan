@@ -32,7 +32,7 @@ namespace BomberMan
             TileSize = 50;
             this.Focus();
             position = 100;
-            size = 750; // 15 * 50
+            size = 750; // 15 x 50  
 
             CreateMap();
             /*hitbox = new PictureBox()
@@ -60,8 +60,7 @@ namespace BomberMan
                 }
                 #region delete here !!
                 //ลบด้วยใช้ตอนเทสเท่านั้น 
-                else if (items is PictureBox && (string)items.Tag == "Bomb")
-                {
+                else if (items is PictureBox && (string)items.Tag == "Bomb") {
                     Tile.Add(items);
                 }
                 #endregion
@@ -77,6 +76,8 @@ namespace BomberMan
             map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);
             Walls wall = new Walls();
             wall.Create(map,size,TileSize);
+            Boxs box = new Boxs();
+            box.Create(map, size, TileSize);
             ResizeForm(this, map);
         }
         public Game(string Playername)
@@ -85,8 +86,8 @@ namespace BomberMan
             Init();
             Enemy = new Enemy();
             player = new Player(Playername, map.MapProperties);
-            player.Speed = 50;
-            player.Mana = 1;
+            player.Speed = 1;
+            player.Mana = 2;
             player.Power = 3;
             Console.WriteLine($"{player.Mana}");
         }
