@@ -60,7 +60,7 @@ namespace BomberMan
             /*map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);*/
             Storages.CreateMap(MapImage.TileBlue, size, position, this);
             Walls wall = new Walls();
-            wall.Create(Storages.Map,size,TileSize);
+            wall.Create(Storages.Map, size, TileSize);
             Boxs box = new Boxs();
             box.Create(Storages.Map, size, TileSize);
             FormEditor.Resize(this);
@@ -105,14 +105,14 @@ namespace BomberMan
             //}
             if (walkAble)
             {
-               Storages.Tiles.ForEach((boxs) =>
-                {
-                    if (location == boxs.Location)
-                    {
-                        walkAble = false;
-                        Storages.Player.WalkFinish = true;
-                    }
-                });
+                Storages.Tiles.ForEach((boxs) =>
+                 {
+                     if (location == boxs.Location)
+                     {
+                         walkAble = false;
+                         Storages.Player.WalkFinish = true;
+                     }
+                 });
             }
 
             #endregion
@@ -135,6 +135,33 @@ namespace BomberMan
             {
                 Storages.Player.AnimationDirector = Directions;
             }
+            Storages.ItemHasDrop = (Storages.Items.Count != 0) ? true : false;
+            if (Storages.ItemHasDrop)
+            {
+                Items tempItem = new Items();
+                Control tempImages = new Control();
+                Storages.Items.ForEach((buff) =>
+                {
+                    if (Storages.Player.Location == buff.Location)
+                    {
+                        buff.Effect(Storages.Player);
+                        tempItem = buff;
+                        Storages.ItemImage.ForEach((image) =>
+                        {
+                            if (buff.Image == image)
+                            {
+                                image.Visible = false;
+                                tempImages = image;
+                                EffectSound.Click();
+                            }
+                        });
+                    }
+                }
+                );
+                Storages.Items.Remove(tempItem);
+                Storages.ItemImage.Remove(tempImages);
+            }
+
         }
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
@@ -169,19 +196,20 @@ namespace BomberMan
                     Storages.Player.WalkFinish = false;
                     steps = TileSize;
                 }
-                if (KeyBoard.SpaceBar(e) && (Storages.Player.Mana>0) && UseBomb)
+                if (KeyBoard.SpaceBar(e) && (Storages.Player.Mana > 0) && UseBomb)
                 {
                     Console.WriteLine($"{Storages.Player.Mana}");
                     UseBomb = false;
                     bomb = new Bomb(Storages.Map, TileSize, Storages.Player);
                     Storages.Player.Mana -= 1;
                     Storages.Tiles.Add(bomb.GetBomb());
-                    Countdown = new Timer() {Interval = 1000 };
+                    Countdown = new Timer() { Interval = 1000 };
                     Countdown.Tick += BombActivitor;
                     Countdown.Start();
                 }
-                if(e.KeyCode == Keys.F)
+                if (e.KeyCode == Keys.F)
                 {
+                    Storages.LocationItemRandom.Add(new Point(Storages.Player.Location.X + 50, Storages.Player.Location.Y));
                     RandomItems.Randomitem();
                 }
             }

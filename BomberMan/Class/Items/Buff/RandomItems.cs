@@ -33,7 +33,8 @@ namespace BomberMan
                     {
                         buff = new PowerBuff(location, 50);
                     }
-                    Storages.Items.Add(buff.Image);
+                    Storages.ItemHasDrop = true;
+                    Storages.Items.Add(buff);
                 }
             });
             Storages.LocationItemRandom.Clear();

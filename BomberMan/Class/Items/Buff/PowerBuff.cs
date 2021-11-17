@@ -17,7 +17,7 @@ namespace BomberMan
             Storages.Map.AddTiles(ItemImage);
             ItemImage.BringToFront();
             Storages.Player.Animation.BringToFront();
-            Storages.Items.Add(ItemImage);
+            Storages.ItemImage.Add(ItemImage);
         }
         public override void Effect(Player player)
         {
