@@ -19,9 +19,9 @@ namespace BomberMan
             Storages.Player.Animation.BringToFront();
             Storages.ItemImage.Add(ItemImage);
         }
-        public override void Effect(Player player)
+        public override void Effect()
         {
-            player.HP += 1;
+            Storages.Player.HP += 1;
         }
     }
 

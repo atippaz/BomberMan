@@ -189,7 +189,7 @@ namespace BomberMan
                     {
                         if (Storages.Player.Location == buff.Location)
                         {
-                            buff.Effect(Storages.Player);
+                            buff.Effect();
                             tempItem = buff;
                             Storages.ItemImage.ForEach((image) =>
                             {
@@ -206,7 +206,7 @@ namespace BomberMan
                     Storages.Items.Remove(tempItem);
                     Storages.ItemImage.Remove(tempImages);
                 }
-                Player.Text = Storages.Player.ToString();
+                
             }
             else
             {

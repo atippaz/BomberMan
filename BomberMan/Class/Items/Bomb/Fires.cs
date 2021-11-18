@@ -110,7 +110,7 @@ namespace BomberMan
             Items Tempitem = new Items();
             bool isFoundItem = false;
             Control Tempbox = new Control();
-            /*if (Storages.ItemHasDrop)
+            if (Storages.ItemHasDrop)
             {
                 foreach (var item in Storages.Items)
                 {
@@ -125,7 +125,7 @@ namespace BomberMan
                     }
                 }
 
-            }*/
+            }
 
             if (!isFoundItem)
             {

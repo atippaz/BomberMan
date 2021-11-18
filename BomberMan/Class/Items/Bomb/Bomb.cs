@@ -9,7 +9,7 @@ namespace BomberMan
         PictureBox bombs;
     
         Timer Time;
-     
+        Timer Fire;
         Fires fires;
 
         public Bomb(Point location,Characters player)
@@ -33,18 +33,19 @@ namespace BomberMan
         public void BombActive(object sender, EventArgs a)
         {
             Time.Stop();
+            Fire = new Timer();
             bombs.Image = Images.Fire;
             Storages.Fires.Add(bombs);
             Storages.Player.Animation.BringToFront();
             Storages.Tiles.Remove(bombs);
             fires = new Fires(bombs.Location,(string)bombs.Tag);
-            Time.Interval = 500;
-            Time.Tick += Remove;
-            Time.Start();
+            Fire.Interval = 500;
+            Fire.Tick += Remove;
+            Fire.Start();
         }
         private void Remove(object sender, EventArgs a)
         {
-            Time.Stop();
+            Fire.Stop();
             fires.DeleteFire();
             Storages.Map.DeleteTile(bombs);
             Storages.Player.Mana += 1;

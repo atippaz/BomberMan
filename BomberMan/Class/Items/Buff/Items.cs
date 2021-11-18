@@ -25,7 +25,7 @@ namespace BomberMan
         }
         #endregion
         #region Methods
-        virtual public void Effect(Player player) { }
+        virtual public void Effect() { }
         #endregion
     }
 }
