@@ -63,26 +63,26 @@ namespace BomberMan
         }
         public void Create(Map map, int size, int TileSize)
         {
-            for (int i = 0; i < Math.Pow((size / TileSize), 2);)
+            for (int i = 0; i < Math.Pow((Storages.IntegerSize / Storages.IntegerTileSize), 2);)
             {
-                if (i / ((size / TileSize) - 1) <= 1 && i != (size / TileSize))
+                if (i / ((Storages.IntegerSize / TileSize) - 1) <= 1 && i != (Storages.IntegerSize / Storages.IntegerTileSize))
                 {
-                    TopWall(map, size, TileSize, i);
+                    TopWall(map, Storages.IntegerSize, Storages.IntegerTileSize, i);
                     i++;
                 }
-                else if ((i - 1) % ((size / TileSize) - 1) == 0 && i < (Math.Pow((size / TileSize), 2) - ((size / TileSize) - 1)))
+                else if ((i - 1) % ((Storages.IntegerSize / Storages.IntegerTileSize) - 1) == 0 && i < (Math.Pow((Storages.IntegerSize / Storages.IntegerTileSize), 2) - ((Storages.IntegerSize / Storages.IntegerTileSize) - 1)))
                 {
-                    LeftWall(map, size, TileSize, i);
-                    i += (size / TileSize)-2;
+                    LeftWall(map, Storages.IntegerSize, Storages.IntegerTileSize, i);
+                    i += (Storages.IntegerSize / Storages.IntegerTileSize) -2;
                 }
-                else if (i % ((size / TileSize) - 1) == 0 && i != (Math.Pow((size / TileSize), 2) - 1))
+                else if (i % ((Storages.IntegerSize / Storages.IntegerTileSize) - 1) == 0 && i != (Math.Pow((Storages.IntegerSize / Storages.IntegerTileSize), 2) - 1))
                 {
-                    RigthWall(map, size, TileSize, i);
+                    RigthWall(map, Storages.IntegerSize, Storages.IntegerTileSize, i);
                     i++;
                 }
-                else if (i >= (Math.Pow((size / TileSize), 2) - ((size / TileSize) - 1)))
+                else if (i >= (Math.Pow((Storages.IntegerSize / Storages.IntegerTileSize), 2) - ((Storages.IntegerSize / Storages.IntegerTileSize) - 1)))
                 {
-                    BottomWall(map, size, TileSize, i);
+                    BottomWall(map, Storages.IntegerSize, Storages.IntegerTileSize, i);
                     i++;
                 }
             }

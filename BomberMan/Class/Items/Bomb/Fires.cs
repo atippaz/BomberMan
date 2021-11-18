@@ -8,82 +8,88 @@ namespace BomberMan
     class Fires
     {
         private PictureBox fire;
-        List<Control> Fire;
         public Fires()
         {
-            Fire = new List<Control>();
+            
         }
-        public void Up(Map map, Point bomb, int power, int TileSize)
+        public void Up(Point bomb, int power)
         {
-            while (power > 0)
+            Console.WriteLine($"{power}");
+            int powers = power;
+            Console.WriteLine($"{Storages.TileSize}");
+            while (powers > 0)
             {
+                Console.WriteLine($"{power}");
                 fire = new PictureBox()
                 {
-                    Size = new Size(TileSize, TileSize),
-                    Location = new Point(bomb.X, bomb.Y - TileSize),
+                    Size = Storages.TileSize,
+                    Location = new Point(bomb.X, bomb.Y - Storages.IntegerTileSize),
                     Image = Images.Fire,
                     SizeMode = PictureBoxSizeMode.Zoom,
                 };
-                Fire.Add(fire);
-                map.AddTiles(fire);
-                power--;
-                Up(map, fire.Location, power, TileSize);
+                Storages.Fires.Add(fire);
+                Storages.Map.AddTiles(fire);
+                powers--;
+                if (power > 1)
+                {
+                    Up(fire.Location, powers);
+                }
             }
         }
-        public void Left(Map map, Point bomb, int power, int TileSize)
+        public void Left(Point bomb, int power)
         {
             while (power > 0)
             {
                 fire = new PictureBox()
                 {
-                    Size = new Size(TileSize, TileSize),
-                    Location = new Point(bomb.X - TileSize, bomb.Y),
+                    Size = Storages.TileSize,
+                    Location = new Point(bomb.X - Storages.IntegerTileSize, bomb.Y),
                     Image = Images.Fire,
                     SizeMode = PictureBoxSizeMode.Zoom,
                 };
-                Fire.Add(fire);
-                map.AddTiles(fire);
+                Storages.Fires.Add(fire);
+                Storages.Map.AddTiles(fire);
                 power--;
-                Left(map, fire.Location, power, TileSize);
+                Left(fire.Location, power);
             }
         }
-        public void Down(Map map, Point bomb, int power, int TileSize)
+        public void Down(Point bomb, int power)
         {
             while (power > 0)
             {
                 fire = new PictureBox()
                 {
-                    Size = new Size(TileSize, TileSize),
-                    Location = new Point(bomb.X, bomb.Y + TileSize),
+                    Size = Storages.TileSize,
+                    Location = new Point(bomb.X, bomb.Y + Storages.IntegerTileSize),
                     Image = Images.Fire,
                     SizeMode = PictureBoxSizeMode.Zoom,
                 };
-                Fire.Add(fire);
-                map.AddTiles(fire);
+                Storages.Fires.Add(fire);
+                Storages.Map.AddTiles(fire);
                 power--;
-                Down(map, fire.Location, power, TileSize);
+                Down(fire.Location, power);
             }
         }
-        public void Right(Map map, Point bomb, int power, int TileSize)
+        public void Right(Point bomb, int power)
         {
             while (power > 0)
             {
                 fire = new PictureBox()
                 {
-                    Size = new Size(TileSize, TileSize),
-                    Location = new Point(bomb.X + TileSize, bomb.Y),
+                    Size = Storages.TileSize,
+                    Location = new Point(bomb.X + Storages.IntegerTileSize, bomb.Y),
                     Image = Images.Fire,
                     SizeMode = PictureBoxSizeMode.Zoom,
                 };
-                Fire.Add(fire);
-                map.AddTiles(fire);
+                Storages.Fires.Add(fire);
+                Storages.Map.AddTiles(fire);
                 power--;
-                Right(map, fire.Location, power, TileSize);
+                Right(fire.Location, power);
             }
         }
         public void DeleteFire()
         {
-            Fire.ForEach((fires) => fires.Visible = false) ;
+            Storages.Fires.ForEach((fires) => Storages.Map.DeleteTile(fires)) ;
         }
     }
 }

@@ -13,6 +13,11 @@ namespace BomberMan {
         public static List<Items> Items = new List<Items>();
         public static List<Point> LocationItemRandom = new List<Point>();
         public static Map Map;
+        public static Size TileSize;
+        public static int IntegerTileSize;
+        public static Size Size;
+        public static int IntegerSize;
+
         public static Player Player;
         public static Enemy Enemy;
         public static bool ItemHasDrop = false;

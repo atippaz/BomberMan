@@ -2,6 +2,11 @@
 {
     class CharacterBehavior : CharacterBase
     {
-        //Bomb 
+        Bomb bomb;
+        public bool CanBomb = true;
+        public void Planbomb()
+        {
+            bomb = new Bomb(Storages.IntegerTileSize);
+        }
     }
 }
