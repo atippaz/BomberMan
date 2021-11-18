@@ -28,25 +28,52 @@ namespace BomberMan
         {
             set
             {
-                if (value == "Right")
+                if((string)_Animation.Tag == "Player")
                 {
-                    _Animation.Image = PlayerImage.RunRight;
-                }
-                else if (value == "Left")
-                {
-                    _Animation.Image = PlayerImage.RunLeft;
-                }
-                else if (value == "Up")
-                {
-                    _Animation.Image = PlayerImage.RunUp;
-                }
-                else if (value == "Down")
-                {
-                    _Animation.Image = PlayerImage.RunDown;
+                    if (value == "Right")
+                    {
+                        _Animation.Image = PlayerImage.RunRight;
+                    }
+                    else if (value == "Left")
+                    {
+                        _Animation.Image = PlayerImage.RunLeft;
+                    }
+                    else if (value == "Up")
+                    {
+                        _Animation.Image = PlayerImage.RunUp;
+                    }
+                    else if (value == "Down")
+                    {
+                        _Animation.Image = PlayerImage.RunDown;
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("test");
+                        _Animation.Image = PlayerImage.Idle;
+                    }
                 }
                 else
                 {
-                    _Animation.Image = PlayerImage.Idle;
+                    if (value == "Right")
+                    {
+                        _Animation.Image = EnemyImage.RunRight;
+                    }
+                    else if (value == "Left")
+                    {
+                        _Animation.Image = EnemyImage.RunLeft;
+                    }
+                    else if (value == "Up")
+                    {
+                        _Animation.Image = EnemyImage.RunUp;
+                    }
+                    else if (value == "Down")
+                    {
+                        _Animation.Image = EnemyImage.RunDown;
+                    }
+                    else
+                    {
+                        _Animation.Image = EnemyImage.Idle;
+                    }
                 }
                 DirectionPlayer = value;
             }

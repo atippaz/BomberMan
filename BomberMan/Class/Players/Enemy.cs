@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 namespace BomberMan
 {
@@ -6,13 +7,16 @@ namespace BomberMan
     {
         public Enemy()
         {
-            Animation.Image = PlayerImage.Idle;
-            Size = new Size(50, 50);
-            Location = new Point(100, 50);
+            Animation.Image = EnemyImage.Idle;
+            Size = new Size(Storages.IntegerTileSize, Storages.IntegerTileSize);
+            Location = new Point(Storages.IntegerSize- (Storages.IntegerTileSize*2), Storages.IntegerSize - (Storages.IntegerTileSize * 2));
             MaxHP = 3;
             MaxMana = 3;
             MaxSpeed = 50;
             Name = "name";
+            Animation.Tag = "Enemy";
+            Speed = 5;
+            HP = 1;
             Storages.Map.MapProperties.Controls.Add(Animation);
             Animation.BackColor = Color.Transparent;
         }
@@ -23,7 +27,22 @@ namespace BomberMan
         }
         public override void Move(string directions)
         {
-
+            if (directions == "Left")
+            {
+                this.Animation.Left -= this.Speed;
+            }
+            else if (directions == "Right")
+            {
+                this.Animation.Left += this.Speed;
+            }
+            else if (directions == "Up")
+            {
+                this.Animation.Top -= this.Speed;
+            }
+            else if (directions == "Down")
+            {
+                this.Animation.Top += this.Speed;
+            }
         }
         #endregion
     }

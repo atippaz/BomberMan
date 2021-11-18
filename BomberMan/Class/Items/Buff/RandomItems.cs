@@ -18,7 +18,7 @@ namespace BomberMan
             Storages.LocationItemRandom.ForEach((location) =>
             {
                 int randomvalue = randomBuff.Next(1, 10);
-                if (randomvalue > 8)
+                if (randomvalue > 3)
                 {
                     randomvalue = randomBuff.Next(1, 10);
                     Items buff;
