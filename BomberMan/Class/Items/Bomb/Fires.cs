@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace BomberMan
@@ -8,25 +6,87 @@ namespace BomberMan
     class Fires
     {
         private PictureBox fire;
-        public Fires()
+        public Fires(Point bomb)
+        {
+            Up(bomb);
+            Down(bomb);
+            Left(bomb);
+            Right(bomb);
+        }
+        public void Up(Point bomb)
         {
             
-        }
-        public void Up(Point bomb, int power)
-        {
-            int powers = power;
-            while (powers > 0)
+            fire = new PictureBox()
             {
-                fire = new PictureBox()
+                Size = Storages.TileSize,
+                Location = new Point(bomb.X, bomb.Y - Storages.IntegerTileSize),
+                Image = Images.Fire,
+                SizeMode = PictureBoxSizeMode.Zoom,
+            };
+            Control Tempbox = new Control();
+            bool delete = false;
+            Items Tempitem = new Items();
+            bool deleteItem = false;
+            Storages.Boxs.ForEach((box) =>
+            {
+                if (box.Location == fire.Location)
                 {
-                    Size = Storages.TileSize,
-                    Location = new Point(bomb.X, bomb.Y - Storages.IntegerTileSize),
-                    Image = Images.Fire,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                Control Tempbox = new Control();
-                bool delete = false;
-                Storages.Boxs.ForEach((box) =>
+                    Tempbox = box;
+                    delete = true;
+                    Storages.Map.DeleteTile(box);
+                    Storages.Tiles.Remove(box);
+                    Storages.LocationItemRandom.Add(box.Location);
+                    RandomItems.Randomitem();
+                }
+            });
+            Storages.Items.ForEach((item) =>
+            {
+                if (item.Location == fire.Location)
+                {
+                    Tempitem = item;
+                    deleteItem = true;
+                    Storages.Map.DeleteTile(item.Image);
+                    RandomItems.Randomitem();
+                }
+            });
+            
+            if (deleteItem)
+            {
+                Storages.Items.Remove(Tempitem);
+                Storages.Map.DeleteTile(Tempitem.Image);
+            }
+            Storages.Fires.Add(fire);
+            Storages.Map.AddTiles(fire);
+            if (delete)
+            {
+                Storages.Boxs.Remove(Tempbox);
+            }
+            if (Storages.Player.Power > 1 && !delete)
+            {
+                Storages.Player.Power -= 1;
+                System.Console.WriteLine("test");
+                Up(fire.Location);
+                Storages.Player.Power += 1;
+            }
+            
+
+        }
+        public void Left(Point bomb)
+        {
+            
+
+            fire = new PictureBox()
+            {
+                Size = Storages.TileSize,
+                Location = new Point(bomb.X - Storages.IntegerTileSize, bomb.Y),
+                Image = Images.Fire,
+                SizeMode = PictureBoxSizeMode.Zoom,
+            };
+            Control Tempbox = new Control();
+            bool delete = false;
+            Items Tempitem = new Items();
+            bool deleteItem = false;
+            Storages.Boxs.ForEach((box) =>
                 {
                     if (box.Location == fire.Location)
                     {
@@ -38,34 +98,51 @@ namespace BomberMan
                         RandomItems.Randomitem();
                     }
                 });
-                Storages.Fires.Add(fire);
-                Storages.Map.AddTiles(fire);
-                powers--;
-                if (delete)
-                {
-                    Storages.Boxs.Remove(Tempbox);
-                }
-                else if(powers  > 1)
-                {
-                    Up(fire.Location, powers);
-                }
-            }
-        }
-        public void Left(Point bomb, int power)
-        {
-            int powers = power;
-            while (powers > 0)
+
+            Storages.Items.ForEach((item) =>
             {
-                fire = new PictureBox()
+                if (item.Location == fire.Location)
                 {
-                    Size = Storages.TileSize,
-                    Location = new Point(bomb.X - Storages.IntegerTileSize, bomb.Y),
-                    Image = Images.Fire,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                Control Tempbox = new Control();
-                bool delete = false;
-                Storages.Boxs.ForEach((box) =>
+                    Tempitem = item;
+                    deleteItem = true;
+                    Storages.Map.DeleteTile(item.Image);
+                    RandomItems.Randomitem();
+                }
+            });
+            if (deleteItem)
+            {
+                Storages.Items.Remove(Tempitem);
+                Storages.Map.DeleteTile(Tempitem.Image);
+            }
+            Storages.Fires.Add(fire);
+            Storages.Map.AddTiles(fire);
+            if (delete)
+            {
+                Storages.Boxs.Remove(Tempbox);
+            }
+            if (Storages.Player.Power  > 1 && !delete)
+            {
+                Storages.Player.Power -= 1;
+                Left(fire.Location);
+                Storages.Player.Power += 1;
+            }
+
+        }
+        public void Down(Point bomb)
+        {
+            
+            fire = new PictureBox()
+            {
+                Size = Storages.TileSize,
+                Location = new Point(bomb.X, bomb.Y + Storages.IntegerTileSize),
+                Image = Images.Fire,
+                SizeMode = PictureBoxSizeMode.Zoom,
+            };
+            Control Tempbox = new Control();
+            bool delete = false;
+            Items Tempitem = new Items();
+            bool deleteItem = false;
+            Storages.Boxs.ForEach((box) =>
                 {
                     if (box.Location == fire.Location)
                     {
@@ -77,34 +154,63 @@ namespace BomberMan
                         RandomItems.Randomitem();
                     }
                 });
-                Storages.Fires.Add(fire);
-                Storages.Map.AddTiles(fire);
-                powers--;
-                if (delete)
-                {
-                    Storages.Boxs.Remove(Tempbox);
-                }
-                else if (powers > 1)
-                {
-                    Left(fire.Location, powers);
-                }
-            }
-        }
-        public void Down(Point bomb, int power)
-        {
-            int powers = power;
-            while (powers > 0)
+
+            Storages.Items.ForEach((item) =>
             {
-                fire = new PictureBox()
+                if (item.Location == fire.Location)
                 {
-                    Size = Storages.TileSize,
-                    Location = new Point(bomb.X, bomb.Y + Storages.IntegerTileSize),
-                    Image = Images.Fire,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                Control Tempbox = new Control();
-                bool delete = false;
-                Storages.Boxs.ForEach((box) =>
+                    Tempitem = item;
+                    deleteItem = true;
+                    Storages.Map.DeleteTile(item.Image);
+                    RandomItems.Randomitem();
+                }
+            });
+            
+            if (deleteItem)
+            {
+                Storages.Items.Remove(Tempitem);
+                Storages.Map.DeleteTile(Tempitem.Image);
+            }
+            Storages.Fires.Add(fire);
+            Storages.Map.AddTiles(fire);
+            if (delete)
+            {
+                Storages.Boxs.Remove(Tempbox);
+            }
+            if (Storages.Player.Power > 1&&!delete)
+            {
+                Storages.Player.Power -= 1;
+                Down(fire.Location);
+                Storages.Player.Power += 1;
+            }
+
+        }
+        public void Right(Point bomb)
+        {
+            
+            fire = new PictureBox()
+            {
+                Size = Storages.TileSize,
+                Location = new Point(bomb.X + Storages.IntegerTileSize, bomb.Y),
+                Image = Images.Fire,
+                SizeMode = PictureBoxSizeMode.Zoom,
+            };
+            Control Tempbox = new Control();
+            bool delete = false;
+            Items Tempitem = new Items();
+            bool deleteItem = false;
+            Storages.Items.ForEach((item) =>
+            {
+                if (item.Location == fire.Location)
+                {
+                    Tempitem = item;
+                    deleteItem = true;
+                    Storages.Map.DeleteTile(item.Image);
+                    RandomItems.Randomitem();
+                    return;
+                }
+            });
+            Storages.Boxs.ForEach((box) =>
                 {
                     if (box.Location == fire.Location)
                     {
@@ -114,63 +220,32 @@ namespace BomberMan
                         Storages.Tiles.Remove(box);
                         Storages.LocationItemRandom.Add(box.Location);
                         RandomItems.Randomitem();
+                        return;
                     }
                 });
-                Storages.Fires.Add(fire);
-                Storages.Map.AddTiles(fire);
-                powers--;
-                if (delete)
-                {
-                    Storages.Boxs.Remove(Tempbox);
-                }
-                else if (powers > 1)
-                {
-                    Down(fire.Location, powers);
-                }
-            }
-        }
-        public void Right(Point bomb, int power)
-        {
-            int powers = power;
-            while (powers > 0)
+            
+            if (deleteItem)
             {
-                fire = new PictureBox()
-                {
-                    Size = Storages.TileSize,
-                    Location = new Point(bomb.X + Storages.IntegerTileSize, bomb.Y),
-                    Image = Images.Fire,
-                    SizeMode = PictureBoxSizeMode.Zoom,
-                };
-                Control Tempbox = new Control();
-                bool delete = false;
-                Storages.Boxs.ForEach((box)=> 
-                {
-                    if(box.Location == fire.Location)
-                    {
-                        Tempbox = box;
-                        delete = true;
-                        Storages.Map.DeleteTile(box);
-                        Storages.Tiles.Remove(box);
-                        Storages.LocationItemRandom.Add(box.Location);
-                        RandomItems.Randomitem();
-                    }
-                });
-                Storages.Fires.Add(fire);
-                Storages.Map.AddTiles(fire);
-                powers--;
-                if (delete)
-                {
-                    Storages.Boxs.Remove(Tempbox);
-                }
-                else if (powers > 1)
-                {
-                    Right(fire.Location, powers);
-                }
+                Storages.Items.Remove(Tempitem);
+                Storages.Map.DeleteTile(Tempitem.Image);
             }
+            Storages.Fires.Add(fire);
+            Storages.Map.AddTiles(fire);
+            if (delete)
+            {
+                Storages.Boxs.Remove(Tempbox);
+            }
+             if (Storages.Player.Power > 1 && !delete)
+            {
+                Storages.Player.Power -= 1;
+                Right(fire.Location);
+                Storages.Player.Power += 1;
+            }
+
         }
         public void DeleteFire()
         {
-            Storages.Fires.ForEach((fires) => Storages.Map.DeleteTile(fires)) ;
+            Storages.Fires.ForEach((fires) => Storages.Map.DeleteTile(fires));
             Storages.Fires.Clear();
         }
     }

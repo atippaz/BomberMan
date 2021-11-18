@@ -70,7 +70,7 @@ namespace BomberMan
             Storages.CreateEnemy();
             Storages.Player.Speed = 50;
             Storages.Player.Mana = 3;
-            Storages.Player.Power = 1;
+            Storages.Player.Power = 2;
         }
         private void RandomMove(object sender, EventArgs a)
         {
