@@ -12,7 +12,6 @@ namespace BomberMan
             MaxHP = 3;
             MaxMana = 3;
             MaxSpeed = 50;
-            Name = "name";
             Storages.Map.MapProperties.Controls.Add(Animation);
             Animation.BackColor = Color.Transparent;
         }

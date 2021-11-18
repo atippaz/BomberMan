@@ -11,6 +11,10 @@ namespace BomberMan {
         static public Image Library2 = Image.FromFile(Path.GetFullPath(Paths.PathImage + "Library2.gif"));
         static public Image Fire = Image.FromFile(Path.GetFullPath(Paths.PathImage + "Fire.gif"));
         static public Image Fire2 = Image.FromFile(Path.GetFullPath(Paths.PathImage + "Fire2.gif"));
+        static public Image PlayerState = Image.FromFile(Path.GetFullPath(Paths.PathImage + "PlayerState.png"));
+        static public Image BestPlayerState = Image.FromFile(Path.GetFullPath(Paths.PathImage + "BestPlayerState.png"));
+        static public Image PlayerWait = Image.FromFile(Path.GetFullPath(Paths.PathImage + "PlayerWait.gif"));
+        static public Image PlayerReady = Image.FromFile(Path.GetFullPath(Paths.PathImage + "PlayerReady.gif"));
         static public string IconGame = Paths.PathImage + "IconGame.ico";
     }
 }

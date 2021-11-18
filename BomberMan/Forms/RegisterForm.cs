@@ -18,7 +18,7 @@ namespace BomberMan {
             lineSlide.BackColor = Colors.OrangeLine;
             Name_RealTime.ForeColor = Color.White;
 
-            pictureBox_Character.Image = PlayerImage.Idle;
+            pictureBox_Character.Image = Images.PlayerWait;
             pictureBox1.Image = Images.Blackboard;
             #endregion
             #region Tranparent pictures
@@ -46,13 +46,10 @@ namespace BomberMan {
 
         #region PLAY BUTTON
         private void btn_Play_Click(object sender, EventArgs e) {
-            //BackGroundMusic.Stop();
-            /// ** Music.MainTheme use for test
-            /// actually we will use Music.GameTheme
-            //BackGroundMusic.Set(Music.GameTheme);
-            // BackGroundMusic.Set(Music.MainTheme);
-            //BackGroundMusic.Play();
-            Game GameForm = new Game($"{Name_RealTime.Text}");
+            GameData.CurrUsername = txtPlayerName.Text;
+
+            BackGroundMusic.Stop();
+            Game GameForm = new Game("");
             this.Hide();
             GameForm.Show();
         }
@@ -80,7 +77,7 @@ namespace BomberMan {
         private void txtPlayerName_TextChanged(object sender, EventArgs e) {
             Name_RealTime.Text = txtPlayerName.Text;
             line_type.Width = 13 * txtPlayerName.Text.Length;
-            pictureBox_Character.Image = (txtPlayerName.Text.Length == 8) ? PlayerImage.RunDown : PlayerImage.Idle;
+            pictureBox_Character.Image = (txtPlayerName.Text.Length == 8) ? Images.PlayerReady : Images.PlayerWait;
             #region Validate Username prompt
             // Check fill compete to 8 charater
             lblWarning.Visible = (txtPlayerName.Text.Length < 8 && txtPlayerName.Text.Length > 0) ? true : false;

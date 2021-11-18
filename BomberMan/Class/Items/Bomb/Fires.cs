@@ -78,8 +78,6 @@ namespace BomberMan
         }
         public void Left(Point bomb)
         {
-
-
             fire = new PictureBox()
             {
                 Size = Storages.TileSize,
