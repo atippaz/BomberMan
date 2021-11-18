@@ -70,7 +70,7 @@ namespace BomberMan
             Storages.CreateEnemy();
             Storages.Player.Speed = 50;
             Storages.Player.Mana = 3;
-            Storages.Player.Power = 2;
+            Storages.Player.Power = 1;
         }
         private void RandomMove(object sender, EventArgs a)
         {
@@ -94,7 +94,7 @@ namespace BomberMan
             }
             else
             {
-
+                Storages.Enemy.Planbomb();
             }
         }
         private void Update(object sender, EventArgs a)
@@ -261,13 +261,6 @@ namespace BomberMan
                     RandomItems.Randomitem();
                 }
             }
-        }
-        private void BombActivitor(object sender, EventArgs a)
-        {
-            /*bomb.BombActive(Storages.Map, Storages.Player);
-            Storages.Player.Mana += 1;
-            UseBomb = true;
-            Countdown.Stop();*/
         }
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
