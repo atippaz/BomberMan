@@ -81,7 +81,6 @@ namespace BomberMan {
         private bool hover_btnStart = false;
         #endregion
         private void btn_Start_MouseHover(object sender, EventArgs e) {
-            btn_Start.BackColor = Colors.OrangeHover;
             hover_btnStart = true;
             leave_btnStart = false;
         }
