@@ -7,7 +7,7 @@ namespace BomberMan {
         PictureBox Box;
         private void AddBox(PictureBox tiles, Map map) {
             tiles.BringToFront();
-            map.AddTiles(tiles);
+            Storages.Map.AddTiles(tiles);
         }
         private void CreatBox(Map map, int size, int TileSize, int x, int y) {
             Box = new PictureBox() {

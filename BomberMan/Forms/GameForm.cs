@@ -18,7 +18,6 @@ namespace BomberMan
         int position;
         readonly Timer time = new Timer();
         readonly Timer BotTime = new Timer();
-        #region don't forget delete some code here!!
         void Init()
         {
             Storages.IntegerTileSize = 50;
@@ -53,11 +52,10 @@ namespace BomberMan
             time.Tick += Update;
             time.Start();
         }
-        #endregion
         private void CreateMap()
         {
             /*map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);*/
-            Storages.CreateMap(MapImage.TileBlue, Storages.IntegerSize,position, this);
+            Storages.CreateMap(MapImage.TileBlue, Storages.IntegerSize, position, this);
             Walls wall = new Walls();
             wall.Create(Storages.Map, Storages.IntegerSize, Storages.IntegerTileSize);
             Boxs box = new Boxs();
@@ -72,30 +70,30 @@ namespace BomberMan
             Storages.CreateEnemy();
             Storages.Player.Speed = 50;
             Storages.Player.Mana = 3;
-            Storages.Player.Power = 1;
+            Storages.Player.Power = 2;
         }
-        private void RandomMove(object sender,EventArgs a) 
+        private void RandomMove(object sender, EventArgs a)
         {
             Random random = new Random();
-            int rndMove = random.Next(1,10);
-            if(rndMove > 8)
+            int rndMove = random.Next(1, 10);
+            if (rndMove > 8)
             {
                 BotDirections = "Rigth";
             }
-            else if(rndMove > 6)
+            else if (rndMove > 6)
             {
                 BotDirections = "Left";
             }
-            else if(rndMove > 4)
+            else if (rndMove > 4)
             {
                 BotDirections = "Up";
             }
-            else if(rndMove > 2)
+            else if (rndMove > 2)
             {
                 BotDirections = "Down";
             }
             else
-            { 
+            {
 
             }
         }
@@ -103,6 +101,7 @@ namespace BomberMan
         {
             if (Storages.Player.HP > 0 && Storages.Enemy.HP > 0)
             {
+
                 Point location = new Point(0, 0);
                 //hitbox.BackColor = Color.Red;
                 #region check
@@ -163,6 +162,17 @@ namespace BomberMan
                 }
                 //buff check
                 Storages.ItemHasDrop = (Storages.Items.Count != 0) ? true : false;
+                Storages.Fires.ForEach((fire) =>
+                {
+                    if (Storages.Player.Location == fire.Location)
+                    {
+                        Storages.Player.HP -= 1;
+                    }
+                    else if(Storages.Enemy.Location == fire.Location)
+                    {
+                        Storages.Enemy.HP -= 1;
+                    }
+                });
                 if (Storages.ItemHasDrop)
                 {
                     Items tempItem = new Items();

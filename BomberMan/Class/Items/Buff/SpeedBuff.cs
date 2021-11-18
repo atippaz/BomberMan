@@ -5,12 +5,12 @@ namespace BomberMan
 {
     class SpeedBuff:Items
     {
-        public SpeedBuff(Point Location, int Size) :base("SpeedBuff")
+        public SpeedBuff(Point Location) :base("SpeedBuff")
         {
             ItemImage = new PictureBox()
             {
                 Location = Location,
-                Size = new Size(Size, Size),
+                Size = Storages.TileSize,
                 Image = MapImage.NoHeart,
                 SizeMode = PictureBoxSizeMode.Zoom
             };

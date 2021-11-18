@@ -37,30 +37,22 @@ namespace BomberMan
             Time.Tick += BombActive;
             Time.Start();
         }
-        public PictureBox GetBomb()
-        {
-            return bombs;
-        }
         public void BombActive(object sender, EventArgs a)
         {
+            Time.Stop();
             bombs.Image = Images.Fire;
             Storages.Player.Animation.BringToFront();
             Storages.Tiles.Remove(bombs);
-            fires = new Fires();
-            fires.Up(bombs.Location, Storages.Player.Power);
-            fires.Down(bombs.Location, Storages.Player.Power);
-            fires.Left(bombs.Location, Storages.Player.Power);
-            fires.Right(bombs.Location, Storages.Player.Power);
-            Time.Stop();
+            fires = new Fires(bombs.Location);
             Time.Interval = 500;
             Time.Tick += Remove;
             Time.Start();
         }
         private void Remove(object sender,EventArgs a)
         {
+            Time.Stop();
             fires.DeleteFire();
             Storages.Map.DeleteTile(bombs);
-            Time.Stop();
             Storages.Player.Mana += 1;
             Storages.Player.CanBomb = true;
         }

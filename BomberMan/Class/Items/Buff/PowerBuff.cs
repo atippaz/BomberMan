@@ -5,12 +5,12 @@ namespace BomberMan
 {
     class PowerBuff : Items
     {
-        public PowerBuff(Point Location,int Size) : base("PowerBuff") 
+        public PowerBuff(Point Location) : base("PowerBuff") 
         {
             ItemImage = new PictureBox()
             {
                 Location = Location,
-                Size = new Size(Size, Size),
+                Size = Storages.TileSize,
                 Image = MapImage.Wall,
                 SizeMode = PictureBoxSizeMode.Zoom
             };
