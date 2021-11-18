@@ -25,9 +25,9 @@ namespace BomberMan {
         {
             Map = new Map(image, new Size(size, size), new Point(position, position), form);
         }
-        public static void CreatePlayer(string PlayerName)
+        public static void CreatePlayer()
         {
-            Player = new Player(PlayerName);
+            Player = new Player();
         }
         public static void CreateEnemy()
         {

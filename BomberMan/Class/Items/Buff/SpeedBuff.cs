@@ -19,9 +19,21 @@ namespace BomberMan
             Storages.Player.Animation.BringToFront();
             Storages.ItemImage.Add(ItemImage);
         }
-        public override void Effect(Player player)
+        public override void Effect()
         {
-            player.Speed += 1;
+            System.Console.WriteLine($"{Storages.Player.Speed}");
+            if(Storages.Player.Speed == 2)
+            {
+                Storages.Player.Speed = 10;
+            }
+            else if(Storages.Player.Speed == 10)
+            {
+                Storages.Player.Speed = 25;
+            }
+            else
+            {
+                Storages.Player.Speed = 50;
+            }
         }
     }
 }

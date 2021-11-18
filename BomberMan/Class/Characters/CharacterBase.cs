@@ -11,6 +11,8 @@
         private int _AtteckPower = 1;
         private int _MaxMana = 3;
         private int _MaxSpeed = 50;
+        private int _Score = 0;
+        private bool _Win = false;
         private string _Name;
         #endregion
         #region Properties
@@ -120,6 +122,8 @@
                 }
             }
         }
+        public int Score { get => _Score; set => _Score = value; }
+        public bool Win { get => _Win; set => _Win = value; }
         #endregion
     }
 }
