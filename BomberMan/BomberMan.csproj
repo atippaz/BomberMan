@@ -53,11 +53,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Class\Attribute\Form.cs" />
+    <Compile Include="Class\Items\Buff\RandomItems.cs" />
+    <Compile Include="Class\Maps\Boxs.cs" />
+    <Compile Include="Class\Items\Bomb\Bomb.cs" />
     <Compile Include="Class\Characters\CharacterBase.cs" />
     <Compile Include="Class\Characters\CharacterBehavior.cs" />
     <Compile Include="Class\Characters\CharacterMove.cs" />
-    <Compile Include="Class\Items\Bomb\Bombs.cs" />
-    <Compile Include="Class\Items\Fires.cs" />
+    <Compile Include="Class\Items\Buff\HealBuff.cs" />
+    <Compile Include="Class\Items\Buff\PowerBuff.cs" />
+    <Compile Include="Class\Items\Buff\SpeedBuff.cs" />
+    <Compile Include="Class\Items\Bomb\Fires.cs" />
     <Compile Include="Class\KeyBoard\KeyBoard.cs" />
     <Compile Include="Class\Sounds\Sound.cs" />
     <Compile Include="Class\Characters\Characters.cs" />
@@ -65,10 +71,10 @@
     <Compile Include="Class\Paths\Paths.cs" />
     <Compile Include="Class\Players\Enemy.cs" />
     <Compile Include="Class\Players\Player.cs" />
-    <Compile Include="Class\Items\Items.cs" />
+    <Compile Include="Class\Items\Buff\Items.cs" />
     <Compile Include="Class\Images\PlayerImage.cs" />
     <Compile Include="Class\Maps\Map.cs" />
-	  <Compile Include="Class\Maps\Walls.cs" />
+    <Compile Include="Class\Maps\Walls.cs" />
     <Compile Include="Class\Sounds\EffectSound.cs" />
     <Compile Include="Class\Images\Images.cs" />
     <Compile Include="Class\Attribute\Colors.cs" />
@@ -95,6 +101,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Class\Sounds\BackGroundMusic.cs" />
     <Compile Include="Class\CheckUsername\UsernameValidate.cs" />
+    <Compile Include="Class\Storages\Storages.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -128,9 +135,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Class\Items\Buff\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="resource\Sounds\Fx\Click.wav" />
   </ItemGroup>

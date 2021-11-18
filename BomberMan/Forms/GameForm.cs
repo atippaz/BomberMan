@@ -7,66 +7,48 @@ namespace BomberMan
 {
     public partial class Game : Form
     {
-        Map map;
         int steps;
-        Enemy Enemy;
-        int TileSize;
-        Player player;
         bool UseBomb = true;
         bool walkAble;
-        PictureBox bomb;
-        Timer BomeTime;
-        PictureBox tiles;
+        Bomb bomb;
+        Timer Countdown;
         string Directions;
+        string BotDirections;
         //PictureBox hitbox;
-        List<Control> Box;
-        int position, size;
-        List<Control> Tile;
-        List<Control> Wall;
-        List<Control> Bombs;
+        int position;
         readonly Timer time = new Timer();
+        readonly Timer BotTime = new Timer();
         #region don't forget delete some code here!!
         void Init()
         {
-
-            TileSize = 50;
+            Storages.IntegerTileSize = 50;
+            Storages.TileSize = new Size(Storages.IntegerTileSize, Storages.IntegerTileSize);
+            Console.WriteLine($"{ Storages.TileSize}");
             this.Focus();
             position = 100;
-            size = 750; // 15 * 50
-
+            Storages.IntegerSize = 750; // 15 x 50  
+            Storages.Size = new Size(Storages.IntegerSize, Storages.IntegerSize);
             CreateMap();
-            /*hitbox = new PictureBox()
-            {
-                Size = new Size(TileSize, TileSize),
-                BorderStyle = BorderStyle.Fixed3D
-            };
-            this.Controls.Add(hitbox);
-            map.AddTiles(hitbox);*/
-            Bombs = new List<Control>();
-            Box = new List<Control>();
-            Wall = new List<Control>();
-            Tile = new List<Control>();
-            foreach (Control items in map.MapProperties.Controls)
+            Storages.Boxs = new List<Control>();
+            Storages.Walls = new List<Control>();
+            Storages.Tiles = new List<Control>();
+            foreach (Control items in Storages.Map.MapProperties.Controls)
             {
                 if (items is PictureBox && (string)items.Tag == "Wall")
                 {
-                    Wall.Add(items);
-                    Tile.Add(items);
+                    Storages.Walls.Add(items);
+                    Storages.Tiles.Add(items);
                 }
                 else if (items is PictureBox && (string)items.Tag == "Box")
                 {
-                    Box.Add(items);
-                    Tile.Add(items);
+                    Storages.Boxs.Add(items);
+                    Storages.Tiles.Add(items);
                 }
-                #region delete here !!
-                //ลบด้วยใช้ตอนเทสเท่านั้น 
-                else if (items is PictureBox && (string)items.Tag == "Bomb")
-                {
-                    Tile.Add(items);
-                }
-                #endregion
             }
             // The duration of creating a loop, where 1000 is 1 second. and every Interval will do update
+            BotTime.Interval = 1000;
+            BotTime.Tick += RandomMove;
+            BotTime.Start();
             time.Interval = 10;
             time.Tick += Update;
             time.Start();
@@ -74,93 +56,157 @@ namespace BomberMan
         #endregion
         private void CreateMap()
         {
-            map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);
+            /*map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);*/
+            Storages.CreateMap(MapImage.TileBlue, Storages.IntegerSize,position, this);
             Walls wall = new Walls();
-            wall.Create(map,size,TileSize);
-            ResizeForm(this, map);
+            wall.Create(Storages.Map, Storages.IntegerSize, Storages.IntegerTileSize);
+            Boxs box = new Boxs();
+            box.Create(Storages.Map, Storages.IntegerSize, Storages.IntegerTileSize);
+            FormEditor.Resize(this);
         }
-        public Game(string Playername)
+        public Game(string PlayerName)
         {
             InitializeComponent();
             Init();
-            Enemy = new Enemy();
-            player = new Player(Playername, map.MapProperties);
-            player.Speed = 50;
-            player.Mana = 1;
-            Console.WriteLine($"{player.Mana}");
+            Storages.CreatePlayer(PlayerName);
+            Storages.CreateEnemy();
+            Storages.Player.Speed = 50;
+            Storages.Player.Mana = 3;
+            Storages.Player.Power = 1;
+        }
+        private void RandomMove(object sender,EventArgs a) 
+        {
+            Random random = new Random();
+            int rndMove = random.Next(1,10);
+            if(rndMove > 8)
+            {
+                BotDirections = "Rigth";
+            }
+            else if(rndMove > 6)
+            {
+                BotDirections = "Left";
+            }
+            else if(rndMove > 4)
+            {
+                BotDirections = "Up";
+            }
+            else if(rndMove > 2)
+            {
+                BotDirections = "Down";
+            }
+            else
+            { 
+
+            }
         }
         private void Update(object sender, EventArgs a)
         {
-
-            Point location = new Point(0, 0);
-            //hitbox.BackColor = Color.Red;
-            #region check
-            if (Directions == "Right")
+            if (Storages.Player.HP > 0 && Storages.Enemy.HP > 0)
             {
-                location = new Point(player.Location.X + TileSize, player.Location.Y);
-            }
-            else if (Directions == "Left")
-            {
-                location = new Point(player.Location.X - TileSize, player.Location.Y);
-            }
-            else if (Directions == "Up")
-            {
-                location = new Point(player.Location.X, player.Location.Y - TileSize);
-            }
-            else if (Directions == "Down")
-            {
-                location = new Point(player.Location.X, player.Location.Y + TileSize);
-            }
-            label1.Text = player.Location.X.ToString();
-            label2.Text = player.Location.Y.ToString();
-            // hitbox.Location = location;
-            //if ((location.X < 0 || location.X > map.MapProperties.Width) || (location.Y < 0 || location.Y > map.MapProperties.Height)) {
-            //    walkAble = false;
-            //    player.WalkFinish = true;
-            //}
-            if (walkAble)
-            {
-                Tile.ForEach((boxs) =>
+                Point location = new Point(0, 0);
+                //hitbox.BackColor = Color.Red;
+                #region check
+                if (Directions == "Right")
                 {
-                    if (location == boxs.Location)
+                    location = new Point(Storages.Player.Location.X + Storages.IntegerTileSize, Storages.Player.Location.Y);
+                }
+                else if (Directions == "Left")
+                {
+                    location = new Point(Storages.Player.Location.X - Storages.IntegerTileSize, Storages.Player.Location.Y);
+                }
+                else if (Directions == "Up")
+                {
+                    location = new Point(Storages.Player.Location.X, Storages.Player.Location.Y - Storages.IntegerTileSize);
+                }
+                else if (Directions == "Down")
+                {
+                    location = new Point(Storages.Player.Location.X, Storages.Player.Location.Y + Storages.IntegerTileSize);
+                }
+                label1.Text = Storages.Player.Location.X.ToString();
+                label2.Text = Storages.Player.Location.Y.ToString();
+                // hitbox.Location = location;
+                //if ((location.X < 0 || location.X > map.MapProperties.Width) || (location.Y < 0 || location.Y > map.MapProperties.Height)) {
+                //    walkAble = false;
+                //    player.WalkFinish = true;
+                //}
+                if (walkAble)
+                {
+                    Storages.Tiles.ForEach((boxs) =>
                     {
-                        walkAble = false;
-                        player.WalkFinish = true;
+                        if (location == boxs.Location)
+                        {
+                            walkAble = false;
+                            Storages.Player.WalkFinish = true;
+                        }
+                    });
+                }
+
+                #endregion
+
+                if (walkAble)
+                {
+                    if (steps > 0)
+                    {
+                        Storages.Player.Move(Directions);
+                        steps -= Storages.Player.Speed;
                     }
-                });
-            }
-
-            #endregion
-
-            if (walkAble)
-            {
-                if (steps > 0)
-                {
-                    player.Move(Directions);
-                    steps -= player.Speed;
+                    else
+                    {
+                        Storages.Player.WalkFinish = true;
+                        walkAble = false;
+                        UseBomb = true;
+                    }
                 }
-                else
+                if (Storages.Player.DirectionPlayer != Directions)
                 {
-                    player.WalkFinish = true;
-                    walkAble = false;
-                    UseBomb = true;
+                    Storages.Player.AnimationDirector = Directions;
                 }
+                //buff check
+                Storages.ItemHasDrop = (Storages.Items.Count != 0) ? true : false;
+                if (Storages.ItemHasDrop)
+                {
+                    Items tempItem = new Items();
+                    Control tempImages = new Control();
+                    Storages.Items.ForEach((buff) =>
+                    {
+                        if (Storages.Player.Location == buff.Location)
+                        {
+                            buff.Effect(Storages.Player);
+                            tempItem = buff;
+                            Storages.ItemImage.ForEach((image) =>
+                            {
+                                if (buff.Image == image)
+                                {
+                                    image.Visible = false;
+                                    tempImages = image;
+                                    EffectSound.Click();
+                                }
+                            });
+                        }
+                    }
+                    );
+                    Storages.Items.Remove(tempItem);
+                    Storages.ItemImage.Remove(tempImages);
+                }
+                Player.Text = Storages.Player.ToString();
             }
-            if (player.DirectionPlayer != Directions)
+            else
             {
-                player.AnimationDirector = Directions;
+                time.Stop();
+                BotTime.Stop();
+                MessageBox.Show((Storages.Player.HP > 0) ? "Game Over Player Win" : "Game Over Enemy Win");
             }
         }
         private void KeyIsUp(object sender, KeyEventArgs e)
         {
-            if (KeyBoard.CheckAll(e) && (player.WalkFinish || walkAble))
+            if (KeyBoard.CheckAll(e) && (Storages.Player.WalkFinish || walkAble))
             {
-                player.AnimationDirector = "";
+                Storages.Player.AnimationDirector = "";
             }
         }
         private void KeyIsDown(object sender, KeyEventArgs e)
         {
-            if (player.WalkFinish)
+            if (Storages.Player.WalkFinish)
             {
                 if (KeyBoard.Right(e))
                 {
@@ -181,88 +227,41 @@ namespace BomberMan
                 if (KeyBoard.CheckAll(e))
                 {
                     walkAble = true;
-                    player.WalkFinish = false;
-                    steps = TileSize;
+                    Storages.Player.WalkFinish = false;
+                    steps = Storages.IntegerTileSize;
+                    Storages.Player.CanBomb = true;
                 }
-                if (KeyBoard.SpaceBar(e) && (player.Mana>0) && UseBomb)
+                if (KeyBoard.SpaceBar(e) && (Storages.Player.Mana > 0) && Storages.Player.CanBomb)
                 {
-                    Console.WriteLine($"{player.Mana}");
+                    /*Console.WriteLine($"{Storages.Player.Mana}");
                     UseBomb = false;
-                    bomb = new PictureBox() 
-                    {
-                        Size = new Size(TileSize, TileSize),
-                        Location = player.Location,
-                        Image = MapImage.Bomb,
-                        Tag = "Bomb",
-                        SizeMode = PictureBoxSizeMode.Zoom
-                    };
-                    map.AddTiles(bomb);
-                    player.Mana -= 1;
-                    Tile.Add(bomb);
-                    BomeTime = new Timer();
-                    BomeTime.Interval = 2000;
-                    BomeTime.Tick += BombActivitor;
-                    BomeTime.Start();
-                    Bombs.Add(bomb);
+                    bomb = new Bomb(Storages.Map, TileSize, Storages.Player);
+                    Storages.Player.Mana -= 1;
+                    Storages.Tiles.Add(bomb.GetBomb());
+                    Countdown = new Timer() { Interval = 1000 };
+                    Countdown.Tick += BombActivitor;
+                    Countdown.Start();*/
+                    Storages.Player.CanBomb = false;
+                    Storages.Player.Mana -= 1;
+                    Storages.Player.Planbomb();
+                }
+                if (e.KeyCode == Keys.F)
+                {
+                    Storages.LocationItemRandom.Add(new Point(Storages.Player.Location.X + 50, Storages.Player.Location.Y));
+                    RandomItems.Randomitem();
                 }
             }
         }
         private void BombActivitor(object sender, EventArgs a)
         {
-            var remove = new Control();
-            bool found = false;
-            bomb.Visible = false;
-            player.Mana += 1;
-            UseBomb = false;
-            Tile.ForEach((item) =>
-            {
-                foreach(var bomb in Bombs )
-                {
-                    if (item.Tag == bomb.Tag)
-                    {
-                    remove = item;
-                        break;
-                    }
-                }
-            });
-            Tile.Remove(remove);
-            BomeTime.Stop();
+            /*bomb.BombActive(Storages.Map, Storages.Player);
+            Storages.Player.Mana += 1;
+            UseBomb = true;
+            Countdown.Stop();*/
         }
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
         {
             Application.Exit();
-        }
-        private void ResizeForm(Form BrforeFormResize, Map AfterFormResize)
-        {
-            int WidthBF = AfterFormResize.MapProperties.Location.X - BrforeFormResize.Location.X;
-            int HeightBF = AfterFormResize.MapProperties.Location.Y - BrforeFormResize.Location.Y;
-            int WidthAT = BrforeFormResize.Width;
-            int HeightAT = BrforeFormResize.Height;
-            if (BrforeFormResize.Size.Width < AfterFormResize.MapProperties.Width || BrforeFormResize.Size.Height < AfterFormResize.MapProperties.Height)
-            {
-                while ((WidthAT <= AfterFormResize.MapProperties.Width + WidthBF + 120))
-                {
-                    WidthAT += 1;
-                }
-                while ((HeightAT <= AfterFormResize.MapProperties.Height + HeightBF + 200))
-                {
-                    HeightAT += 1;
-                }
-            }
-            else
-            {
-                while ((WidthAT >= AfterFormResize.MapProperties.Width + WidthBF + 120))
-                {
-                    WidthAT -= 1;
-                }
-                while ((HeightAT >= AfterFormResize.MapProperties.Height + HeightBF + 120))
-                {
-                    HeightAT -= 1;
-                }
-            }
-            BrforeFormResize.Width = WidthAT;
-            BrforeFormResize.Height = HeightAT;
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
     }
 }
