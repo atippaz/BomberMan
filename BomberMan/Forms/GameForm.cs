@@ -10,8 +10,6 @@ namespace BomberMan
         int steps;
         bool UseBomb = true;
         bool walkAble;
-        Bomb bomb;
-        Timer Countdown;
         string Directions;
         string BotDirections;
         //PictureBox hitbox;
@@ -22,7 +20,6 @@ namespace BomberMan
         {
             Storages.IntegerTileSize = 50;
             Storages.TileSize = new Size(Storages.IntegerTileSize, Storages.IntegerTileSize);
-            Console.WriteLine($"{ Storages.TileSize}");
             this.Focus();
             position = 100;
             Storages.IntegerSize = 750; // 15 x 50  
@@ -57,18 +54,19 @@ namespace BomberMan
             /*map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);*/
             Storages.CreateMap(MapImage.TileBlue, Storages.IntegerSize, position, this);
             Walls wall = new Walls();
-            wall.Create(Storages.Map, Storages.IntegerSize, Storages.IntegerTileSize);
+            wall.Create();
             Boxs box = new Boxs();
-            box.Create(Storages.Map, Storages.IntegerSize, Storages.IntegerTileSize);
+            box.Create();
             FormEditor.Resize(this);
         }
         public Game(string PlayerName)
         {
             InitializeComponent();
             Init();
-            Storages.CreatePlayer(PlayerName);
+            Storages.CreatePlayer();
+            Storages.Player.Name = PlayerName;
             Storages.CreateEnemy();
-            Storages.Player.Speed = 50;
+            Storages.Player.Speed = 2;
             Storages.Player.Mana = 3;
             Storages.Player.Power = 1;
         }
@@ -111,7 +109,6 @@ namespace BomberMan
         {
             if (Storages.Player.HP > 0 && Storages.Enemy.HP > 0)
             {
-
                 Point location = new Point(0, 0);
                 //hitbox.BackColor = Color.Red;
                 #region check
@@ -133,11 +130,7 @@ namespace BomberMan
                 }
                 label1.Text = Storages.Player.Location.X.ToString();
                 label2.Text = Storages.Player.Location.Y.ToString();
-                // hitbox.Location = location;
-                //if ((location.X < 0 || location.X > map.MapProperties.Width) || (location.Y < 0 || location.Y > map.MapProperties.Height)) {
-                //    walkAble = false;
-                //    player.WalkFinish = true;
-                //}
+                Player.Text = Storages.Player.Name;
                 if (walkAble)
                 {
                     Storages.Tiles.ForEach((boxs) =>
@@ -162,6 +155,7 @@ namespace BomberMan
                     else
                     {
                         Storages.Player.WalkFinish = true;
+                        Storages.Player.AnimationDirector = "";
                         walkAble = false;
                         UseBomb = true;
                     }
@@ -218,7 +212,17 @@ namespace BomberMan
             {
                 time.Stop();
                 BotTime.Stop();
-                MessageBox.Show((Storages.Player.HP > 0) ? "Game Over Player Win" : "Game Over Enemy Win");
+                if (Storages.Player.HP > 0)
+                {
+                    MessageBox.Show(" Player Win");
+                    Storages.Player.Win = true;
+                } 
+                else 
+                {
+                    MessageBox.Show("Game Over Enemy Win");
+                    Storages.Player.Win = false;
+                }
+
             }
         }
         private void KeyIsUp(object sender, KeyEventArgs e)
@@ -257,14 +261,6 @@ namespace BomberMan
                 }
                 if (KeyBoard.SpaceBar(e) && (Storages.Player.Mana > 0) && Storages.Player.CanBomb && Storages.Player.HP > 0 && Storages.Enemy.HP > 0)
                 {
-                    /*Console.WriteLine($"{Storages.Player.Mana}");
-                    UseBomb = false;
-                    bomb = new Bomb(Storages.Map, TileSize, Storages.Player);
-                    Storages.Player.Mana -= 1;
-                    Storages.Tiles.Add(bomb.GetBomb());
-                    Countdown = new Timer() { Interval = 1000 };
-                    Countdown.Tick += BombActivitor;
-                    Countdown.Start();*/
                     Storages.Player.CanBomb = false;
                     Storages.Player.Mana -= 1;
                     Storages.Player.Planbomb(Storages.Player.Location, Storages.Player);

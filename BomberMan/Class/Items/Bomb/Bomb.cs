@@ -12,12 +12,12 @@ namespace BomberMan
      
         Fires fires;
 
-        public Bomb(int TileSize, Point location,Characters player)
+        public Bomb(Point location,Characters player)
         {
             bombs = new PictureBox()
             {
                 Image = MapImage.Bomb,
-                Size = new Size(TileSize, TileSize),
+                Size = Storages.TileSize,
                 Location = location,
                 Tag = player.Animation.Tag,
                 SizeMode = PictureBoxSizeMode.Zoom
@@ -26,7 +26,7 @@ namespace BomberMan
             Storages.Tiles.Add(bombs);
             bombs.BringToFront();
             Time = new Timer();
-            Time.Interval = 1000;
+            Time.Interval = 2000;
             Time.Tick += BombActive;
             Time.Start();
         }

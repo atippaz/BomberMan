@@ -110,18 +110,23 @@ namespace BomberMan
             Items Tempitem = new Items();
             bool isFoundItem = false;
             Control Tempbox = new Control();
-            /*foreach (var item in Storages.Items)
+            /*if (Storages.ItemHasDrop)
             {
-                if (item.Location == Fire.Location)
+                foreach (var item in Storages.Items)
                 {
-                    Tempitem = item;
-                    isFoundItem = true;
-                    canIncrease = false;
-                    Storages.Map.DeleteTile(item.Image);
-                    RandomItems.Randomitem();
-                    break;
+                    if (item.Location == Fire.Location)
+                    {
+                        Tempitem = item;
+                        isFoundItem = true;
+                        canIncrease = false;
+                        Storages.Map.DeleteTile(item.Image);
+                        RandomItems.Randomitem();
+                        break;
+                    }
                 }
+
             }*/
+
             if (!isFoundItem)
             {
                 foreach (var tile in Storages.Tiles)
@@ -140,12 +145,12 @@ namespace BomberMan
                     }
                 }
             }
-            if (isFoundItem)
+            if (isFoundItem && Storages.Items.Count!=0)
             {
                 Storages.Items.Remove(Tempitem);
                 Storages.Map.DeleteTile(Tempitem.Image);
             }
-            else if(!canIncrease)
+            if(!canIncrease)
             {
                 Storages.Tiles.Remove(Tempbox);
                 Storages.Boxs.Remove(Tempbox);

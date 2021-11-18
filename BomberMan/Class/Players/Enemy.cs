@@ -8,8 +8,8 @@ namespace BomberMan
         public Enemy()
         {
             Animation.Image = EnemyImage.Idle;
-            Size = new Size(50, 50);
-            Location = new Point(Storages.IntegerSize-100, Storages.IntegerSize - 100);
+            Size = new Size(Storages.IntegerTileSize, Storages.IntegerTileSize);
+            Location = new Point(Storages.IntegerSize- (Storages.IntegerTileSize*2), Storages.IntegerSize - (Storages.IntegerTileSize * 2));
             MaxHP = 3;
             MaxMana = 3;
             MaxSpeed = 50;

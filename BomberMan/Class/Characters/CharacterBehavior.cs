@@ -9,7 +9,7 @@ namespace BomberMan
         public bool CanHitDamage = true;
         public void Planbomb(Point location,Characters player)
         {
-            bomb = new Bomb(Storages.IntegerTileSize,location, player);
+            bomb = new Bomb(location, player);
         }
     }
 }

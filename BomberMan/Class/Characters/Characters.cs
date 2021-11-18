@@ -48,6 +48,7 @@ namespace BomberMan
                     }
                     else
                     {
+                        System.Console.WriteLine("test");
                         _Animation.Image = PlayerImage.Idle;
                     }
                 }
