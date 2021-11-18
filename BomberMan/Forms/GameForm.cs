@@ -18,7 +18,6 @@ namespace BomberMan
         int position;
         readonly Timer time = new Timer();
         readonly Timer BotTime = new Timer();
-        #region don't forget delete some code here!!
         void Init()
         {
             Storages.IntegerTileSize = 50;
@@ -53,7 +52,6 @@ namespace BomberMan
             time.Tick += Update;
             time.Start();
         }
-        #endregion
         private void CreateMap()
         {
             /*map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);*/
