@@ -17,57 +17,52 @@ namespace BomberMan
         Player player;
         int size;
         Fires fires;
-        int power;
-        public Bomb(Map map,int TileSize, Player player)
+
+        public Bomb(int TileSize)
         {
             bombs = new PictureBox()
             {
                 Image = MapImage.Bomb,
-                Size = new Size (TileSize, TileSize),
-                Location = player.Location,
+                Size = new Size(TileSize, TileSize),
+                Location = Storages.Player.Location,
                 Tag = "Bomb",
                 SizeMode = PictureBoxSizeMode.Zoom
             };
-            map.AddTiles(bombs);
+            Storages.Map.AddTiles(bombs);
             size = TileSize;
+            Storages.Tiles.Add(bombs);
             bombs.BringToFront();
             Time = new Timer();
-            Time.Interval = 2000;
-            Time.Tick += Remove;
+            Time.Interval = 1000;
+            Time.Tick += BombActive;
             Time.Start();
         }
         public PictureBox GetBomb()
         {
             return bombs;
         }
-        public void BombActive(Map map, Player player)
-        {
-            this.map = map;
-            this.player = player;
-            BombTime = new Timer();
-            BombTime.Interval = 100;
-            BombTime.Tick += BombActivitor;
-            BombTime.Start();
-            this.map = map;
-            this.player = player;
-            player.Animation.BringToFront();
-        }
-        private void BombActivitor(object sender, EventArgs a)
+        public void BombActive(object sender, EventArgs a)
         {
             bombs.Image = Images.Fire;
+            Storages.Player.Animation.BringToFront();
             Storages.Tiles.Remove(bombs);
             fires = new Fires();
-            fires.Up(map,this.bombs.Location,player.Power,size);
-            fires.Down(map, this.bombs.Location, player.Power, size);
-            fires.Left(map, this.bombs.Location, player.Power, size);
-            fires.Right(map, this.bombs.Location, player.Power, size);
+            fires.Up(bombs.Location, Storages.Player.Power);
+            fires.Down(bombs.Location, Storages.Player.Power);
+            fires.Left(bombs.Location, Storages.Player.Power);
+            fires.Right(bombs.Location, Storages.Player.Power);
+            Time.Stop();
+            Time.Interval = 500;
+            Time.Tick += Remove;
+            Time.Start();
         }
         private void Remove(object sender,EventArgs a)
         {
             fires.DeleteFire();
-            map.DeleteTile(bombs);
-            BombTime.Stop();
+            Storages.Map.DeleteTile(bombs);
             Time.Stop();
+            Storages.Player.Mana += 1;
+            Storages.Player.CanBomb = true;
         }
     }
 }

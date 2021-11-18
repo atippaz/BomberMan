@@ -30,6 +30,7 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.Player = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
@@ -50,11 +51,21 @@
             this.label2.TabIndex = 1;
             this.label2.Text = "label2";
             // 
+            // Player
+            // 
+            this.Player.AutoSize = true;
+            this.Player.Location = new System.Drawing.Point(356, 9);
+            this.Player.Name = "Player";
+            this.Player.Size = new System.Drawing.Size(35, 13);
+            this.Player.TabIndex = 2;
+            this.Player.Text = "label3";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(549, 224);
+            this.Controls.Add(this.Player);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.KeyPreview = true;
@@ -73,5 +84,6 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Player;
     }
 }

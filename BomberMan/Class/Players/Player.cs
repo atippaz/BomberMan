@@ -4,7 +4,7 @@ namespace BomberMan
 {
     class Player : Characters
     {
-        public Player(PictureBox BackGround)
+        public Player()
         {
             Animation.Image = PlayerImage.Idle;
             Size = new Size(50, 50);
@@ -13,10 +13,10 @@ namespace BomberMan
             MaxMana = 3;
             MaxSpeed = 50;
             Name = "name";
-            BackGround.Controls.Add(Animation);
+            Storages.Map.MapProperties.Controls.Add(Animation);
             Animation.BackColor = Color.Transparent;
         }
-        public Player(string Name, PictureBox BackGround)
+        public Player(string Name)
         {
             Animation.Image = PlayerImage.Idle;
             Size = new Size(50, 50);
@@ -25,7 +25,7 @@ namespace BomberMan
             MaxMana = 3;
             MaxSpeed = 50;
             this.Name = Name;
-            BackGround.Controls.Add(Animation);
+            Storages.Map.MapProperties.Controls.Add(Animation);
             Animation.BackColor = Color.Transparent;
         }
         #region Methods
@@ -47,6 +47,10 @@ namespace BomberMan
             {
                 this.Animation.Top += this.Speed;
             }
+        }
+        public override string ToString()
+        {
+            return $"{base.Name}: {base.Power} : {base.Speed} : {base.HP}";
         }
         #endregion
     }
