@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Attribute\Form.cs" />
+    <Compile Include="Class\Images\EnemyImage.cs" />
     <Compile Include="Class\Items\Buff\RandomItems.cs" />
+    <Compile Include="Class\KeyBoard\Controllers.cs" />
     <Compile Include="Class\Maps\Boxs.cs" />
     <Compile Include="Class\Items\Bomb\Bomb.cs" />
     <Compile Include="Class\Characters\CharacterBase.cs" />
@@ -79,6 +81,7 @@
     <Compile Include="Class\Images\Images.cs" />
     <Compile Include="Class\Attribute\Colors.cs" />
     <Compile Include="Class\EncryptionKey\Encryption.cs" />
+    <Compile Include="Class\Images\EnemyImage.cs" />
     <Compile Include="Forms\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -102,6 +105,13 @@
     <Compile Include="Class\Sounds\BackGroundMusic.cs" />
     <Compile Include="Class\CheckUsername\UsernameValidate.cs" />
     <Compile Include="Class\Storages\Storages.cs" />
+    <Compile Include="Forms\StateForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\StateForm.Designer.cs">
+      <DependentUpon>StateForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Class\GameData\GameData.cs" />
     <EmbeddedResource Include="Forms\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -115,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\RegisterForm.resx">
       <DependentUpon>RegisterForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\StateForm.resx">
+      <DependentUpon>StateForm.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -143,7 +156,16 @@
     <None Include="resource\Images\LogoGame.gif" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resource\Character\Enemy\Enemy_idle.gif" />
+    <Content Include="resource\Character\Enemy\Enemy_run_down.gif" />
+    <Content Include="resource\Character\Enemy\Enemy_run_left.gif" />
+    <Content Include="resource\Character\Enemy\Enemy_run_right.gif" />
+    <Content Include="resource\Character\Enemy\Enemy_run_up.gif" />
     <Content Include="resource\HighScore\HighScore.txt" />
+    <Content Include="resource\Images\BestPlayerState.png" />
+    <Content Include="resource\Images\PlayerState.png" />
+    <Content Include="resource\Images\PlayerWait.gif" />
+    <Content Include="resource\Images\PlayerReady.gif" />
     <Content Include="resource\Maps\Bomb.png" />
     <Content Include="resource\Maps\BookBox.png" />
     <Content Include="resource\Maps\NoHeart.png" />
@@ -160,6 +182,7 @@
     <Content Include="resource\Images\Library.gif" />
     <Content Include="resource\Images\Library2.gif" />
     <Content Include="resource\Character\Player\Player_run_left.gif" />
+    <Content Include="resource\Sounds\Bgm\GameTheme.wav" />
     <Content Include="resource\Sounds\Bgm\MainTheme.wav" />
     <Content Include="resource\Images\Blackboard.jpg" />
     <Content Include="resource\Character\Player\Player_idle.gif" />

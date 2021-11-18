@@ -19,6 +19,7 @@ namespace BomberMan {
         }
 
         public static void Stop() {
+            Bgm = new SoundPlayer();
             Bgm.Stop();
         }
         #endregion

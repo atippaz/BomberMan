@@ -5,6 +5,7 @@ namespace BomberMan {
     enum Music {
         MainTheme,
         GameTheme,
+        OverTheme
     }
 
     enum Effect {

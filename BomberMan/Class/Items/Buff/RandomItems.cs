@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 
 namespace BomberMan
 {
@@ -17,21 +18,21 @@ namespace BomberMan
             Storages.LocationItemRandom.ForEach((location) =>
             {
                 int randomvalue = randomBuff.Next(1, 10);
-                if (randomvalue > 8)
+                if (randomvalue > 3)
                 {
                     randomvalue = randomBuff.Next(1, 10);
                     Items buff;
                     if (randomvalue > 8)
                     {
-                        buff = new HealBuff(location, 50);
+                        buff = new HealBuff(location);
                     }
                     else if (randomvalue > 3)
                     {
-                        buff = new SpeedBuff(location, 50);
+                        buff = new SpeedBuff(location);
                     }
                     else
                     {
-                        buff = new PowerBuff(location, 50);
+                        buff = new PowerBuff(location);
                     }
                     Storages.ItemHasDrop = true;
                     Storages.Items.Add(buff);
