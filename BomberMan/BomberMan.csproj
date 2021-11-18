@@ -54,7 +54,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class\Attribute\Form.cs" />
+    <Compile Include="Class\Images\EnemyImage.cs" />
     <Compile Include="Class\Items\Buff\RandomItems.cs" />
+    <Compile Include="Class\KeyBoard\Controllers.cs" />
     <Compile Include="Class\Maps\Boxs.cs" />
     <Compile Include="Class\Items\Bomb\Bomb.cs" />
     <Compile Include="Class\Characters\CharacterBase.cs" />
@@ -143,6 +145,11 @@
     <None Include="resource\Images\LogoGame.gif" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="resource\Character\Enemy\Enemy_idle.gif" />
+    <Content Include="resource\Character\Enemy\Enemy_run_down.gif" />
+    <Content Include="resource\Character\Enemy\Enemy_run_left.gif" />
+    <Content Include="resource\Character\Enemy\Enemy_run_right.gif" />
+    <Content Include="resource\Character\Enemy\Enemy_run_up.gif" />
     <Content Include="resource\HighScore\HighScore.txt" />
     <Content Include="resource\Maps\Bomb.png" />
     <Content Include="resource\Maps\BookBox.png" />

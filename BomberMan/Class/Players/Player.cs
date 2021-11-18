@@ -13,6 +13,7 @@ namespace BomberMan
             MaxMana = 3;
             MaxSpeed = 50;
             Name = "name";
+            Animation.Tag = "Player";
             Storages.Map.MapProperties.Controls.Add(Animation);
             Animation.BackColor = Color.Transparent;
         }
@@ -24,9 +25,10 @@ namespace BomberMan
             MaxHP = 3;
             MaxMana = 3;
             MaxSpeed = 50;
-            this.Name = Name;
+            base.Name = Name;
             Storages.Map.MapProperties.Controls.Add(Animation);
             Animation.BackColor = Color.Transparent;
+            Animation.Tag = "Player";
         }
         #region Methods
         public override void Move(string directions)

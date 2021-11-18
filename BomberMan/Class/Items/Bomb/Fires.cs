@@ -6,20 +6,23 @@ namespace BomberMan
     class Fires
     {
         private PictureBox fire;
-        public Fires(Point bomb)
+        public Fires(Point bomb,string tag)
         {
-            Up(bomb);
-            Down(bomb);
-            Left(bomb);
-            Right(bomb);
+            Up(bomb, tag);
+            Down(bomb, tag);
+            Left(bomb, tag);
+            Right(bomb, tag);
+            Storages.Player.Animation.BringToFront();
+            Storages.Enemy.Animation.BringToFront();
         }
-        public void Up(Point bomb)
+        public void Up(Point bomb, string tag)
         {
             fire = new PictureBox()
             {
                 Size = Storages.TileSize,
                 Location = new Point(bomb.X, bomb.Y - Storages.IntegerTileSize),
                 Image = Images.Fire,
+                Tag = tag,
                 SizeMode = PictureBoxSizeMode.Zoom,
             };
             Storages.Map.AddTiles(fire);
@@ -28,18 +31,19 @@ namespace BomberMan
             if (CanIncrease(fire) && (Storages.Player.Power > 1))
             {
                 Storages.Player.Power -= 1;
-                Up(fire.Location);
+                Up(fire.Location, tag);
                 Storages.Player.Power += 1;
             }
             
         }
-        public void Left(Point bomb)
+        public void Left(Point bomb, string tag)
         {
             fire = new PictureBox()
             {
                 Size = Storages.TileSize,
                 Location = new Point(bomb.X - Storages.IntegerTileSize, bomb.Y),
                 Image = Images.Fire,
+                Tag = tag,
                 SizeMode = PictureBoxSizeMode.Zoom,
             };
             Storages.Map.AddTiles(fire);
@@ -47,18 +51,19 @@ namespace BomberMan
             if (CanIncrease(fire) && (Storages.Player.Power > 1))
             {
                 Storages.Player.Power -= 1;
-                Left(fire.Location);
+                Left(fire.Location, tag);
                 Storages.Player.Power += 1;
             }
             
         }
-        public void Down(Point bomb)
+        public void Down(Point bomb, string tag)
         {
             fire = new PictureBox()
             {
                 Size = Storages.TileSize,
                 Location = new Point(bomb.X, bomb.Y + Storages.IntegerTileSize),
                 Image = Images.Fire,
+                Tag = tag,
                 SizeMode = PictureBoxSizeMode.Zoom,
             };
             Storages.Map.AddTiles(fire);
@@ -67,18 +72,19 @@ namespace BomberMan
             if (CanIncrease(fire) && (Storages.Player.Power > 1))
             {
                 Storages.Player.Power -= 1;
-                Down(fire.Location);
+                Down(fire.Location, tag);
                 Storages.Player.Power += 1;
             }
             
         }
-        public void Right(Point bomb)
+        public void Right(Point bomb, string tag)
         {
             fire = new PictureBox()
             {
                 Size = Storages.TileSize,
                 Location = new Point(bomb.X + Storages.IntegerTileSize, bomb.Y),
                 Image = Images.Fire,
+                Tag = tag,
                 SizeMode = PictureBoxSizeMode.Zoom,
             };
             Storages.Map.AddTiles(fire);
@@ -87,7 +93,7 @@ namespace BomberMan
             if (CanIncrease(fire) && (Storages.Player.Power > 1))
             {
                 Storages.Player.Power -= 1;
-                Right(fire.Location);
+                Right(fire.Location, tag);
                 Storages.Player.Power += 1;
             }
             
@@ -104,7 +110,7 @@ namespace BomberMan
             Items Tempitem = new Items();
             bool isFoundItem = false;
             Control Tempbox = new Control();
-            foreach (var item in Storages.Items)
+            /*foreach (var item in Storages.Items)
             {
                 if (item.Location == Fire.Location)
                 {
@@ -115,7 +121,7 @@ namespace BomberMan
                     RandomItems.Randomitem();
                     break;
                 }
-            }
+            }*/
             if (!isFoundItem)
             {
                 foreach (var tile in Storages.Tiles)
@@ -132,7 +138,6 @@ namespace BomberMan
                         canIncrease = false;
                         break;
                     }
-
                 }
             }
             if (isFoundItem)

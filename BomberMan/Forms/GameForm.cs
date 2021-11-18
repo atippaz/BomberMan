@@ -74,28 +74,38 @@ namespace BomberMan
         }
         private void RandomMove(object sender, EventArgs a)
         {
+            bool botwalk = false;
+            int botsteps = 0;
             Random random = new Random();
             int rndMove = random.Next(1, 10);
-            if (rndMove > 8)
+            if (rndMove > 2)
             {
-                BotDirections = "Rigth";
-            }
-            else if (rndMove > 6)
-            {
-                BotDirections = "Left";
-            }
-            else if (rndMove > 4)
-            {
-                BotDirections = "Up";
-            }
-            else if (rndMove > 2)
-            {
-                BotDirections = "Down";
+                if (rndMove > 8)
+                {
+                    BotDirections = "Rigth";
+                }
+                else if (rndMove > 6)
+                {
+                    BotDirections = "Left";
+                }
+                else if (rndMove > 4)
+                {
+                    BotDirections = "Up";
+                }
+                else if (rndMove > 2)
+                {
+                    BotDirections = "Down";
+                }
+                botwalk = true;
+                Storages.Enemy.WalkFinish = false;
+                botsteps = Storages.IntegerTileSize;
+                Storages.Enemy.CanBomb = true;
             }
             else
             {
-                Storages.Enemy.Planbomb();
+                Storages.Enemy.Planbomb(Storages.Enemy.Location, Storages.Enemy);
             }
+            Controllers.walk(BotDirections, botwalk, botsteps, Storages.Enemy.CanBomb, Storages.Enemy);
         }
         private void Update(object sender, EventArgs a)
         {
@@ -168,9 +178,13 @@ namespace BomberMan
                     {
                         Storages.Player.HP -= 1;
                     }
-                    else if(Storages.Enemy.Location == fire.Location)
+                    else if (Storages.Enemy.Location == fire.Location)
                     {
-                        Storages.Enemy.HP -= 1;
+                        if ((string)fire.Tag == "Player")
+                        {
+                            Storages.Enemy.HP -= 1;
+                        }
+
                     }
                 });
                 if (Storages.ItemHasDrop)
@@ -241,7 +255,7 @@ namespace BomberMan
                     steps = Storages.IntegerTileSize;
                     Storages.Player.CanBomb = true;
                 }
-                if (KeyBoard.SpaceBar(e) && (Storages.Player.Mana > 0) && Storages.Player.CanBomb)
+                if (KeyBoard.SpaceBar(e) && (Storages.Player.Mana > 0) && Storages.Player.CanBomb && Storages.Player.HP > 0 && Storages.Enemy.HP > 0)
                 {
                     /*Console.WriteLine($"{Storages.Player.Mana}");
                     UseBomb = false;
@@ -253,7 +267,7 @@ namespace BomberMan
                     Countdown.Start();*/
                     Storages.Player.CanBomb = false;
                     Storages.Player.Mana -= 1;
-                    Storages.Player.Planbomb();
+                    Storages.Player.Planbomb(Storages.Player.Location, Storages.Player);
                 }
                 if (e.KeyCode == Keys.F)
                 {

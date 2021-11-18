@@ -1,35 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace BomberMan
 {
     class Bomb
     {
         PictureBox bombs;
-        Timer BombTime;
+    
         Timer Time;
-        Map map;
-        Player player;
-        int size;
+     
         Fires fires;
 
-        public Bomb(int TileSize)
+        public Bomb(int TileSize, Point location,Characters player)
         {
             bombs = new PictureBox()
             {
                 Image = MapImage.Bomb,
                 Size = new Size(TileSize, TileSize),
-                Location = Storages.Player.Location,
-                Tag = "Bomb",
+                Location = location,
+                Tag = player.Animation.Tag,
                 SizeMode = PictureBoxSizeMode.Zoom
             };
             Storages.Map.AddTiles(bombs);
-            size = TileSize;
             Storages.Tiles.Add(bombs);
             bombs.BringToFront();
             Time = new Timer();
@@ -41,14 +34,15 @@ namespace BomberMan
         {
             Time.Stop();
             bombs.Image = Images.Fire;
+            Storages.Fires.Add(bombs);
             Storages.Player.Animation.BringToFront();
             Storages.Tiles.Remove(bombs);
-            fires = new Fires(bombs.Location);
+            fires = new Fires(bombs.Location,(string)bombs.Tag);
             Time.Interval = 500;
             Time.Tick += Remove;
             Time.Start();
         }
-        private void Remove(object sender,EventArgs a)
+        private void Remove(object sender, EventArgs a)
         {
             Time.Stop();
             fires.DeleteFire();
