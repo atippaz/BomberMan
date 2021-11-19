@@ -1,17 +1,22 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace BomberMan
 {
-    class SpeedBuff:Items
+    class BombNumber : Items
     {
-        public SpeedBuff(Point Location) :base("SpeedBuff")
+        public BombNumber(Point Location) : base("BombNumber")
         {
             ItemImage = new PictureBox()
             {
                 Location = Location,
                 Size = Storages.TileSize,
-                Image = MapImage.SpeedBoots,
+                Image = Images.Fire2,
                 SizeMode = PictureBoxSizeMode.Zoom
             };
             Storages.Map.AddTiles(ItemImage);
@@ -21,11 +26,7 @@ namespace BomberMan
         }
         public override void Effect()
         {
-            Storages.Player.Speed +=1;
-            while (Storages.IntegerTileSize % Storages.Player.Speed !=0)
-            {
-                Storages.Player.Speed++;
-            }
+            Storages.Player.MaxMana += 1;
         }
     }
 }

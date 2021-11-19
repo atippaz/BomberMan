@@ -6,7 +6,6 @@ namespace BomberMan
     {
         Bomb bomb;
         public bool CanBomb = true;
-        public bool CanHitDamage = true;
         public void Planbomb(Point location,Characters player)
         {
             bomb = new Bomb(location, player);

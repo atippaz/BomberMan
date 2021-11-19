@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Class\Attribute\Form.cs" />
     <Compile Include="Class\Images\EnemyImage.cs" />
+    <Compile Include="Class\Items\Buff\BombNumber.cs" />
     <Compile Include="Class\Items\Buff\RandomItems.cs" />
     <Compile Include="Class\KeyBoard\Controllers.cs" />
     <Compile Include="Class\Maps\Boxs.cs" />

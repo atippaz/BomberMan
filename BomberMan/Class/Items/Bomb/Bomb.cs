@@ -49,8 +49,8 @@ namespace BomberMan
             Fire.Stop();
             fires.DeleteFire();
             Storages.Map.DeleteTile(bombs);
-            Storages.Player.Mana += 1;
             Storages.Player.CanBomb = true;
+            Storages.Player.Mana += 1;
         }
     }
 }

@@ -15,7 +15,14 @@ namespace BomberMan {
             this.Icon = new Icon(Images.IconGame);
             LineSlide1.BackColor = Colors.OrangeLine;
             LineSlide2.BackColor = Colors.PurpleLine;
-
+            if (GameData.WinState)
+            {
+                Storages.Player.Score *= 2;
+            }
+            else
+            {
+                Storages.Player.Score /= 2;
+            }
             ShowAllScore();
             ShowWinOrOver(GameData.WinState);
             if (CheckHightScore()) Encryption.Encrypt(GameData.CurrUsername, $"{GameData.CurrScore}");
@@ -32,7 +39,7 @@ namespace BomberMan {
         }
         private void ShowAllScore() {
             lblHighScore.Text = $"{Encryption.HightScore}";
-            lblScore.Text = $"{GameData.CurrScore}";
+            lblScore.Text = $"{Storages.Player.Score}";
         }
         #endregion
 

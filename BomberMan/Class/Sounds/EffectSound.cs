@@ -1,6 +1,6 @@
 ﻿using System.IO;
 using WMPLib;
-
+using System.Threading;
 namespace BomberMan
 {
     public static class EffectSound
