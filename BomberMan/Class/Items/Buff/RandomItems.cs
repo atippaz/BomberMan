@@ -27,7 +27,7 @@ namespace BomberMan
                     {
                         buff = new HealBuff(location);
                     }
-                    else if (randomvalue > 5)
+                    else if (randomvalue >= 4)
                     {
                         buff = new SpeedBuff(location);
                     }
