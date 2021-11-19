@@ -216,6 +216,7 @@ namespace BomberMan {
         // Sound Background Music
         private void Game_Load(object sender, EventArgs e) {
             pB_Speed.Image = Images.SpeedBootsState;
+            this.Icon = new Icon(Images.IconGame);
             pB_Bomb.Image = Images.IncreaseBombState;
             pB_Power.Image = Images.PowerBombState;
             pictureBox_ShowFacePlayer.Image = Images.PlayerState;
