@@ -296,6 +296,17 @@ namespace BomberMan {
             Application.Exit();
         }
 
-       
+        // Sound Background Music
+        private void Game_Load(object sender, EventArgs e) {
+            pictureBox_SpeedState.Image = Images.SpeedBootsState;
+            pictureBox_IncreaseBombState.Image = Images.IncreaseBombState;
+            pictureBox_PowerBombState.Image = Images.PowerBombState;
+            pictureBox_ShowFacePlayer.Image = Images.PlayerState;
+            lblShowUsername.Text = GameData.CurrUsername;
+
+            BackGroundMusic.Set(Music.GameTheme);
+            BackGroundMusic.Play();
+        }
+
     }
 }

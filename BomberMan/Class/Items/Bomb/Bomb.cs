@@ -8,6 +8,7 @@ namespace BomberMan
     {
         PictureBox bombs;
     
+
         Timer Time;
         Timer Fire;
         Fires fires;

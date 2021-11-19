@@ -113,6 +113,7 @@ namespace BomberMan {
             leave_btnEXIT = true;
         }
         private void btn_EXIT_MouseClick(object sender, MouseEventArgs e) {
+            Application.Exit();
             btn_EXIT.BackColor = Colors.GreyClick;
         }
         private void btn_EXIT_MouseDown(object sender, MouseEventArgs e) {

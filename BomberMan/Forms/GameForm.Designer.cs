@@ -52,7 +52,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PowerBombState)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -96,7 +96,7 @@
             this.lblScoreBox.ForeColor = System.Drawing.Color.Purple;
             this.lblScoreBox.Location = new System.Drawing.Point(705, 5);
             this.lblScoreBox.Name = "lblScoreBox";
-            this.lblScoreBox.Size = new System.Drawing.Size(163, 90);
+            this.lblScoreBox.Size = new System.Drawing.Size(144, 90);
             this.lblScoreBox.TabIndex = 14;
             this.lblScoreBox.Text = "SCORE ";
             this.lblScoreBox.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -115,21 +115,25 @@
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblScore.UseCompatibleTextRendering = true;
             // 
-            // pictureBox1
+            // pictureBox_IncreaseBombState
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(467, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox_IncreaseBombState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pictureBox_IncreaseBombState.Location = new System.Drawing.Point(467, 42);
+            this.pictureBox_IncreaseBombState.Name = "pictureBox_IncreaseBombState";
+            this.pictureBox_IncreaseBombState.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox_IncreaseBombState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox_IncreaseBombState.TabIndex = 17;
+            this.pictureBox_IncreaseBombState.TabStop = false;
             // 
-            // pictureBox2
+            // pictureBox_SpeedState
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(363, 42);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox2.TabIndex = 17;
-            this.pictureBox2.TabStop = false;
+            this.pictureBox_SpeedState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pictureBox_SpeedState.Location = new System.Drawing.Point(363, 42);
+            this.pictureBox_SpeedState.Name = "pictureBox_SpeedState";
+            this.pictureBox_SpeedState.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox_SpeedState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox_SpeedState.TabIndex = 17;
+            this.pictureBox_SpeedState.TabStop = false;
             // 
             // pbHeat1
             // 
@@ -193,13 +197,15 @@
             this.lblBomb.Text = "0";
             this.lblBomb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox6
+            // pictureBox_PowerBombState
             // 
-            this.pictureBox6.Location = new System.Drawing.Point(569, 42);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox6.TabIndex = 17;
-            this.pictureBox6.TabStop = false;
+            this.pictureBox_PowerBombState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pictureBox_PowerBombState.Location = new System.Drawing.Point(569, 42);
+            this.pictureBox_PowerBombState.Name = "pictureBox_PowerBombState";
+            this.pictureBox_PowerBombState.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox_PowerBombState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox_PowerBombState.TabIndex = 17;
+            this.pictureBox_PowerBombState.TabStop = false;
             // 
             // lblPower
             // 
@@ -285,7 +291,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PowerBombState)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
