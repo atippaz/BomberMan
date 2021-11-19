@@ -12,10 +12,14 @@ namespace BomberMan
             Location = new Point(Storages.IntegerSize- (Storages.IntegerTileSize*2), Storages.IntegerSize - (Storages.IntegerTileSize * 2));
             MaxHP = 3;
             MaxMana = 3;
-            MaxSpeed = 50;
+            MaxSpeed = Storages.IntegerTileSize;
             Name = "name";
             Animation.Tag = "Enemy";
-            Speed = 5;
+            Speed = 10;
+            while (Storages.IntegerSize%Speed!=0)
+            {
+                Speed++;
+            }
             HP = 1;
             Storages.Map.MapProperties.Controls.Add(Animation);
             Animation.BackColor = Color.Transparent;

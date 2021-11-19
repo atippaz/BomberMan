@@ -5,25 +5,27 @@ using System.Windows.Forms;
 
 namespace BomberMan {
     public partial class Game : Form {
+        #region variables
         int steps;
         bool UseBomb = true;
         bool walkAble;
         string Directions;
         string BotDirections;
         int minute,second;
-        //PictureBox hitbox;
         int Position_X,Position_Y;
         readonly Timer time = new Timer();
         readonly Timer BotTime = new Timer();
         readonly Timer TimeGame = new Timer();
         int reset = 0;
+        #endregion
+
         void Init() {
             Storages.IntegerTileSize = 50;
             Storages.TileSize = new Size(Storages.IntegerTileSize, Storages.IntegerTileSize);
             this.Focus();
             Position_X = Storages.IntegerTileSize * 2;
             Position_Y = Storages.IntegerTileSize * 3;
-            Storages.IntegerSize = 750; // 15 x 50  
+            Storages.IntegerSize = 600; // 15 x 50  
             Storages.Size = new Size(Storages.IntegerSize, Storages.IntegerSize);
             CreateMap();
             Storages.Boxs = new List<Control>();
@@ -50,19 +52,7 @@ namespace BomberMan {
             time.Tick += Update;
             time.Start();
         }
-        private void Time_Counter(object senfer, EventArgs e)
-        {
-            second++;
-            if (second >= 60)
-            {
-                minute++;
-                second = 0;
-            }
-           /* lbGameTime.Text = String.Format("{0:00000} : {0:00000}", minute,second);*/
-           lblGameTime.Text = $"{minute:00} : {second:00} "; 
-        }
         private void CreateMap() {
-            /*map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);*/
             Storages.CreateMap(MapImage.TileBlue, Storages.IntegerSize, Position_X,Position_Y, this);
             Walls wall = new Walls();
             wall.Create();
@@ -76,48 +66,12 @@ namespace BomberMan {
             Storages.CreatePlayer();
             Storages.Player.Name = PlayerName;
             Storages.CreateEnemy();
-            Storages.Player.Speed = 2;
+            Storages.Player.Speed = 1;
             Storages.Player.Mana = 1;
             Storages.Player.Power = 1;
             lblGameTime.Text = "00 : 00";
             lblScorePlus.Text = "";
             lblScore.Text = "0";
-        }
-
-        private void RandomMove(object sender, EventArgs a)
-        {
-            bool botwalk = false;
-            int botsteps = 0;
-            Random random = new Random();
-            int rndMove = random.Next(1, 10);
-            if (rndMove > 3)
-            {
-                if (rndMove > 8)
-                {
-                    BotDirections = "Rigth";
-                }
-                else if (rndMove > 6)
-                {
-                    BotDirections = "Left";
-                }
-                else if (rndMove > 4)
-                {
-                    BotDirections = "Up";
-                }
-                else if (rndMove > 2)
-                {
-                    BotDirections = "Down";
-                }
-                botwalk = true;
-                Storages.Enemy.WalkFinish = false;
-                botsteps = Storages.IntegerTileSize;
-                Storages.Enemy.CanBomb = true;
-            }
-            else
-            {
-                Storages.Enemy.Planbomb(Storages.Enemy.Location, Storages.Enemy);
-            }
-            Controllers.walk(BotDirections, botwalk, botsteps, Storages.Enemy.CanBomb, Storages.Enemy);
         }
         private void Update(object sender, EventArgs a)
         {
@@ -128,7 +82,8 @@ namespace BomberMan {
             if(Storages.Player.HP >= 3)
             {
                 pbHeat1.Image = pbHeat2.Image = pbHeat3.Image = MapImage.Heart;
-            }else if (Storages.Player.HP >= 2)
+            }
+            else if (Storages.Player.HP >= 2)
             {
                 pbHeat1.Image = pbHeat2.Image =  MapImage.Heart;
                 pbHeat3.Image = MapImage.NoHeart;
@@ -246,10 +201,63 @@ namespace BomberMan {
                 this.Hide();
             }
         }
+
+        // Sound Background Music
+        private void Game_Load(object sender, EventArgs e) {
+            pictureBox_ShowFacePlayer.Image = Images.PlayerState;
+            lblShowUsername.Text = GameData.CurrUsername;
+            BackGroundMusic.Set(Music.GameTheme);
+            BackGroundMusic.Play();
+        }
+        private void RandomMove(object sender, EventArgs a)
+        {
+            bool botwalk = false;
+            int botsteps = 0;
+            Random random = new Random();
+            int rndMove = random.Next(1, 10);
+            if (rndMove > 3)
+            {
+                if (rndMove > 8)
+                {
+                    BotDirections = "Rigth";
+                }
+                else if (rndMove > 6)
+                {
+                    BotDirections = "Left";
+                }
+                else if (rndMove > 4)
+                {
+                    BotDirections = "Up";
+                }
+                else if (rndMove > 2)
+                {
+                    BotDirections = "Down";
+                }
+                botwalk = true;
+                Storages.Enemy.WalkFinish = false;
+                botsteps = Storages.IntegerTileSize;
+                Storages.Enemy.CanBomb = true;
+            }
+            else
+            {
+                Storages.Enemy.Planbomb(Storages.Enemy.Location, Storages.Enemy);
+            }
+            Controllers.walk(BotDirections, botwalk, botsteps, Storages.Enemy.CanBomb, Storages.Enemy);
+        }
         private void KeyIsUp(object sender, KeyEventArgs e) {
             if (KeyBoard.CheckAll(e) && (Storages.Player.WalkFinish || walkAble)) {
                 Storages.Player.AnimationDirector = "";
             }
+        }
+        private void Time_Counter(object senfer, EventArgs e)
+        {
+            second++;
+            if (second >= 60)
+            {
+                minute++;
+                second = 0;
+            }
+           lblGameTime.Text = $"{minute:00} : {second:00} "; 
         }
         private void KeyIsDown(object sender, KeyEventArgs e) {
             if (Storages.Player.WalkFinish) {
@@ -277,10 +285,11 @@ namespace BomberMan {
                     Storages.Player.Mana -= 1;
                     Storages.Player.Planbomb(Storages.Player.Location, Storages.Player);
                 }
-               /* if (e.KeyCode == Keys.F) {
+                if (e.KeyCode == Keys.F)
+                {
                     Storages.LocationItemRandom.Add(new Point(Storages.Player.Location.X + 50, Storages.Player.Location.Y));
                     RandomItems.Randomitem();
-                }*/
+                }
             }
         }
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
@@ -288,12 +297,6 @@ namespace BomberMan {
             Application.Exit();
         }
 
-        // Sound Background Music
-        private void Game_Load(object sender, EventArgs e) {
-            pictureBox_ShowFacePlayer.Image = Images.PlayerState;
-            lblShowUsername.Text = GameData.CurrUsername;
-            BackGroundMusic.Set(Music.GameTheme);
-            BackGroundMusic.Play();
-        }
+       
     }
 }
