@@ -10,15 +10,19 @@ namespace BomberMan {
         bool walkAble;
         string Directions;
         string BotDirections;
+        int minute,second;
         //PictureBox hitbox;
-        int position;
+        int Position_X,Position_Y;
         readonly Timer time = new Timer();
         readonly Timer BotTime = new Timer();
+        readonly Timer TimeGame = new Timer();
+        int reset = 0;
         void Init() {
             Storages.IntegerTileSize = 50;
             Storages.TileSize = new Size(Storages.IntegerTileSize, Storages.IntegerTileSize);
             this.Focus();
-            position = 100;
+            Position_X = Storages.IntegerTileSize * 2;
+            Position_Y = Storages.IntegerTileSize * 3;
             Storages.IntegerSize = 750; // 15 x 50  
             Storages.Size = new Size(Storages.IntegerSize, Storages.IntegerSize);
             CreateMap();
@@ -36,6 +40,9 @@ namespace BomberMan {
                 }
             }
             // The duration of creating a loop, where 1000 is 1 second. and every Interval will do update
+            TimeGame.Interval = 1000;
+            TimeGame.Tick += Time_Counter;
+            TimeGame.Start();
             BotTime.Interval = 1000;
             BotTime.Tick += RandomMove;
             BotTime.Start();
@@ -43,9 +50,20 @@ namespace BomberMan {
             time.Tick += Update;
             time.Start();
         }
+        private void Time_Counter(object senfer, EventArgs e)
+        {
+            second++;
+            if (second >= 60)
+            {
+                minute++;
+                second = 0;
+            }
+           /* lbGameTime.Text = String.Format("{0:00000} : {0:00000}", minute,second);*/
+           lblGameTime.Text = $"{minute:00} : {second:00} "; 
+        }
         private void CreateMap() {
             /*map = new Map(MapImage.TileBlue, new Size(size, size), new Point(position, position), this);*/
-            Storages.CreateMap(MapImage.TileBlue, Storages.IntegerSize, position, this);
+            Storages.CreateMap(MapImage.TileBlue, Storages.IntegerSize, Position_X,Position_Y, this);
             Walls wall = new Walls();
             wall.Create();
             Boxs box = new Boxs();
@@ -59,8 +77,11 @@ namespace BomberMan {
             Storages.Player.Name = PlayerName;
             Storages.CreateEnemy();
             Storages.Player.Speed = 2;
-            Storages.Player.Mana = 3;
+            Storages.Player.Mana = 1;
             Storages.Player.Power = 1;
+            lblGameTime.Text = "00 : 00";
+            lblScorePlus.Text = "";
+            lblScore.Text = "0";
         }
 
         private void RandomMove(object sender, EventArgs a)
@@ -69,7 +90,7 @@ namespace BomberMan {
             int botsteps = 0;
             Random random = new Random();
             int rndMove = random.Next(1, 10);
-            if (rndMove > 2)
+            if (rndMove > 3)
             {
                 if (rndMove > 8)
                 {
@@ -100,6 +121,27 @@ namespace BomberMan {
         }
         private void Update(object sender, EventArgs a)
         {
+            lblScore.Text = Storages.Player.Score.ToString();
+            lblBomb.Text = Storages.Player.Mana.ToString();
+            lblPower.Text = Storages.Player.Power.ToString();
+            lblSpeed.Text = Storages.Player.Speed.ToString();
+            if(Storages.Player.HP >= 3)
+            {
+                pbHeat1.Image = pbHeat2.Image = pbHeat3.Image = MapImage.Heart;
+            }else if (Storages.Player.HP >= 2)
+            {
+                pbHeat1.Image = pbHeat2.Image =  MapImage.Heart;
+                pbHeat3.Image = MapImage.NoHeart;
+            }
+            else if (Storages.Player.HP >= 1)
+            {
+                pbHeat1.Image =  MapImage.Heart;
+                pbHeat2.Image = pbHeat3.Image = MapImage.NoHeart;
+            }
+            else
+            {
+                pbHeat1.Image = pbHeat2.Image = pbHeat3.Image = MapImage.NoHeart;
+            }
             if (Storages.Player.HP > 0 && Storages.Enemy.HP > 0)
             {
                 Point location = new Point(0, 0);
@@ -130,7 +172,12 @@ namespace BomberMan {
                 }
 
                 #endregion
-
+                reset++;
+                if(reset >= 50)
+                {
+                    reset = 0;
+                    Storages.Player.CanHitDamage = true;
+                }
                 if (walkAble) {
                     if (steps > 0) {
                         Storages.Player.Move(Directions);
@@ -149,15 +196,17 @@ namespace BomberMan {
                 //buff check
                 Storages.ItemHasDrop = (Storages.Items.Count != 0) ? true : false;
                 Storages.Fires.ForEach((fire) => {
-                    if (Storages.Player.Location == fire.Location) {
+                    if (Storages.Player.Location == fire.Location && Storages.Player.CanHitDamage) {
                         Storages.Player.HP -= 1;
+                        Storages.Player.CanHitDamage = false;
+                        reset = 0;
                     }
-
                     else if (Storages.Enemy.Location == fire.Location)
                     {
                         if ((string)fire.Tag == "Player")
                         {
                             Storages.Enemy.HP -= 1;
+                            Storages.Player.Score += 500;
                         }
                     }
                 });
@@ -169,7 +218,7 @@ namespace BomberMan {
                         if (Storages.Player.Location == buff.Location)
                         {
                             buff.Effect();
-
+                            Storages.Player.Score += 10;
                             tempItem = buff;
                             Storages.ItemImage.ForEach((image) => {
                                 if (buff.Image == image) {
@@ -189,12 +238,12 @@ namespace BomberMan {
             else {
                 time.Stop();
                 BotTime.Stop();
+                TimeGame.Stop();
                 BackGroundMusic.Stop();
                 GameData.WinState = (Storages.Player.HP > 0) ? true : false;
                 StateForm stateForm = new StateForm();
                 stateForm.Show();
                 this.Hide();
-
             }
         }
         private void KeyIsUp(object sender, KeyEventArgs e) {
@@ -228,10 +277,10 @@ namespace BomberMan {
                     Storages.Player.Mana -= 1;
                     Storages.Player.Planbomb(Storages.Player.Location, Storages.Player);
                 }
-                if (e.KeyCode == Keys.F) {
+               /* if (e.KeyCode == Keys.F) {
                     Storages.LocationItemRandom.Add(new Point(Storages.Player.Location.X + 50, Storages.Player.Location.Y));
                     RandomItems.Randomitem();
-                }
+                }*/
             }
         }
         private void Game_FormClosed(object sender, FormClosedEventArgs e)
@@ -243,7 +292,6 @@ namespace BomberMan {
         private void Game_Load(object sender, EventArgs e) {
             pictureBox_ShowFacePlayer.Image = Images.PlayerState;
             lblShowUsername.Text = GameData.CurrUsername;
-
             BackGroundMusic.Set(Music.GameTheme);
             BackGroundMusic.Play();
         }

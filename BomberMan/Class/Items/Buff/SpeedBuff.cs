@@ -24,13 +24,16 @@ namespace BomberMan
             System.Console.WriteLine($"{Storages.Player.Speed}");
             if(Storages.Player.Speed == 2)
             {
+                Storages.Player.Speed = 5;
+            }
+            else if(Storages.Player.Speed == 5)
+            {
                 Storages.Player.Speed = 10;
             }
             else if(Storages.Player.Speed == 10)
             {
                 Storages.Player.Speed = 25;
-            }
-            else
+            }else if(Storages.Player.Speed == 25)
             {
                 Storages.Player.Speed = 50;
             }

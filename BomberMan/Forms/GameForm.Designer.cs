@@ -35,20 +35,22 @@
             this.lblScore = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pbHeat1 = new System.Windows.Forms.PictureBox();
+            this.lblSpeed = new System.Windows.Forms.Label();
+            this.pbHeat2 = new System.Windows.Forms.PictureBox();
+            this.pbHeat3 = new System.Windows.Forms.PictureBox();
             this.pictureBox_ShowFacePlayer = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lblBomb = new System.Windows.Forms.Label();
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
-            this.label7 = new System.Windows.Forms.Label();
+            this.lblPower = new System.Windows.Forms.Label();
             this.lblShowUsername = new System.Windows.Forms.Label();
+            this.lblGameTime = new System.Windows.Forms.Label();
+            this.lblScorePlus = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeat1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeat2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeat3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             this.SuspendLayout();
@@ -105,9 +107,9 @@
             this.lblScore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.lblScore.Font = new System.Drawing.Font("Consolas", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScore.ForeColor = System.Drawing.Color.MediumVioletRed;
-            this.lblScore.Location = new System.Drawing.Point(705, 35);
+            this.lblScore.Location = new System.Drawing.Point(705, 27);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(163, 47);
+            this.lblScore.Size = new System.Drawing.Size(163, 33);
             this.lblScore.TabIndex = 16;
             this.lblScore.Text = "123456";
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -129,40 +131,46 @@
             this.pictureBox2.TabIndex = 17;
             this.pictureBox2.TabStop = false;
             // 
-            // pictureBox3
+            // pbHeat1
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(203, 42);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox3.TabIndex = 17;
-            this.pictureBox3.TabStop = false;
+            this.pbHeat1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pbHeat1.Location = new System.Drawing.Point(203, 42);
+            this.pbHeat1.Name = "pbHeat1";
+            this.pbHeat1.Size = new System.Drawing.Size(34, 32);
+            this.pbHeat1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbHeat1.TabIndex = 17;
+            this.pbHeat1.TabStop = false;
             // 
-            // label6
+            // lblSpeed
             // 
-            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.label6.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(405, 47);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(56, 23);
-            this.label6.TabIndex = 18;
-            this.label6.Text = "0";
-            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblSpeed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblSpeed.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSpeed.Location = new System.Drawing.Point(405, 47);
+            this.lblSpeed.Name = "lblSpeed";
+            this.lblSpeed.Size = new System.Drawing.Size(56, 23);
+            this.lblSpeed.TabIndex = 18;
+            this.lblSpeed.Text = "0";
+            this.lblSpeed.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox4
+            // pbHeat2
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(243, 42);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox4.TabIndex = 17;
-            this.pictureBox4.TabStop = false;
+            this.pbHeat2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pbHeat2.Location = new System.Drawing.Point(243, 42);
+            this.pbHeat2.Name = "pbHeat2";
+            this.pbHeat2.Size = new System.Drawing.Size(34, 32);
+            this.pbHeat2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbHeat2.TabIndex = 17;
+            this.pbHeat2.TabStop = false;
             // 
-            // pictureBox5
+            // pbHeat3
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(283, 42);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox5.TabIndex = 17;
-            this.pictureBox5.TabStop = false;
+            this.pbHeat3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pbHeat3.Location = new System.Drawing.Point(283, 42);
+            this.pbHeat3.Name = "pbHeat3";
+            this.pbHeat3.Size = new System.Drawing.Size(34, 32);
+            this.pbHeat3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbHeat3.TabIndex = 17;
+            this.pbHeat3.TabStop = false;
             // 
             // pictureBox_ShowFacePlayer
             // 
@@ -174,16 +182,16 @@
             this.pictureBox_ShowFacePlayer.TabIndex = 17;
             this.pictureBox_ShowFacePlayer.TabStop = false;
             // 
-            // label5
+            // lblBomb
             // 
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.label5.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(507, 47);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(56, 23);
-            this.label5.TabIndex = 18;
-            this.label5.Text = "0";
-            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblBomb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblBomb.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBomb.Location = new System.Drawing.Point(507, 47);
+            this.lblBomb.Name = "lblBomb";
+            this.lblBomb.Size = new System.Drawing.Size(56, 23);
+            this.lblBomb.TabIndex = 18;
+            this.lblBomb.Text = "0";
+            this.lblBomb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pictureBox6
             // 
@@ -193,16 +201,16 @@
             this.pictureBox6.TabIndex = 17;
             this.pictureBox6.TabStop = false;
             // 
-            // label7
+            // lblPower
             // 
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.label7.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(611, 47);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(56, 23);
-            this.label7.TabIndex = 18;
-            this.label7.Text = "0";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblPower.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblPower.Font = new System.Drawing.Font("Consolas", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPower.Location = new System.Drawing.Point(611, 47);
+            this.lblPower.Name = "lblPower";
+            this.lblPower.Size = new System.Drawing.Size(56, 23);
+            this.lblPower.TabIndex = 18;
+            this.lblPower.Text = "0";
+            this.lblPower.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblShowUsername
             // 
@@ -217,18 +225,43 @@
             this.lblShowUsername.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.lblShowUsername.UseCompatibleTextRendering = true;
             // 
+            // lblGameTime
+            // 
+            this.lblGameTime.AutoSize = true;
+            this.lblGameTime.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.lblGameTime.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblGameTime.ForeColor = System.Drawing.Color.Navy;
+            this.lblGameTime.Location = new System.Drawing.Point(590, 13);
+            this.lblGameTime.Name = "lblGameTime";
+            this.lblGameTime.Size = new System.Drawing.Size(0, 19);
+            this.lblGameTime.TabIndex = 19;
+            // 
+            // lblScorePlus
+            // 
+            this.lblScorePlus.AutoSize = true;
+            this.lblScorePlus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.lblScorePlus.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblScorePlus.ForeColor = System.Drawing.Color.Purple;
+            this.lblScorePlus.Location = new System.Drawing.Point(788, 69);
+            this.lblScorePlus.Name = "lblScorePlus";
+            this.lblScorePlus.Size = new System.Drawing.Size(70, 15);
+            this.lblScorePlus.TabIndex = 20;
+            this.lblScorePlus.Text = "ScorePlus";
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(891, 224);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.lblScorePlus);
+            this.Controls.Add(this.lblGameTime);
+            this.Controls.Add(this.lblPower);
+            this.Controls.Add(this.lblBomb);
+            this.Controls.Add(this.lblSpeed);
             this.Controls.Add(this.pictureBox_ShowFacePlayer);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pbHeat3);
+            this.Controls.Add(this.pbHeat2);
+            this.Controls.Add(this.pbHeat1);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox6);
             this.Controls.Add(this.pictureBox1);
@@ -248,12 +281,13 @@
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeat1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeat2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbHeat3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -265,14 +299,16 @@
         private System.Windows.Forms.Label lblScore;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pbHeat1;
+        private System.Windows.Forms.Label lblSpeed;
+        private System.Windows.Forms.PictureBox pbHeat2;
+        private System.Windows.Forms.PictureBox pbHeat3;
         private System.Windows.Forms.PictureBox pictureBox_ShowFacePlayer;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblBomb;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label lblPower;
         private System.Windows.Forms.Label lblShowUsername;
+        private System.Windows.Forms.Label lblGameTime;
+        private System.Windows.Forms.Label lblScorePlus;
     }
 }

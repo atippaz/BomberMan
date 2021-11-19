@@ -28,7 +28,7 @@ namespace BomberMan
             Storages.Map.AddTiles(fire);
             Storages.Fires.Add(fire);
             
-            if (CanIncrease(fire) && (Storages.Player.Power > 1))
+            if (CanIncrease(fire, tag) && (Storages.Player.Power > 1))
             {
                 Storages.Player.Power -= 1;
                 Up(fire.Location, tag);
@@ -48,7 +48,7 @@ namespace BomberMan
             };
             Storages.Map.AddTiles(fire);
             Storages.Fires.Add(fire);
-            if (CanIncrease(fire) && (Storages.Player.Power > 1))
+            if (CanIncrease(fire, tag) && (Storages.Player.Power > 1))
             {
                 Storages.Player.Power -= 1;
                 Left(fire.Location, tag);
@@ -69,7 +69,7 @@ namespace BomberMan
             Storages.Map.AddTiles(fire);
             Storages.Fires.Add(fire);
             
-            if (CanIncrease(fire) && (Storages.Player.Power > 1))
+            if (CanIncrease(fire, tag) && (Storages.Player.Power > 1))
             {
                 Storages.Player.Power -= 1;
                 Down(fire.Location, tag);
@@ -90,7 +90,7 @@ namespace BomberMan
             Storages.Map.AddTiles(fire);
             Storages.Fires.Add(fire);
             
-            if (CanIncrease(fire) && (Storages.Player.Power > 1))
+            if (CanIncrease(fire,tag) && (Storages.Player.Power > 1))
             {
                 Storages.Player.Power -= 1;
                 Right(fire.Location, tag);
@@ -103,9 +103,8 @@ namespace BomberMan
             Storages.Fires.ForEach((fires) => Storages.Map.DeleteTile(fires));
             Storages.Fires.Clear();
         }
-        private bool CanIncrease(PictureBox Fire)
+        private bool CanIncrease(PictureBox Fire, string tag)
         {
-            System.Console.WriteLine("test");
             bool canIncrease = true;
             Items Tempitem = new Items();
             bool isFoundItem = false;
@@ -149,11 +148,13 @@ namespace BomberMan
             {
                 Storages.Items.Remove(Tempitem);
                 Storages.Map.DeleteTile(Tempitem.Image);
+                if (tag == "Player") Storages.Player.Score -= 10;
             }
             if(!canIncrease)
             {
                 Storages.Tiles.Remove(Tempbox);
                 Storages.Boxs.Remove(Tempbox);
+                if(tag == "Player")Storages.Player.Score += 100;
             }
             return canIncrease;
         }

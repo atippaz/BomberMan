@@ -4,15 +4,15 @@
     {
         #region Fields
         private int _HP = 1;
-        private int _Speed = 5;
+        private int _Speed = 2;
         private int _Mana = 1;
         private int _MaxHP = 3;
         private int _MaxAtk = 3;
         private int _AtteckPower = 1;
-        private int _MaxMana = 3;
+        private int _MaxMana = 1;
         private int _MaxSpeed = 50;
         private int _Score = 0;
-        private bool _Win = false;
+        public bool CanHitDamage = true;
         private string _Name;
         #endregion
         #region Properties
@@ -26,7 +26,7 @@
             get => _MaxHP;
             set => _MaxHP = (value > 0) ? value : 3;
         }
-        protected int MaxMana
+        public int MaxMana
         {
             get => _MaxMana;
             set => _MaxMana = (value > 0) ? value : 1;
@@ -123,7 +123,6 @@
             }
         }
         public int Score { get => _Score; set => _Score = value; }
-        public bool Win { get => _Win; set => _Win = value; }
         #endregion
     }
 }
