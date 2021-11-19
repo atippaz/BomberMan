@@ -21,6 +21,7 @@ namespace BomberMan {
         static public Image IncreaseBombState = Image.FromFile(Path.GetFullPath(Paths.PathImage + "IncreaseBombState.png"));
         static public Image PowerBombState = Image.FromFile(Path.GetFullPath(Paths.PathImage + "PowerBombState.png"));
         static public Image HeartFull = Image.FromFile(Path.GetFullPath(Paths.PathImage + "HeartFull.png"));
+        static public Image HeartEmpty = Image.FromFile(Path.GetFullPath(Paths.PathImage + "HeartEmpty.png"));
         static public string IconGame = Paths.PathImage + "IconGame.ico";
     }
 }

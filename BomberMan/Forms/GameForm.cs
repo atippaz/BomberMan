@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
@@ -20,6 +21,7 @@ namespace BomberMan {
         #endregion
 
         void Init() {
+            Encryption.Decrypt();
             Storages.IntegerTileSize = 50;
             Storages.TileSize = new Size(Storages.IntegerTileSize, Storages.IntegerTileSize);
             this.Focus();
@@ -66,7 +68,7 @@ namespace BomberMan {
             Storages.CreatePlayer();
             Storages.Player.Name = PlayerName;
             Storages.CreateEnemy();
-            Storages.Player.Speed = 1;
+            Storages.Player.Speed = 5;
             Storages.Player.Mana = 1;
             Storages.Player.Power = 1;
             lblGameTime.Text = "00 : 00";
@@ -86,16 +88,16 @@ namespace BomberMan {
             else if (Storages.Player.HP >= 2)
             {
                 pbHeat1.Image = pbHeat2.Image = Images.HeartFull;
-                pbHeat3.Image = Images.Fire;
+                pbHeat3.Image = Images.HeartEmpty;
             }
             else if (Storages.Player.HP >= 1)
             {
                 pbHeat1.Image = Images.HeartFull;
-                pbHeat2.Image = pbHeat3.Image = Images.Fire;
+                pbHeat2.Image = pbHeat3.Image = Images.HeartEmpty;
             }
             else
             {
-                pbHeat1.Image = pbHeat2.Image = pbHeat3.Image = Images.Fire;
+                pbHeat1.Image = pbHeat2.Image = pbHeat3.Image = Images.HeartEmpty;
             }
             if (Storages.Player.HP > 0 && Storages.Enemy.HP > 0)
             {
@@ -197,12 +199,15 @@ namespace BomberMan {
                 BackGroundMusic.Stop();
                 GameData.WinState = (Storages.Player.HP > 0) ? true : false;
                 StateForm stateForm = new StateForm();
-                stateForm.Show();
                 this.Hide();
+                stateForm.Show();
             }
         }
         // Sound Background Music
         private void Game_Load(object sender, EventArgs e) {
+            pB_Speed.Image = Images.SpeedBootsState;
+            pB_Bomb.Image = Images.IncreaseBombState;
+            pB_Power.Image = Images.PowerBombState;
             pictureBox_ShowFacePlayer.Image = Images.PlayerState;
             lblShowUsername.Text = GameData.CurrUsername;
             BackGroundMusic.Set(Music.GameTheme);

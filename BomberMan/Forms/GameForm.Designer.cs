@@ -46,11 +46,19 @@
             this.lblShowUsername = new System.Windows.Forms.Label();
             this.lblGameTime = new System.Windows.Forms.Label();
             this.lblScorePlus = new System.Windows.Forms.Label();
+            this.pB_Speed = new System.Windows.Forms.PictureBox();
+            this.pB_Bomb = new System.Windows.Forms.PictureBox();
+            this.pB_Power = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pB_Speed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pB_Bomb)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pB_Power)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -94,7 +102,7 @@
             this.lblScoreBox.ForeColor = System.Drawing.Color.Purple;
             this.lblScoreBox.Location = new System.Drawing.Point(705, 5);
             this.lblScoreBox.Name = "lblScoreBox";
-            this.lblScoreBox.Size = new System.Drawing.Size(144, 90);
+            this.lblScoreBox.Size = new System.Drawing.Size(163, 90);
             this.lblScoreBox.TabIndex = 14;
             this.lblScoreBox.Text = "SCORE ";
             this.lblScoreBox.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -105,7 +113,7 @@
             this.lblScore.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.lblScore.Font = new System.Drawing.Font("Consolas", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblScore.ForeColor = System.Drawing.Color.MediumVioletRed;
-            this.lblScore.Location = new System.Drawing.Point(705, 27);
+            this.lblScore.Location = new System.Drawing.Point(705, 30);
             this.lblScore.Name = "lblScore";
             this.lblScore.Size = new System.Drawing.Size(163, 33);
             this.lblScore.TabIndex = 16;
@@ -113,13 +121,21 @@
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblScore.UseCompatibleTextRendering = true;
             // 
-            // pictureBox_IncreaseBombState
+            // pictureBox1
             // 
-           
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox1.TabIndex = 23;
+            this.pictureBox1.TabStop = false;
             // 
-            // pictureBox_SpeedState
+            // pictureBox2
             // 
-         
+            this.pictureBox2.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox2.TabIndex = 21;
+            this.pictureBox2.TabStop = false;
             // 
             // pbHeat1
             // 
@@ -183,9 +199,13 @@
             this.lblBomb.Text = "0";
             this.lblBomb.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox_PowerBombState
+            // pictureBox6
             // 
-            
+            this.pictureBox6.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(100, 50);
+            this.pictureBox6.TabIndex = 22;
+            this.pictureBox6.TabStop = false;
             // 
             // lblPower
             // 
@@ -234,6 +254,36 @@
             this.lblScorePlus.TabIndex = 20;
             this.lblScorePlus.Text = "ScorePlus";
             // 
+            // pB_Speed
+            // 
+            this.pB_Speed.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pB_Speed.Location = new System.Drawing.Point(365, 42);
+            this.pB_Speed.Name = "pB_Speed";
+            this.pB_Speed.Size = new System.Drawing.Size(34, 32);
+            this.pB_Speed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pB_Speed.TabIndex = 17;
+            this.pB_Speed.TabStop = false;
+            // 
+            // pB_Bomb
+            // 
+            this.pB_Bomb.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pB_Bomb.Location = new System.Drawing.Point(467, 42);
+            this.pB_Bomb.Name = "pB_Bomb";
+            this.pB_Bomb.Size = new System.Drawing.Size(34, 32);
+            this.pB_Bomb.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pB_Bomb.TabIndex = 17;
+            this.pB_Bomb.TabStop = false;
+            // 
+            // pB_Power
+            // 
+            this.pB_Power.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pB_Power.Location = new System.Drawing.Point(571, 42);
+            this.pB_Power.Name = "pB_Power";
+            this.pB_Power.Size = new System.Drawing.Size(34, 32);
+            this.pB_Power.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pB_Power.TabIndex = 17;
+            this.pB_Power.TabStop = false;
+            // 
             // Game
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -245,6 +295,9 @@
             this.Controls.Add(this.lblBomb);
             this.Controls.Add(this.lblSpeed);
             this.Controls.Add(this.pictureBox_ShowFacePlayer);
+            this.Controls.Add(this.pB_Power);
+            this.Controls.Add(this.pB_Bomb);
+            this.Controls.Add(this.pB_Speed);
             this.Controls.Add(this.pbHeat3);
             this.Controls.Add(this.pbHeat2);
             this.Controls.Add(this.pbHeat1);
@@ -271,6 +324,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pB_Speed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pB_Bomb)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pB_Power)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -295,5 +352,8 @@
         private System.Windows.Forms.Label lblShowUsername;
         private System.Windows.Forms.Label lblGameTime;
         private System.Windows.Forms.Label lblScorePlus;
+        private System.Windows.Forms.PictureBox pB_Speed;
+        private System.Windows.Forms.PictureBox pB_Bomb;
+        private System.Windows.Forms.PictureBox pB_Power;
     }
 }

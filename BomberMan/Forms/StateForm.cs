@@ -25,7 +25,9 @@ namespace BomberMan {
             }
             ShowAllScore();
             ShowWinOrOver(GameData.WinState);
-            if (CheckHightScore()) Encryption.Encrypt(GameData.CurrUsername, $"{GameData.CurrScore}");
+            // Test palyer score
+            Player player = new Player();
+            if (CheckHightScore()) Encryption.Encrypt(GameData.CurrUsername, $"{Storages.Player.Score}");
         }
 
         #region Methods
@@ -34,7 +36,9 @@ namespace BomberMan {
             pictureBox_StateGame.Image = (win) ? Images.WinState : Images.LoseState;
         }
         private bool CheckHightScore() {
-            bool canWrite = (Encryption.HightScore < GameData.CurrScore) ? true : false;
+            Player player = new Player();
+            // Test player score
+            bool canWrite = (Encryption.HightScore < Storages.Player.Score) ? true : false;
             return canWrite;
         }
         private void ShowAllScore() {
@@ -133,7 +137,8 @@ namespace BomberMan {
             pictureBox_PlayerFace.Image = Images.PlayerState;
             pictureBox_BestPlayerFace.Image = Images.BestPlayerState;
 
-            lblBestPlayerName.Text = (Encryption.Username == "") ? Encryption.Username : "-";           
+            lblBestPlayerName.Text = Encryption.Username;
+            lblBestPlayerName.Text = (lblBestPlayerName.Text == "") ? "-" : lblBestPlayerName.Text;
             lblPlayerName.Text = GameData.CurrUsername;
         }
     }

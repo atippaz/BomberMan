@@ -53,8 +53,8 @@ namespace BomberMan {
 
         #region MainForm event method
         private void OpenGameForm(object sender, EventArgs e) {
-            // Fx sound 
-            EffectSound.Click();
+
+           EffectSound.Click();
           
 
             RegisterForm registerForm = new RegisterForm();

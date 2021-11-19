@@ -7,7 +7,6 @@ namespace BomberMan
     class Bomb
     {
         PictureBox bombs;
-    
 
         Timer Time;
         Timer Fire;
@@ -33,6 +32,7 @@ namespace BomberMan
         }
         public void BombActive(object sender, EventArgs a)
         {
+            EffectSound.Boom();
             Time.Stop();
             Fire = new Timer();
             bombs.Image = Images.Fire;

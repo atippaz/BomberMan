@@ -10,6 +10,7 @@ namespace BomberMan {
 
     enum Effect {
         Click,
+        Boom
     }
     #endregion
 
