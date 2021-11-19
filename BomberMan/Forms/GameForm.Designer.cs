@@ -51,8 +51,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PowerBombState)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -117,23 +115,11 @@
             // 
             // pictureBox_IncreaseBombState
             // 
-            this.pictureBox_IncreaseBombState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pictureBox_IncreaseBombState.Location = new System.Drawing.Point(467, 42);
-            this.pictureBox_IncreaseBombState.Name = "pictureBox_IncreaseBombState";
-            this.pictureBox_IncreaseBombState.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox_IncreaseBombState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox_IncreaseBombState.TabIndex = 17;
-            this.pictureBox_IncreaseBombState.TabStop = false;
+           
             // 
             // pictureBox_SpeedState
             // 
-            this.pictureBox_SpeedState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pictureBox_SpeedState.Location = new System.Drawing.Point(363, 42);
-            this.pictureBox_SpeedState.Name = "pictureBox_SpeedState";
-            this.pictureBox_SpeedState.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox_SpeedState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox_SpeedState.TabIndex = 17;
-            this.pictureBox_SpeedState.TabStop = false;
+         
             // 
             // pbHeat1
             // 
@@ -199,13 +185,7 @@
             // 
             // pictureBox_PowerBombState
             // 
-            this.pictureBox_PowerBombState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            this.pictureBox_PowerBombState.Location = new System.Drawing.Point(569, 42);
-            this.pictureBox_PowerBombState.Name = "pictureBox_PowerBombState";
-            this.pictureBox_PowerBombState.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox_PowerBombState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox_PowerBombState.TabIndex = 17;
-            this.pictureBox_PowerBombState.TabStop = false;
+            
             // 
             // lblPower
             // 
@@ -291,7 +271,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbHeat3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PowerBombState)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

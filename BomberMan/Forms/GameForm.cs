@@ -25,7 +25,7 @@ namespace BomberMan {
             this.Focus();
             Position_X = Storages.IntegerTileSize * 2;
             Position_Y = Storages.IntegerTileSize * 3;
-            Storages.IntegerSize = 600; // 15 x 50  
+            Storages.IntegerSize = 750; // 15 x 50  
             Storages.Size = new Size(Storages.IntegerSize, Storages.IntegerSize);
             CreateMap();
             Storages.Boxs = new List<Control>();
@@ -81,21 +81,21 @@ namespace BomberMan {
             lblSpeed.Text = Storages.Player.Speed.ToString();
             if(Storages.Player.HP >= 3)
             {
-                pbHeat1.Image = pbHeat2.Image = pbHeat3.Image = MapImage.Heart;
+                pbHeat1.Image = pbHeat2.Image = pbHeat3.Image = Images.HeartFull;
             }
             else if (Storages.Player.HP >= 2)
             {
-                pbHeat1.Image = pbHeat2.Image =  MapImage.Heart;
-                pbHeat3.Image = MapImage.NoHeart;
+                pbHeat1.Image = pbHeat2.Image = Images.HeartFull;
+                pbHeat3.Image = Images.Fire;
             }
             else if (Storages.Player.HP >= 1)
             {
-                pbHeat1.Image =  MapImage.Heart;
-                pbHeat2.Image = pbHeat3.Image = MapImage.NoHeart;
+                pbHeat1.Image = Images.HeartFull;
+                pbHeat2.Image = pbHeat3.Image = Images.Fire;
             }
             else
             {
-                pbHeat1.Image = pbHeat2.Image = pbHeat3.Image = MapImage.NoHeart;
+                pbHeat1.Image = pbHeat2.Image = pbHeat3.Image = Images.Fire;
             }
             if (Storages.Player.HP > 0 && Storages.Enemy.HP > 0)
             {
@@ -297,16 +297,6 @@ namespace BomberMan {
         }
 
         // Sound Background Music
-        private void Game_Load(object sender, EventArgs e) {
-            pictureBox_SpeedState.Image = Images.SpeedBootsState;
-            pictureBox_IncreaseBombState.Image = Images.IncreaseBombState;
-            pictureBox_PowerBombState.Image = Images.PowerBombState;
-            pictureBox_ShowFacePlayer.Image = Images.PlayerState;
-            lblShowUsername.Text = GameData.CurrUsername;
-
-            BackGroundMusic.Set(Music.GameTheme);
-            BackGroundMusic.Play();
-        }
 
     }
 }

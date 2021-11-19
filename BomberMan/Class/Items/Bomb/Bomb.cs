@@ -27,7 +27,7 @@ namespace BomberMan
             Storages.Tiles.Add(bombs);
             bombs.BringToFront();
             Time = new Timer();
-            Time.Interval = 2000;
+            Time.Interval = 2500;
             Time.Tick += BombActive;
             Time.Start();
         }
