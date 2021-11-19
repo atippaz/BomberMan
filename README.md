@@ -9,3 +9,5 @@ this is Bomberman Game in a project Computer Programing (OOP) in language c# <br
 https://github.com/JENGZY-devBoi <br />
 https://github.com/ATIPPAz
 *******************************************************************************
+don't forget to change File path when developing and don't forget to copy the resource file into the executable.
+อย่าลืมเปลี่ยนเส้นทางของ path ใน class path เป็น ของ dev 
