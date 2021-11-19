@@ -1,7 +1,7 @@
 ﻿namespace BomberMan {
     static class Paths {
-        static private string path = "..\\..\\";
-
+       /* static private string path = "..\\..\\";*/   //dev
+        static private string path = ""; // master
         public static string PathImage = path + "resource\\Images\\";
         public static string PathPlayer = path + "resource\\Character\\Player\\";
         public static string PathEnemy = path + "resource\\Character\\Enemy\\";

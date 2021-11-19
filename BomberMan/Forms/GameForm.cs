@@ -68,12 +68,22 @@ namespace BomberMan {
             Storages.CreatePlayer();
             Storages.Player.Name = PlayerName;
             Storages.CreateEnemy();
-            Storages.Player.Speed = 5;
+            Storages.Player.Speed = 1;
+            getspeed();
+            getspeed();
             Storages.Player.Mana = 1;
             Storages.Player.Power = 1;
             lblGameTime.Text = "00 : 00";
             lblScorePlus.Text = "";
             lblScore.Text = "0";
+        }
+        void getspeed()
+        {
+            Storages.Player.Speed += 1;
+            while (Storages.IntegerTileSize % Storages.Player.Speed != 0)
+            {
+                Storages.Player.Speed++;
+            }
         }
         private void Update(object sender, EventArgs a)
         {
