@@ -6,7 +6,7 @@ namespace BomberMan {
         #region Fields
         private static string _Username;
         private static int _HighScore;
-        private static int key = 20;
+        private static int key = 17;
         private static int index;
         private static string[] _EngLang =
             {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
