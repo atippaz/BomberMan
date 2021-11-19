@@ -7,7 +7,6 @@ namespace BomberMan {
     public partial class MainForm : Form {
         #region Fields
         private int lineSpeed = 10;
-        private Thread _Fx;
         PictureBox playerLogo, playerLogo1;
         #endregion
 
@@ -55,8 +54,8 @@ namespace BomberMan {
         #region MainForm event method
         private void OpenGameForm(object sender, EventArgs e) {
             // Fx sound 
-            _Fx = new Thread(EffectSound.Click);
-            _Fx.Start();
+            EffectSound.Click();
+          
 
             RegisterForm registerForm = new RegisterForm();
             registerForm.Show();
