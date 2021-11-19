@@ -201,7 +201,6 @@ namespace BomberMan {
                 this.Hide();
             }
         }
-
         // Sound Background Music
         private void Game_Load(object sender, EventArgs e) {
             pictureBox_ShowFacePlayer.Image = Images.PlayerState;
