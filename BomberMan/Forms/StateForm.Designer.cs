@@ -320,7 +320,7 @@ namespace BomberMan {
             this.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Name = "StateForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "StateForm";
+            this.Text = "THE STUDENT BOMBER";
             this.TopMost = true;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.StateForm_FormClosed);
             this.Load += new System.EventHandler(this.StateForm_Load);
