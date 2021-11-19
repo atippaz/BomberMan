@@ -22,7 +22,7 @@ namespace BomberMan {
         public void Create() {
             var rn = new Random();
             int row = 1;
-            for (int y = 100; y <= (Storages.IntegerSize - Storages.IntegerTileSize); y += Storages.IntegerTileSize * 2) {
+            for (int y = 100; y <= (Storages.IntegerSize - Storages.IntegerTileSize); y += Storages.IntegerTileSize) {
                 for (int x = Storages.IntegerTileSize; x < Storages.IntegerTileSize * (Storages.IntegerSize / Storages.IntegerTileSize) - 2; x += 50) {
                     int ran = rn.Next(3);
                     if (ran == 1) x += Storages.IntegerTileSize;

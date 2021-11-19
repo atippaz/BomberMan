@@ -163,16 +163,24 @@
     <Content Include="resource\Character\Enemy\Enemy_run_up.gif" />
     <Content Include="resource\HighScore\HighScore.txt" />
     <Content Include="resource\Images\BestPlayerState.png" />
+    <Content Include="resource\Images\HeartFull.png" />
+    <Content Include="resource\Images\PowerBombState.png" />
+    <Content Include="resource\Images\IncreaseBombState.png" />
+    <Content Include="resource\Images\LoseState.gif" />
     <Content Include="resource\Images\PlayerState.png" />
     <Content Include="resource\Images\PlayerWait.gif" />
     <Content Include="resource\Images\PlayerReady.gif" />
-    <Content Include="resource\Maps\Bomb.png" />
-    <Content Include="resource\Maps\BookBox.png" />
-    <Content Include="resource\Maps\NoHeart.png" />
-    <Content Include="resource\Maps\Heart.png" />
+    <Content Include="resource\Images\SpeedBootsState.png" />
+    <Content Include="resource\Images\WinState.gif" />
+    <Content Include="resource\Maps\Bomb.gif" />
     <Content Include="resource\Maps\TileBlue.png" />
     <Content Include="resource\Maps\Wall.png" />
-    <Content Include="resource\Maps\Box.png" />
+    <Content Include="resource\Maps\Heal.gif" />
+    <Content Include="resource\Maps\IncreaseBomb.gif" />
+    <Content Include="resource\Maps\PowerBomb.gif" />
+    <Content Include="resource\Maps\BookBox.png" />
+    <Content Include="resource\Maps\NoHeart.png" />
+    <Content Include="resource\Maps\SpeedBoots.gif" />
     <Content Include="resource\Character\Player\Player_run_right.gif" />
     <Content Include="resource\Character\Player\Player_run_down.gif" />
     <Content Include="resource\Character\Player\Player_run_up.gif" />
@@ -188,6 +196,7 @@
     <Content Include="resource\Character\Player\Player_idle.gif" />
     <Content Include="resource\Images\BtnStartCharacterAnimate.gif" />
     <Content Include="resource\Images\BtnExitCharacterAnimate.gif" />
+    <Content Include="resource\Sounds\Bgm\OverTheme.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

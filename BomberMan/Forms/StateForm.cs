@@ -24,7 +24,7 @@ namespace BomberMan {
         #region Methods
         private void ShowWinOrOver(bool win) {
             lblState.Text = (win) ? "GAME WIN" : "GAME OVER";
-            //pictureBox_StateGame.Image = (win) ? Images.WinState : Image.LoseState;
+            pictureBox_StateGame.Image = (win) ? Images.WinState : Images.LoseState;
         }
         private bool CheckHightScore() {
             bool canWrite = (Encryption.HightScore < GameData.CurrScore) ? true : false;
@@ -121,6 +121,8 @@ namespace BomberMan {
         }
 
         private void StateForm_Load(object sender, EventArgs e) {
+            BackGroundMusic.Set(Music.OverTheme);
+            BackGroundMusic.Play();
             pictureBox_PlayerFace.Image = Images.PlayerState;
             pictureBox_BestPlayerFace.Image = Images.BestPlayerState;
 

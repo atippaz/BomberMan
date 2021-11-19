@@ -33,24 +33,24 @@
             this.label4 = new System.Windows.Forms.Label();
             this.lblScoreBox = new System.Windows.Forms.Label();
             this.lblScore = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_IncreaseBombState = new System.Windows.Forms.PictureBox();
+            this.pictureBox_SpeedState = new System.Windows.Forms.PictureBox();
+            this.pictureBox_Heart1 = new System.Windows.Forms.PictureBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_Heart2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_Heart3 = new System.Windows.Forms.PictureBox();
             this.pictureBox_ShowFacePlayer = new System.Windows.Forms.PictureBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox_PowerBombState = new System.Windows.Forms.PictureBox();
             this.label7 = new System.Windows.Forms.Label();
             this.lblShowUsername = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_IncreaseBombState)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_SpeedState)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Heart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Heart2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Heart3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PowerBombState)).BeginInit();
             this.SuspendLayout();
             // 
             // label3
@@ -94,7 +94,7 @@
             this.lblScoreBox.ForeColor = System.Drawing.Color.Purple;
             this.lblScoreBox.Location = new System.Drawing.Point(705, 5);
             this.lblScoreBox.Name = "lblScoreBox";
-            this.lblScoreBox.Size = new System.Drawing.Size(163, 90);
+            this.lblScoreBox.Size = new System.Drawing.Size(144, 90);
             this.lblScoreBox.TabIndex = 14;
             this.lblScoreBox.Text = "SCORE ";
             this.lblScoreBox.TextAlign = System.Drawing.ContentAlignment.TopCenter;
@@ -107,35 +107,41 @@
             this.lblScore.ForeColor = System.Drawing.Color.MediumVioletRed;
             this.lblScore.Location = new System.Drawing.Point(705, 35);
             this.lblScore.Name = "lblScore";
-            this.lblScore.Size = new System.Drawing.Size(163, 47);
+            this.lblScore.Size = new System.Drawing.Size(144, 47);
             this.lblScore.TabIndex = 16;
             this.lblScore.Text = "123456";
             this.lblScore.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblScore.UseCompatibleTextRendering = true;
             // 
-            // pictureBox1
+            // pictureBox_IncreaseBombState
             // 
-            this.pictureBox1.Location = new System.Drawing.Point(467, 42);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox1.TabIndex = 17;
-            this.pictureBox1.TabStop = false;
+            this.pictureBox_IncreaseBombState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pictureBox_IncreaseBombState.Location = new System.Drawing.Point(467, 42);
+            this.pictureBox_IncreaseBombState.Name = "pictureBox_IncreaseBombState";
+            this.pictureBox_IncreaseBombState.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox_IncreaseBombState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox_IncreaseBombState.TabIndex = 17;
+            this.pictureBox_IncreaseBombState.TabStop = false;
             // 
-            // pictureBox2
+            // pictureBox_SpeedState
             // 
-            this.pictureBox2.Location = new System.Drawing.Point(363, 42);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox2.TabIndex = 17;
-            this.pictureBox2.TabStop = false;
+            this.pictureBox_SpeedState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pictureBox_SpeedState.Location = new System.Drawing.Point(363, 42);
+            this.pictureBox_SpeedState.Name = "pictureBox_SpeedState";
+            this.pictureBox_SpeedState.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox_SpeedState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox_SpeedState.TabIndex = 17;
+            this.pictureBox_SpeedState.TabStop = false;
             // 
-            // pictureBox3
+            // pictureBox_Heart1
             // 
-            this.pictureBox3.Location = new System.Drawing.Point(203, 42);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox3.TabIndex = 17;
-            this.pictureBox3.TabStop = false;
+            this.pictureBox_Heart1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pictureBox_Heart1.Location = new System.Drawing.Point(203, 42);
+            this.pictureBox_Heart1.Name = "pictureBox_Heart1";
+            this.pictureBox_Heart1.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox_Heart1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_Heart1.TabIndex = 17;
+            this.pictureBox_Heart1.TabStop = false;
             // 
             // label6
             // 
@@ -148,21 +154,25 @@
             this.label6.Text = "0";
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox4
+            // pictureBox_Heart2
             // 
-            this.pictureBox4.Location = new System.Drawing.Point(243, 42);
-            this.pictureBox4.Name = "pictureBox4";
-            this.pictureBox4.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox4.TabIndex = 17;
-            this.pictureBox4.TabStop = false;
+            this.pictureBox_Heart2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pictureBox_Heart2.Location = new System.Drawing.Point(243, 42);
+            this.pictureBox_Heart2.Name = "pictureBox_Heart2";
+            this.pictureBox_Heart2.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox_Heart2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_Heart2.TabIndex = 17;
+            this.pictureBox_Heart2.TabStop = false;
             // 
-            // pictureBox5
+            // pictureBox_Heart3
             // 
-            this.pictureBox5.Location = new System.Drawing.Point(283, 42);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox5.TabIndex = 17;
-            this.pictureBox5.TabStop = false;
+            this.pictureBox_Heart3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pictureBox_Heart3.Location = new System.Drawing.Point(283, 42);
+            this.pictureBox_Heart3.Name = "pictureBox_Heart3";
+            this.pictureBox_Heart3.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox_Heart3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox_Heart3.TabIndex = 17;
+            this.pictureBox_Heart3.TabStop = false;
             // 
             // pictureBox_ShowFacePlayer
             // 
@@ -185,13 +195,15 @@
             this.label5.Text = "0";
             this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // pictureBox6
+            // pictureBox_PowerBombState
             // 
-            this.pictureBox6.Location = new System.Drawing.Point(569, 42);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(34, 32);
-            this.pictureBox6.TabIndex = 17;
-            this.pictureBox6.TabStop = false;
+            this.pictureBox_PowerBombState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            this.pictureBox_PowerBombState.Location = new System.Drawing.Point(569, 42);
+            this.pictureBox_PowerBombState.Name = "pictureBox_PowerBombState";
+            this.pictureBox_PowerBombState.Size = new System.Drawing.Size(34, 32);
+            this.pictureBox_PowerBombState.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox_PowerBombState.TabIndex = 17;
+            this.pictureBox_PowerBombState.TabStop = false;
             // 
             // label7
             // 
@@ -226,12 +238,12 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.pictureBox_ShowFacePlayer);
-            this.Controls.Add(this.pictureBox5);
-            this.Controls.Add(this.pictureBox4);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.pictureBox6);
-            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.pictureBox_Heart3);
+            this.Controls.Add(this.pictureBox_Heart2);
+            this.Controls.Add(this.pictureBox_Heart1);
+            this.Controls.Add(this.pictureBox_SpeedState);
+            this.Controls.Add(this.pictureBox_PowerBombState);
+            this.Controls.Add(this.pictureBox_IncreaseBombState);
             this.Controls.Add(this.lblScore);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblScoreBox);
@@ -246,13 +258,13 @@
             this.Load += new System.EventHandler(this.Game_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.KeyIsUp);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_IncreaseBombState)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_SpeedState)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Heart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Heart2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_Heart3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox_ShowFacePlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox_PowerBombState)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -263,15 +275,15 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblScoreBox;
         private System.Windows.Forms.Label lblScore;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.PictureBox pictureBox2;
-        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox_IncreaseBombState;
+        private System.Windows.Forms.PictureBox pictureBox_SpeedState;
+        private System.Windows.Forms.PictureBox pictureBox_Heart1;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox_Heart2;
+        private System.Windows.Forms.PictureBox pictureBox_Heart3;
         private System.Windows.Forms.PictureBox pictureBox_ShowFacePlayer;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox_PowerBombState;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblShowUsername;
     }

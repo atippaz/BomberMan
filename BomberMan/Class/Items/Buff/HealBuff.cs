@@ -11,7 +11,7 @@ namespace BomberMan
             {
                 Location = Location,
                 Size = Storages.TileSize,
-                Image = MapImage.Heart,
+                Image = MapImage.Heal,
                 SizeMode = PictureBoxSizeMode.Zoom
             };
             Storages.Map.AddTiles(ItemImage);
