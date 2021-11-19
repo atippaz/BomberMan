@@ -108,7 +108,7 @@ namespace BomberMan
             bool canIncrease = true;
             Items Tempitem = new Items();
             bool isFoundItem = false;
-            Control Tempbox = new Control();
+            Control Tempbox =null;
             if (Storages.ItemHasDrop)
             {
                 foreach (var item in Storages.Items)
@@ -150,7 +150,7 @@ namespace BomberMan
                 Storages.Map.DeleteTile(Tempitem.Image);
                 if (tag == "Player") Storages.Player.Score -= 10;
             }
-            if(!canIncrease)
+            if(Tempbox != null)
             {
                 Storages.Tiles.Remove(Tempbox);
                 Storages.Boxs.Remove(Tempbox);
