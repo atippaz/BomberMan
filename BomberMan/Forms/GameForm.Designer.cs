@@ -313,7 +313,7 @@
             this.KeyPreview = true;
             this.Name = "Game";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "Game";
+            this.Text = "THE STUDENT BOMBER";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Game_FormClosed);
             this.Load += new System.EventHandler(this.Game_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.KeyIsDown);
