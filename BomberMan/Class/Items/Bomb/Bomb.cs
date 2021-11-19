@@ -7,7 +7,7 @@ namespace BomberMan
     class Bomb
     {
         PictureBox bombs;
-    
+
         Timer Time;
         Timer Fire;
         Fires fires;
@@ -26,12 +26,13 @@ namespace BomberMan
             Storages.Tiles.Add(bombs);
             bombs.BringToFront();
             Time = new Timer();
-            Time.Interval = 2000;
+            Time.Interval = 2500;
             Time.Tick += BombActive;
             Time.Start();
         }
         public void BombActive(object sender, EventArgs a)
         {
+            EffectSound.Boom();
             Time.Stop();
             Fire = new Timer();
             bombs.Image = Images.Fire;
@@ -48,8 +49,8 @@ namespace BomberMan
             Fire.Stop();
             fires.DeleteFire();
             Storages.Map.DeleteTile(bombs);
-            Storages.Player.Mana += 1;
             Storages.Player.CanBomb = true;
+            Storages.Player.Mana += 1;
         }
     }
 }

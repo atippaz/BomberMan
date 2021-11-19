@@ -21,9 +21,9 @@ namespace BomberMan {
         public static Player Player;
         public static Enemy Enemy;
         public static bool ItemHasDrop = false;
-        public static void CreateMap(Image image,int size,int position,Form form)
+        public static void CreateMap(Image image,int size,int position_x,int position_y,Form form)
         {
-            Map = new Map(image, new Size(size, size), new Point(position, position), form);
+            Map = new Map(image, new Size(size, size), new Point(position_x, position_y), form);
         }
         public static void CreatePlayer()
         {

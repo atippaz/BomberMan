@@ -87,6 +87,7 @@ namespace BomberMan {
             // 
             // pictureBox_StateGame
             // 
+            this.pictureBox_StateGame.BackColor = System.Drawing.Color.Yellow;
             this.pictureBox_StateGame.Location = new System.Drawing.Point(51, 98);
             this.pictureBox_StateGame.Name = "pictureBox_StateGame";
             this.pictureBox_StateGame.Size = new System.Drawing.Size(192, 295);
@@ -98,6 +99,7 @@ namespace BomberMan {
             // 
             this.lblState.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
             this.lblState.Font = new System.Drawing.Font("Consolas", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
             this.lblState.Location = new System.Drawing.Point(51, 16);
             this.lblState.Name = "lblState";
             this.lblState.Size = new System.Drawing.Size(699, 72);

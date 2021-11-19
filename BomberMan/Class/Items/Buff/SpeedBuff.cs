@@ -11,7 +11,7 @@ namespace BomberMan
             {
                 Location = Location,
                 Size = Storages.TileSize,
-                Image = MapImage.NoHeart,
+                Image = MapImage.SpeedBoots,
                 SizeMode = PictureBoxSizeMode.Zoom
             };
             Storages.Map.AddTiles(ItemImage);
@@ -21,18 +21,10 @@ namespace BomberMan
         }
         public override void Effect()
         {
-            System.Console.WriteLine($"{Storages.Player.Speed}");
-            if(Storages.Player.Speed == 2)
+            Storages.Player.Speed +=1;
+            while (Storages.IntegerTileSize % Storages.Player.Speed !=0)
             {
-                Storages.Player.Speed = 10;
-            }
-            else if(Storages.Player.Speed == 10)
-            {
-                Storages.Player.Speed = 25;
-            }
-            else
-            {
-                Storages.Player.Speed = 50;
+                Storages.Player.Speed++;
             }
         }
     }

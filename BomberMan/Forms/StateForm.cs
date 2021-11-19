@@ -15,24 +15,35 @@ namespace BomberMan {
             this.Icon = new Icon(Images.IconGame);
             LineSlide1.BackColor = Colors.OrangeLine;
             LineSlide2.BackColor = Colors.PurpleLine;
-
+            if (GameData.WinState)
+            {
+                Storages.Player.Score *= 2;
+            }
+            else
+            {
+                Storages.Player.Score /= 2;
+            }
             ShowAllScore();
             ShowWinOrOver(GameData.WinState);
-            if (CheckHightScore()) Encryption.Encrypt(GameData.CurrUsername, $"{GameData.CurrScore}");
+            // Test palyer score
+            Player player = new Player();
+            if (CheckHightScore()) Encryption.Encrypt(GameData.CurrUsername, $"{Storages.Player.Score}");
         }
 
         #region Methods
         private void ShowWinOrOver(bool win) {
             lblState.Text = (win) ? "GAME WIN" : "GAME OVER";
-            //pictureBox_StateGame.Image = (win) ? Images.WinState : Image.LoseState;
+            pictureBox_StateGame.Image = (win) ? Images.WinState : Images.LoseState;
         }
         private bool CheckHightScore() {
-            bool canWrite = (Encryption.HightScore < GameData.CurrScore) ? true : false;
+            Player player = new Player();
+            // Test player score
+            bool canWrite = (Encryption.HightScore < Storages.Player.Score) ? true : false;
             return canWrite;
         }
         private void ShowAllScore() {
             lblHighScore.Text = $"{Encryption.HightScore}";
-            lblScore.Text = $"{GameData.CurrScore}";
+            lblScore.Text = $"{Storages.Player.Score}";
         }
         #endregion
 
@@ -121,10 +132,13 @@ namespace BomberMan {
         }
 
         private void StateForm_Load(object sender, EventArgs e) {
+            BackGroundMusic.Set(Music.OverTheme);
+            BackGroundMusic.Play();
             pictureBox_PlayerFace.Image = Images.PlayerState;
             pictureBox_BestPlayerFace.Image = Images.BestPlayerState;
 
-            lblBestPlayerName.Text = (Encryption.Username == "") ? Encryption.Username : "-";           
+            lblBestPlayerName.Text = Encryption.Username;
+            lblBestPlayerName.Text = (lblBestPlayerName.Text == "") ? "-" : lblBestPlayerName.Text;
             lblPlayerName.Text = GameData.CurrUsername;
         }
     }
