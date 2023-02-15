@@ -1,5 +1,6 @@
 # Bomberman Game<img src="https://raw.githubusercontent.com/MartinHeinz/MartinHeinz/master/wave.gif" width="30px" height="30px">
 
+BomberMan Game on Desktop Application
 ## Description
 this is Bomberman Game in a project Computer Programing (OOP) in language c# <br />
 เกมนี้ คือเกม BomberMan ในภาษา C#<br />
